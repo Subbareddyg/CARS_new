@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : samplesToPhotograph.xml
+    Created on : February 20, 2008, 2:22 PM
+    Author     : amuaxg1
+    Description:
+        Purpose of the document follows.
+-->
+
+<carsMessage from="CARS" to="RRD" type="photoRequests">
+	<productPhotoRequests>
+		<productPhotoRequest>
+			<car id="809809"/>
+			<product type="coat">
+				<name>Samantha Stevens Slicker</name>
+				<vendor id="1234567"><name>Acme</name></vendor>
+				<style id="ABC123"/>
+				<brand>Acme Brand</brand>
+				<department id="112"><name>Better Coats</name></department>
+				<class id="112-3"><name>Woolens</name></class>
+			</product>
+			<photos>
+				<photo type="sample">
+					<file><name><prefix>1234567_ABC123_123_S</prefix></name></file>
+					<samples> <!--     0-*     -->	
+						<sample id="5678990" type="swatch">
+							<shouldReturn>Y</shouldReturn>
+							<color code="123"><name>Red</name></color>
+							<returnInformation>
+								<shippingAccount id="AFJ-ADF99D-90" carrier="FedEx"/>
+								<instructions>Return to vendor at 1920 W. Blvd office.</instructions>
+							</returnInformation>
+						</sample>
+					</samples>
+					<instructions>Take the photo this way.</instructions>
+				</photo>
+			<photos>
+		</productPhotoRequest>
+	</productPhotoRequests>
+</carsMessage>
+
+
+
+
+
+<carsMessage from="RRD" to="CARS" type="update">
+	<histories>
+		<sampleHistories>
+			<history>
+				<sample id="6789"/>
+				<event type="shipped" qualifier="toBelk" time="08/03/04 13:51:00">
+					<shipment carrier="FedEx" trackingNumber="76087-F23-1142X"/>
+				</event>
+				<event type="shipped" qualifier="toStudio" time="08/03/02 13:51:00"/>
+			</history>
+		</sampleHistories>
+		<samplePhotoHistories>
+			<history>
+				<sample id="6789"/>  <!-- may be >1:  implied collection -->
+				<photo>
+					<file>
+						<location>Scene7</location>
+						<path>/xxx/yyy/zzz</path>
+						<name>
+							<prefix>1234567_ABC123_123_S</prefix>
+							<suffix>F01_0001</suffix>
+							<extension>.tif</extension>
+						</name>
+					</file>
+				</photo>
+				<event type="taken" time="03/04/08 13:51:00"/>
+				<event type="rejected" time="03/04/08 13:51:00"/>
+				<event type="reshot" time="03/04/08 13:51:00"/>
+				<event type="approved" time="03/04/08 13:51:00"/>
+				<event type="uploaded" qualifier="toScene7" time="03/04/08 13:51:00"/>
+			</history>
+		</samplePhotoHistories>
+	</histories>
+</carsMessage>
+				
+		
+				
+
+
+
+
+
+
+
+
+	

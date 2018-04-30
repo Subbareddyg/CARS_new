@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+    
+    <!-- For mail settings and future properties files -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:mail.properties</value>
+            </list>
+        </property>
+    </bean>
+
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+<property name="annotatedClasses">
+      <list>
+        <value>org.appfuse.model.User</value>
+        <value>org.appfuse.model.Role</value>
+  <value>com.belk.car.app.model.Car</value>
+  <value>com.belk.car.app.model.Attribute</value>
+  <value>com.belk.car.app.model.AttributeConfig</value>
+  <value>com.belk.car.app.model.AttributeDatatype</value>
+  <value>com.belk.car.app.model.AttributeLookupValue</value>
+  <value>com.belk.car.app.model.AttributeType</value>
+  <value>com.belk.car.app.model.CarAttribute</value>
+  <value>com.belk.car.app.model.CarHistory</value>
+  <value>com.belk.car.app.model.CarNote</value>
+  <value>com.belk.car.app.model.CarSkuAttribute</value>
+  <value>com.belk.car.app.model.ChangeType</value>
+  <value>com.belk.car.app.model.ClassAttribute</value>
+  <value>com.belk.car.app.model.Classification</value>
+  <value>com.belk.car.app.model.Config</value>
+  <value>com.belk.car.app.model.Department</value>
+  <value>com.belk.car.app.model.DepartmentAttribute</value>
+  <value>com.belk.car.app.model.Image</value>
+  <value>com.belk.car.app.model.NoteType</value>
+  <value>com.belk.car.app.model.Notification</value>
+  <value>com.belk.car.app.model.NotificationType</value>
+  <value>com.belk.car.app.model.ProductType</value>
+  <value>com.belk.car.app.model.ProductTypeAttribute</value>
+  <value>com.belk.car.app.model.Sample</value>
+  <value>com.belk.car.app.model.SampleType</value>
+  <value>com.belk.car.app.model.ShippingInformation</value>
+  <value>com.belk.car.app.model.ShippingType</value>
+  <value>com.belk.car.app.model.SourceType</value>
+  <value>com.belk.car.app.model.Status</value>
+  <value>com.belk.car.app.model.Vendor</value>
+  <value>com.belk.car.app.model.VendorSku</value>
+  <value>com.belk.car.app.model.VendorStyle</value>
+  <value>com.belk.car.app.model.WorkFlow</value>
+  <value>com.belk.car.app.model.CarUserClass</value>
+  <value>com.belk.car.app.model.CarUserNote</value>
+  <value>com.belk.car.app.model.SampleShippingInformation</value>
+  <value>com.belk.car.app.model.UserType</value>
+  <value>com.belk.car.app.model.CarImage</value>
+  <value>com.belk.car.app.model.CarSample</value>
+  <value>com.belk.car.app.model.ValidationExpression</value>
+  <value>com.belk.car.app.model.HtmlDisplayType</value>
+  <value>com.belk.car.app.model.ImageSourceType</value>
+  <value>com.belk.car.app.model.ImageType</value>
+  <value>com.belk.car.app.model.ImageTrackingStatus</value>
+  <value>com.belk.car.app.model.ImageLocationType</value>
+  <value>com.belk.car.app.model.SampleTrackingStatus</value>
+  <value>com.belk.car.app.model.SampleSourceType</value>
+  <value>com.belk.car.app.model.ImageProvider</value>
+  <value>com.belk.car.app.model.workflow.WorkflowStatus</value>
+  <value>com.belk.car.app.model.workflow.WorkflowType</value>
+  <value>com.belk.car.app.model.workflow.WorkflowTransition</value>
+  <value>com.belk.car.app.model.workflow.WorkflowTask</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <value>
+        hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+      </value>
+    </property>
+  </bean>
+
+
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@10.1.116.76:1521:XE"/>
+        <property name="username" value="CARS"/>
+        <property name="password" value="PASSWORD"/>
+        <property name="maxActive" value="100"/>
+        <property name="maxWait" value="1000"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+    
+        <!-- Add new DAOs here -->
+	<bean id="carDao" class="com.belk.car.app.dao.hibernate.CarDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+            <!-- Add new DAOs here -->
+	<bean id="mgmtDao" class="com.belk.car.app.dao.hibernate.CarManagementDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="carManager" class="com.belk.car.app.service.impl.CarManagerImpl">
+        <property name="carDao" ref="carDao"/>
+      <property name="carMgmtDao" ref="mgmtDao"/> 
+    </bean>
+</beans>

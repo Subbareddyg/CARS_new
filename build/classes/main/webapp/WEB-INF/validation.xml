@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+	<global>
+		<constant>
+			<constant-name>phoneAreaCode</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>phoneNumber1</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>phoneNumber2</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>altPhoneAreaCode</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>altPhoneNumber1</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>altPhoneNumber2</constant-name>
+			<constant-value>^\d{3}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>zip</constant-name>
+			<constant-value>^\d{5}\d*$</constant-value>
+		</constant>
+		<constant>
+			<constant-name>currency</constant-name>
+			<constant-value>
+				^\d{1,3}(,?\d{1,3})*\.?(\d{1,2})?$
+			</constant-value>
+		</constant>
+	</global>
+	<formset>
+		<form name="fileUpload">
+			<field property="name" depends="required">
+				<arg0 key="uploadForm.name" />
+			</field>
+			<!-- Client-side Javascript won't catch this in IE, but server-side will -->
+			<field property="file" depends="required">
+				<arg0 key="uploadForm.file" />
+			</field>
+		</form>
+	</formset>
+
+	<formset>
+		<!--
+			Define form validation config in validation-forms.xml
+		-->
+		<form name="address">
+			<field property="city" depends="required">
+
+				<arg0 key="address.city" />
+			</field>
+			<field property="postalCode" depends="required,mask">
+				<msg name="mask" key="errors.zip" />
+
+				<arg0 key="address.postalCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${zip}</var-value>
+				</var>
+			</field>
+			<field property="province" depends="required">
+
+				<arg0 key="address.province" />
+			</field>
+		</form>
+		<form name="attributeForm">
+			<field property="name" depends="required">
+				<arg0 key="attributeProfile.attr.label" />
+			</field>
+			<field property="blueMartiniAttribute" depends="required">
+				<arg0 key="attributeProfile.blue.martini.name"/>
+			</field>
+			<field property="description" depends="required,maxlength">
+				<arg0 key="attributeProfile.description" />
+				<arg1 name="maxlength" key="errors.description.size.maxlength" resource="false"/>
+        		<var>
+        		<var-name>maxlength</var-name>
+        		<var-value>200</var-value>
+        		</var>
+			</field>
+			<field property="displayName" depends="required,maxlength">
+				<arg0 key="attributeProfile.attr.label" />
+				<arg1 name="maxlength" key="errors.attribute.label.size.maxlength" resource="false"/>
+        		<var>
+        		<var-name>maxlength</var-name>
+        		<var-value>200</var-value>
+        		</var>
+			</field>
+		</form>
+		<form name="attributeProductTypeForm">
+			<field property="products" depends="required">
+				<arg0 key="attribute.producttype.required" />
+			</field>
+			<field property="productGroupID" depends="required">
+				<arg0 key="product.edit.productGroup" />
+			</field>
+			
+		</form>
+		<form name="manualCarForm">
+			<field property="vendorNumber" depends="required,long">
+				<arg0 key="manualcar.edit.vendornumber" />
+			</field>
+			<field property="vendorStyleNumber" depends="required">
+				<arg0 key="manualcar.edit.vendorstylenumber" />
+			</field>
+			<!-- 
+			<field property="colorDescription" depends="required">
+				<arg0 key="manualcar.edit.colordescription" />
+			</field>
+			<field property="sizeDescription" depends="required">
+				<arg0 key="manualcar.edit.sizedescription" />
+			</field>
+			 -->
+		</form>
+		<form name="productTypeForm">
+			<field property="name" depends="required">
+				<arg0 key="product.edit.name" />
+			</field>
+			<field property="description" depends="required">
+				<arg0 key="product.edit.description"/>
+			</field>
+                        <field property="productGroupID" depends="required">
+				<arg0 key="product.edit.group"/>
+			</field>	
+		</form>	
+		
+		<form name="requestHistoryForm">
+			<field property="requestId" depends="long">
+				<arg0 key="itemrequest.requestid" />
+			</field>
+			<field property="styleId" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.styleno" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+			<field property="vendorUpc" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.vendorupc" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+			<field property="belkUpc" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.belkupc" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+		</form>
+		
+		<form name="stylesSkuForm">
+			<field property="styleId" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.styleno" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+			<field property="vendorUpc" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.vendorupc" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+			<field property="belkUpc" depends="mask">
+				<msg name="mask" key="errors.invalid" />
+				<arg0 key="stylesku.belkupc" />
+                <var>
+                	<var-name>mask</var-name>
+                    <var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+                </var>
+			</field>
+		</form>
+		
+		<form name="ItemRequestForm">
+			<field property="styleDetails.overrideFee" depends="long">
+				<arg0 key="itemrequest.requestid" />
+			</field>
+				<field property="styleDetails.overrideUnitCost" depends="long">
+				<arg0 key="itemrequest.requestid" />
+			</field>
+		</form>			
+		<form name="FSVendorForm">
+			<field property="safetyInvAmt" depends="long">
+				<arg0 key="fsvendor.edit.safetyinv" />
+			</field>
+			
+			
+			<field property="venNum" depends="long">
+				<arg0 key="fsvendor.error.number" />
+			</field>
+			<field property="venNum" depends="required">
+				<arg0 key="fsvendor.error.number" />
+			</field>
+						
+		</form>	
+		<form name="vendorReturnForm">
+			<field property="returnMethod" depends="required">
+				<arg0 key="fsVendor.return_method" />
+			</field>
+			<!--<field property="dropShipRma" depends="integer">
+				<arg0 key="fsVendor.rma" />
+			</field>
+			--><field property="locName" depends="required">
+				<arg0 key="fsVendor.addr.loc" />
+			</field>
+			<field property="addr1" depends="required">
+				<arg0 key="fsVendor.addr.addr1" />
+			</field>
+			<field property="city" depends="required">
+				<arg0 key="fsVendor.addr.city" />
+			</field>
+			<field property="state" depends="required">
+				<arg0 key="fsVendor.addr.state" />
+			</field>
+			
+			<field property="zip" depends="required,mask">
+				<msg name="mask" key="errors.zip" />
+
+				<arg0 key="fsVendor.addr.zip" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${zip}</var-value>
+				</var>
+			</field>
+						
+		</form>
+		<form name="forgotPasswordForm">
+			<field property="emailAddress" depends="required,email">
+				<arg0 key="forgotPasswordForm.emailAddress" />
+			</field>
+		</form>
+		<form name="vendorCreationForm">
+			<field property="emailAddress" depends="required,email">
+				<arg0 key="forgotPasswordForm.emailAddress" />
+			</field>
+		</form>
+		
+		<form name="changePasswordForm">
+			<field property="password" depends="required,twofields">
+				<arg0 key="changePasswordForm.password" />
+				<arg1 key="changePasswordForm.confirmPassword" />
+				<var>
+					<var-name>secondProperty</var-name>
+					<var-value>confirmPassword</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="userForm">
+			<field property="vendors" depends="required">
+				<arg0 key="user.vendors" />
+			</field>
+		</form>
+		<form name="userDepartmentForm">
+			<field property="departments" depends="required">
+				<arg0 key="user.departments" />
+			</field>
+		</form>
+		<form name="carSearchForm">
+			<field property="carId" depends="long">
+				<arg0 key="search.page.car.id" />
+			</field>
+			<field property="classNumber" depends="long">
+				<arg0 key="search.page.class.number" />
+			</field>			
+		</form>		
+		<form name="workflowForm">
+			<field property="transitionName" depends="required,maxlength">
+				<arg0 key="workflow.transition.page.name" />
+				<arg1 name="maxlength" key="workflow.transition.page.maxlength" resource="false"/>
+        		<var><var-name>maxlength</var-name><var-value>100</var-value></var>
+			</field>
+			<field property="transitionDescription" depends="required,maxlength">
+				<arg0 key="workflow.transition.page.description" />
+				<arg1 name="maxlength" key="workflow.transition.page.maxlength" resource="false"/>
+       			<var><var-name>maxlength</var-name><var-value>200</var-value></var>
+			</field>
+		</form>
+		
+		<form name="fulfillmentServiceForm">
+		<field property="fulfillmentService.fulfillmentServiceName" depends="required,mask">
+				<arg0 key="fulfillmentService.servicename" />
+				<var>
+				<var-name>mask</var-name>
+				<var-value>^[a-z,A-Z,0-9, ]*$</var-value>
+				</var>
+				
+			</field>
+			<field property="fulfillmentService.fulfillmentServiceDesc" depends="required">
+				<arg0 key="fulfillmentService.description" />
+			</field>
+			
+			<field property="address.zip" depends="mask">
+				<msg name="mask" key="errors.zip" />
+				<arg0 key="fulfillmentService.zip" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			
+		</form>
+		
+		<form name="user">
+			<field property="emailAddress" depends="required,email">
+				<arg0 key="user.emailAddress" />
+			</field>
+			<field property="firstName" depends="required">
+				<arg0 key="user.firstName" />
+			</field>
+			<field property="lastName" depends="required">
+				<arg0 key="user.lastName" />
+			</field>			
+			<field property="zipcode" depends="mask">
+				<msg name="mask" key="errors.zip" />
+				<arg0 key="user.address.postalCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${zip}</var-value>
+				</var>
+			</field>		
+			<field property="phoneAreaCode" depends="required,mask,integer">
+				<msg name="mask" key="errors.phone" />
+				<arg0 key="user.phoneAreaCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phoneAreaCode}</var-value>
+				</var>
+			</field>
+			<field property="phoneNumber1" depends="required,mask,integer">
+				<msg name="mask" key="errors.phone" />
+				<arg0 key="user.phoneNumber1" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phoneNumber1}</var-value>
+				</var>
+			</field>
+			<field property="phoneNumber2" depends="required,mask,integer">
+				<msg name="mask" key="errors.phone" />
+				<arg0 key="user.phoneNumber2" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phoneNumber2}</var-value>
+				</var>
+			</field>
+			<field property="altPhoneAreaCode" depends="mask">
+				<msg name="mask" key="errors.phone" />
+
+				<arg0 key="user.altPhoneAreaCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${altPhoneAreaCode}</var-value>
+				</var>
+			</field>
+			<field property="altPhoneNumber1" depends="mask">
+				<msg name="mask" key="errors.phone" />
+
+				<arg0 key="user.altPhoneNumber1" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${altPhoneNumber1}</var-value>
+				</var>
+			</field>
+			<field property="altPhoneNumber2" depends="mask">
+				<msg name="mask" key="errors.phone" />
+
+				<arg0 key="user.altPhoneNumber2" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${altPhoneNumber2}</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="FSContactForm">
+			<field property="contacts.emailAddress" depends="required,email">
+				<arg0 key="contacts.emailAddress" />
+			</field>
+			<field property="contacts.firstName" depends="required">
+				<arg0 key="contacts.firstName" />
+			</field>
+			<field property="contacts.lastName" depends="required">
+				<arg0 key="contacts.lastName" />
+			</field>
+			<field property="contactType.contactTypeId" depends="required">
+				<arg0 key="contacts.contactType" />
+			</field>
+			<field property="phoneAreaCode" depends="required,mask,integer">
+				<arg0 key="contacts.phoneAreaCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phoneAreaCode}</var-value>
+					<!-- <var-value>^[0-9]*$</var-value> -->
+				</var>
+			</field>
+			<field property="phoneNumber1" depends="required,mask,integer">
+				<arg0 key="contacts.phoneNumber1" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${phoneNumber1}</var-value>
+					<!-- <var-value>^[0-9]*$</var-value> -->
+				</var>
+			</field>
+			<field property="phoneNumber2" depends="required,mask,integer">
+				<arg0 key="contacts.phoneNumber2" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${altPhoneNumber2}</var-value>
+					<!-- <var-value>^[0-9]*$</var-value> -->
+				</var>
+			</field>
+			<field property="altPhoneAreaCode" depends="mask">
+				<arg0 key="contacts.altPhoneAreaCode" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value> 
+				</var>
+			</field>
+			<field property="altPhoneNumber1" depends="mask">
+				<arg0 key="contacts.altPhoneNumber1" />
+				<var>
+					<var-name>mask</var-name>
+					 <var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="altPhoneNumber2" depends="mask">
+				<arg0 key="contacts.altPhoneNumber2" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="address.zip" depends="mask">
+				<arg0 key="address.zip" />
+				<var>
+					<var-name>mask</var-name>
+					<var-value>${zip}</var-value>
+					<!-- <var-value>^[0-9]*$</var-value> -->
+				</var>
+			</field>
+			
+		</form>
+		<form name="vendorCatalogForm">
+			<field property="vendorNumber" depends="long">
+				<arg0 key="vendorcatalog.vendornumberreqd" />
+			</field>
+			<field property="vendorNumber" depends="required">
+				<arg0 key="vendorcatalog.vendornumberreqd" />
+			</field>
+		</form>
+		<form name="vendorCatalogDepartmentForm">
+			<field property="departments" depends="required">
+				<arg0 key="Departments" />
+			</field>
+		</form>
+	</formset>
+</form-validation>

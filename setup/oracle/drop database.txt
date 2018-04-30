@@ -1,0 +1,3 @@
+drop user CARS cascade;
+create user CARS identified by password;
+grant connect,resource,create public synonym to CARS;

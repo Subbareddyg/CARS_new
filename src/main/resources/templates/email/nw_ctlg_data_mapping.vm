@@ -1,0 +1,27 @@
+<html>
+<body>
+The following request is ready for data mapping of the vendor catalog:
+<ul>
+<li>
+ID: ${catalog.vendorCatalogID} <br />
+</li>
+<li>
+Name: ${catalog.vendorCatalogName} <br />
+</li>
+<li>
+Created By: ${catalog.createdBy}<br />
+</li>
+<li>
+Vendor #: ${catalog.vendor.vendorNumber}<br />
+</li>
+<li>
+Vendor Name: ${catalog.vendor.name}<br />
+</li>
+</ul>
+<br />
+<br />
+
+<a href= "${dataMappingLink}">Click Here to access the request</a> <br />
+<br />
+</body>
+</html>

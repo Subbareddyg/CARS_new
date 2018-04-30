@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<style type="text/css">
+		table, td, th
+		{
+			border:1px solid #CEDFF5;
+		}
+		th
+		{
+			height:20px;
+			background-color:#CEDFF5;
+			color:#15428B;
+		}
+		table
+		{
+			width:70%;
+		}
+		td
+		{
+			font-family:Tahoma;
+			font-size:13px;
+			height:20px;
+			text-align:center;
+		}
+		h4{
+			font-family:Tahoma;
+			font-size:15px;
+			font-style:bold;
+			color:#15428B;
+		}
+		p{
+			font-family:Tahoma;
+			font-size:16px;
+			font-style:bold;
+			color:#15428B;
+		}
+	 div{
+			font-family:Tahoma;
+			font-size:17px;
+			font-style:bold;
+			color:#15428B;
+		}
+		</style>
+	</head>
+
+<body>
+<h4>Report for week ending: &nbsp; ${date} </h4> 
+<div>Car Summary </div><br/>
+<table> 
+	<tr>
+		<th>DMM Name</th> 
+		<th> # of Late CARS</th>
+		<th> # of SKUs</th>
+	</tr>
+	<tr>
+		<td>$dmmName</td> 
+		<td>$dmmCarCount</td>
+		<td>$dmmSkuCount</td>
+	</tr>
+</table>
+<br/>
+      <TABLE>
+      	<tr>
+      		 <th>Buyer Name</th> 
+      		 <th># of Late CARS</th> 
+      		 <th># of SKUs</th>    	
+      	</tr>
+        #foreach( $buyer in $buyerList )
+          <TR>
+            <td>$buyer.firstName $buyer.lastName</td>
+            <td>$buyer.buyerCarCount</td>
+             <td>$buyer.buyerSkuCount</td>
+          </TR>
+          #set( $buyerCount = $buyerCount + 1 ) 
+        #end
+      </TABLE>
+<br/>
+<div>Car Detail </div>
+	 #foreach( $b in $buyerList )
+	 <p>Buyer Name: &nbsp; $b.firstName $b.lastName </p> 
+		  <TABLE>
+	      	<tr>
+	      		<th>Dept #</th>
+	      		<th>CAR ID</th>
+	      		<th>Vendor Name</th>
+	      		<th>Vendor Number</th>
+      			<th>Brand</th>
+	      		<th>Completion date</th>
+	      		<th>Creation date</th>
+	      		<th># of SKUs</th>
+	      	</tr>
+	        #foreach( $car in $b.carList )
+	          <TR>
+	            <TD>$car.dept</TD>
+	            <TD>$car.carid</TD>
+	            <TD>$car.vendorName</TD>
+	            <TD>$car.vendorNumber</TD>
+            	<TD>$car.brandName</TD>
+	            <TD>$car.completionDate</TD>
+	            <TD>$car.createdDate</TD>
+	            <TD>$car.noOfSkus</TD>
+	         </TR>
+	        #end
+	      </TABLE>
+	#end
+	  <table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+		<tr align="left">
+			<td align="left">
+				<img src="https://cars.belk.com/images/logo.gif"
+			</td>
+		</tr>
+	  </table>
+</body>
+</html>

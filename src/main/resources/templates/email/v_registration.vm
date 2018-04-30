@@ -1,0 +1,23 @@
+<html>
+<body>
+Welcome, <b>${user.firstName} ${user.lastName}</b>!
+<br/><br/>
+You now have an account on the Belk Content Acquisition Request System (CARS).
+<br/><br/>
+Your user name is <b>${user.username}</b> and your password is <b>${newPassword}</b>.
+<br/><br/>
+Please click, <a href="https://cars.belk.com">cars.belk.com</a> to access the system and we suggest
+you save this message in a safe location for future reference.
+<br/><br/>
+<table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+	<tr>
+		<td>
+			<img src="http://cars.belk.com/images/logo.gif"
+		</td>
+		<td valign="bottom" align="left" width="30%">
+			E-mail all CARS questions and concerns directly to your Belk Buyer or Belk Buying Office, who will work to get you answers.
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+At the command prompt:
+	Imp system/<your password> file=<path>/<import file>.dmp fromuser=CARS toUSER=CARS
+
+
+Troubleshooting:
+	If you have another instance of Oracle or Oracle client on your machine, you may have to change (or prepend) 
+		PATH, ORACLE_SID, and LOCAL environment variables.
+	e.g. 
+		attempting to point to an instance of Oracle XE on the local machine:
+		
+		set LOCAL=XE	
+		set ORACLE_SID=XE
+		set PATH=C:\oraclexe\app\oracle\product\10.2.0\server\BIN;%PATH%
+
+	

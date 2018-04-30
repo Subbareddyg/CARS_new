@@ -1,0 +1,47 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/40*.jsp</pattern>
+		<pattern>/resources/*</pattern>
+		<pattern>*ajax=true*</pattern>
+		<pattern>*spellCheck.jsp*</pattern>
+		
+    </excludes>
+	<decorator name="ajax" page="cars_ajax.jsp">
+        <pattern>/ajaxUserForm.html*</pattern>
+        <pattern>/ajaxMainMenu.html*</pattern>
+        <pattern>/ajaxNotesForm.html*</pattern>
+		<pattern>/help.html*</pattern>
+		<pattern>/oma/runJob*</pattern>
+		<pattern>/search.html*</pattern>
+		<pattern>/changePassword.html*</pattern>
+		<pattern>/requestImage.html*</pattern>
+		<pattern>/vendorImageUploadForm.html*</pattern>
+		<pattern>/vendorUserForm.html*</pattern>
+		<pattern>/removeImage.html*</pattern>
+		<pattern>/markReceivedImages.html*</pattern>
+		<pattern>/editSkuDetails.html*</pattern>
+		<pattern>*fileUploadPopup*</pattern> 
+		<pattern>/admin/pattern/addVendorStyle.html*</pattern>
+		<pattern>/admin/outfit/addChildCar.html*</pattern>
+		<pattern>/admin/dbpromotion/addChildCar.html*</pattern>
+		<pattern>/admin/outfit/removeChildCar.html*</pattern>
+		<pattern>/admin/dbpromotion/removeChildCar.html*</pattern>
+		<pattern>/displaycarattributes.html*</pattern>
+		<pattern>/completeCopyCar.html*</pattern>
+		<pattern>/getSuperColorName.html*</pattern>
+		<pattern>/replaceVendorImageForm.html*</pattern>
+		<pattern>/refreshVendorImageTable.html*</pattern>
+		<pattern>*editLateCarsAssociationDetails.html*</pattern>
+    </decorator>
+    <decorator name="default" page="cars_default.jsp">
+        <pattern>/*</pattern>
+        <pattern>*fileUploadPopup*</pattern> 
+           
+    </decorator>
+        <decorator name="applet" page="cars_applet.jsp">
+        <pattern>*uploadImages.jsp*</pattern>
+        <pattern>*fileUploadPopup*</pattern> 
+    </decorator>
+    
+    
+</decorators>

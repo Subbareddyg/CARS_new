@@ -1,0 +1,20 @@
+<html>
+<body>
+<b>${userFirstName} ${userLastName}</b>
+<br/><br/>
+You have one or more CAR(S) that were assigned to you 7 days ago.
+<br/><br/>
+Please click, <a href="https://cars.belk.com">cars.belk.com</a> to access the system and process your CAR(S).  If you have forgotten or misplaced your password, please click Forgot Password at the website.
+<br/><br/>
+<table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+	<tr>
+		<td>
+			<img src="http://cars.belk.com/images/logo.gif"
+		</td>
+		<td valign="bottom" align="left" width="30%">
+			E-mail all CARS questions and concerns directly to your Belk Buyer or Belk Buying Office, who will work to get you answers.
+		</td>
+	</tr>
+</table>
+</body>
+</html>

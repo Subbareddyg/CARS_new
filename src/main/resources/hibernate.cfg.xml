@@ -1,0 +1,201 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+        <property name="hibernate.show_sql">false</property> 
+        <property name="hibernate.max_fetch_depth">0</property>
+        <property name="hibernate.order_inserts">true</property>
+        <property name="hibernate.order_updates">true</property>
+        <mapping class="org.appfuse.model.User"/>
+        <mapping class="org.appfuse.model.Role"/>
+        <mapping class="com.belk.car.app.model.AccessType"/>
+        <mapping class="com.belk.car.app.model.Attribute"/>
+        <mapping class="com.belk.car.app.model.AttributeConfig"/>
+        <mapping class="com.belk.car.app.model.AttributeDatatype"/>
+        <mapping class="com.belk.car.app.model.AttributeLookupValue"/>
+        <mapping class="com.belk.car.app.model.AttributeType"/>
+        <mapping class="com.belk.car.app.model.AttributeChangeTracking"/>   
+        <mapping class="com.belk.car.app.model.Car"/>
+        <mapping class="com.belk.car.app.model.CarAttribute"/>
+        <mapping class="com.belk.car.app.model.CollectionSkus"/>
+        <mapping class="com.belk.car.app.model.DBPromotionCollectionSkus"/><!-- added on 4/6/2013 --> 
+        <mapping class="com.belk.car.app.model.CarFeature"/>
+        <mapping class="com.belk.car.app.model.CarHistory"/>
+        <mapping class="com.belk.car.app.model.CarNote"/>
+        <mapping class="com.belk.car.app.model.CarSkuAttribute"/>
+        <mapping class="com.belk.car.app.model.CarsPimItemUpdate"/>
+        <mapping class="com.belk.car.app.model.CarUserClass"/>        
+        <mapping class="com.belk.car.app.model.CarUserNote"/>
+        <mapping class="com.belk.car.app.model.ChangeType"/>
+        <mapping class="com.belk.car.app.model.ClassAttribute"/>
+        <mapping class="com.belk.car.app.model.Classification"/>
+        <mapping class="com.belk.car.app.model.ClosedCarAttrSync"/>
+        <mapping class="com.belk.car.app.model.Config"/>
+        <mapping class="com.belk.car.app.model.Department"/>    
+        <mapping class="com.belk.car.app.model.DepartmentAttribute"/>
+        <mapping class="com.belk.car.app.model.Image"/>
+        <mapping class="com.belk.car.app.model.MediaCompassImage"/>
+        
+        
+        <mapping class="com.belk.car.app.model.CarOutfitChild"/>
+        <mapping class="com.belk.car.app.model.OutfitCarAttribute"/>
+        
+         <mapping class="com.belk.car.app.model.CarDBPromotionChild"/>       <!-- Added on 3rdJune2013 -->
+        <mapping class="com.belk.car.app.model.DBPromotionCarAttribute"/>    <!-- Added on 3rdJune2013 -->
+        
+        <mapping class="com.belk.car.app.model.LateCarsParams"/>
+        <mapping class="com.belk.car.app.model.LateCarsGroup"/>
+        
+        <mapping class="com.belk.car.app.model.NoteType"/>
+        <mapping class="com.belk.car.app.model.Notification"/>
+        <mapping class="com.belk.car.app.model.NotificationType"/>
+        <mapping class="com.belk.car.app.model.ProductType"/>
+        <mapping class="com.belk.car.app.model.ProductTypeAttribute"/>
+        <mapping class="com.belk.car.app.model.RoleCarFeature"/>
+        <mapping class="com.belk.car.app.model.RoleCarFeatureId"/>
+        <mapping class="com.belk.car.app.model.Sample"/>
+        <mapping class="com.belk.car.app.model.SampleShippingInformation"/>
+        <mapping class="com.belk.car.app.model.SampleShippingInformationId"/>
+        <mapping class="com.belk.car.app.model.SampleType"/>
+        <mapping class="com.belk.car.app.model.ShippingInformation"/>        
+        <mapping class="com.belk.car.app.model.ShippingType"/>
+        <mapping class="com.belk.car.app.model.SourceType"/>
+        <mapping class="com.belk.car.app.model.Status"/>
+        <mapping class="com.belk.car.app.model.UserType"/>
+        <mapping class="com.belk.car.app.model.Vendor"/>
+        <mapping class="com.belk.car.app.model.CarUserVendorDepartment"/>                
+        <mapping class="com.belk.car.app.model.VendorSku"/>
+        <mapping class="com.belk.car.app.model.VendorStyle"/>
+        <mapping class="com.belk.car.app.model.WorkFlow"/>
+        <mapping class="com.belk.car.app.model.HelpContent"/>
+        <mapping class="com.belk.car.app.model.CarImage"/>
+        <mapping class="com.belk.car.app.model.CarSample"/>
+        <mapping class="com.belk.car.app.model.ImageType"/>
+        <mapping class="com.belk.car.app.model.ImageLocationType"/>
+        <mapping class="com.belk.car.app.model.ImageSourceType"/>
+        <mapping class="com.belk.car.app.model.SampleSourceType"/>
+        <mapping class="com.belk.car.app.model.ImageProvider"/>
+        <mapping class="com.belk.car.app.model.HtmlDisplayType"/>
+        <mapping class="com.belk.car.app.model.ValidationExpression"/>
+        <mapping class="com.belk.car.app.model.SampleTrackingStatus"/>
+        <mapping class="com.belk.car.app.model.car.ManualCarProcessStatus"/>
+        <mapping class="com.belk.car.app.model.car.ManualCar"/>
+        <mapping class="com.belk.car.app.model.workflow.WorkflowStatus"/>
+        <mapping class="com.belk.car.app.model.workflow.WorkflowTask"/>
+        <mapping class="com.belk.car.app.model.workflow.WorkflowTransition"/>
+        <mapping class="com.belk.car.app.model.workflow.WorkflowType"/>
+        <mapping class="com.belk.car.app.model.ImageTrackingStatus"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogImport"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogImportAudit"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogProduct"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogProductAttribute"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogSku"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogSkuAttribute"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogTemplate"/>
+        <mapping class="com.belk.car.app.model.catalog.CatalogTemplateConfig"/>
+        <mapping class="com.belk.car.app.model.AttributeValueProcessStatus"/>         
+        <mapping class="com.belk.car.app.model.ContentStatus"/>
+        <mapping class="com.belk.car.app.model.VendorStyleType"/>
+        <mapping class="com.belk.car.app.model.PatternProcessingRule"/>
+        <mapping class="com.belk.car.app.model.VendorStyleAttribute"/>
+        <mapping class="com.belk.car.app.model.oma.StylePopulationMethod"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentService"/>
+        <mapping class="com.belk.car.app.model.oma.ItemRequest"/>
+        <mapping class="com.belk.car.app.model.oma.ItemSource"/>
+        <mapping class="com.belk.car.app.model.oma.VFIRStatus"/>
+        <mapping class="com.belk.car.app.model.oma.VFIRStyle"/>
+        <mapping class="com.belk.car.app.model.oma.VFIRStyleSku"/>
+        <mapping class="com.belk.car.app.model.oma.ItemRequestWorkflow"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalog"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogTemplate"/> 
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogImport"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogUpdateAction"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogFileFormat"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogImageLocation"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogNote"/>                
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogDepartment"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogImage"/>                                         
+       
+         
+        <mapping class="com.belk.car.app.model.oma.Address"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentMethod"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentIntegrationType"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceVendor"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceVendorReturn"/>
+        <mapping class="com.belk.car.app.model.oma.ContactType"/>
+        <mapping class="com.belk.car.app.model.oma.ReturnMethod"/>
+        <mapping class="com.belk.car.app.model.oma.CompoundKeyVndrShip"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceVendorLocation"/> 
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceNotes"/> 
+        <mapping class="com.belk.car.app.model.oma.VendorFulfillmentNotes"/>
+        <mapping class="com.belk.car.app.model.oma.Contacts"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceContact"/>
+        <mapping class="com.belk.car.app.model.oma.State"/>
+        <mapping class="com.belk.car.app.model.oma.DropshipTaxState"/>
+        <mapping class="com.belk.car.app.model.oma.VendorFee"/>
+        <mapping class="com.belk.car.app.model.oma.Fee"/>
+        <mapping class="com.belk.car.app.model.oma.VendorFeeRequest"/>
+        <mapping class="com.belk.car.app.model.ProductGroup"/>
+        <mapping class="com.belk.car.app.model.oma.ShippingCarrierOption"/>
+        <mapping class="com.belk.car.app.model.oma.VendorFulfillmentShippingOption"/>
+        <mapping class="com.belk.car.app.model.oma.CompositeKeyForShippingOptions"/>
+        <mapping class="com.belk.car.app.model.oma.FulfillmentServiceShippingOptions"/>
+        <mapping class="com.belk.car.app.model.oma.CompositeKeyForFSShippingOptions"/>
+        <mapping class="com.belk.car.app.model.oma.VendorFulfillmentServiceFee"/>
+        <mapping class="com.belk.car.app.model.oma.InvoiceMethods"/>
+        <mapping class="com.belk.car.app.to.IdbDropshipDataTO"/>
+
+
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogFieldMapping"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.CompositeKeyForDataMapping"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogHeader"/>
+       
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogStyleSkuMaster"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogStyleSkuMasterId"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogStyleSku"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogStyleSkuId"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogFieldDataMapping"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.CompositeKeyForDataFldMapping"/>
+        
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogStyleSkuImage"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.VendorCatalogRecord"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.CompositeKeyForVndrCatRecord"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.CatalogMasterAttribute"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.MasterAttributeMapping"/>
+        <mapping class="com.belk.car.app.model.vendorcatalog.CatalogGroupTemplate"/>
+        
+        <mapping class="com.belk.car.app.model.VendorSkuDelete"/>
+        <mapping class="com.belk.car.app.model.SkuAttributeDelete"/>
+         
+        <mapping class="com.belk.car.app.model.ColorMappingMaster"/>
+        <mapping class="com.belk.car.app.model.SizeConversionMaster"/>
+        <mapping class="com.belk.car.app.model.SizeSynchDataHolderView" />
+        <mapping class="com.belk.car.app.model.SuperColorSynchDataHolderView" />
+        <mapping class="com.belk.car.app.model.TempSizeSynchDataHolder" />
+        
+        <mapping class="com.belk.car.app.model.vendorimage.VendorImage" />
+        <mapping class="com.belk.car.app.model.vendorimage.RRDImageCheck" />
+        <mapping class="com.belk.car.app.model.vendorimage.VendorImageStatus" />
+        <mapping class="com.belk.car.app.model.vendorimage.RRDImageCheckComments" />
+        <mapping class="com.belk.car.app.model.vendorimage.RRDImageCheckFeedback" />
+        <mapping class="com.belk.car.app.model.PromoType"/>   
+        <mapping class="com.belk.car.app.model.LateCarsAssociation"/>
+        <mapping class="com.belk.car.app.model.UsersRankTmp"/>
+        <mapping class="com.belk.car.app.model.PIMAttribute"/>
+        <mapping class="com.belk.car.app.model.VendorStylePIMAttribute"/>
+        <mapping class="com.belk.car.app.model.PoUnitDetail"/>
+        <mapping class="com.belk.car.app.model.UsersRank"/>
+        <mapping class="com.belk.car.app.model.VendorSkuPIMAttribute"/>
+        <mapping class="com.belk.car.app.model.CarsPIMAttributeMapping"/>
+        <mapping class="com.belk.car.app.model.CarsPIMGlobalAttributeMapping"/>
+        <mapping class="com.belk.car.app.model.CarsPimGroupMapping"/>
+        <mapping class="com.belk.car.app.model.GroupCreateMsgFailure" />
+        <mapping class="com.belk.car.app.model.PIMAttributeExclusionList"/>
+        <mapping class="com.belk.car.app.model.CarReopenPetDetails"/>
+   </session-factory>
+        
+</hibernate-configuration>

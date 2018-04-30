@@ -1,0 +1,72 @@
+<html>
+<body>
+<b>${userFirstName} ${userLastName},</b>
+<br/><br/>
+There was a processing error that occurred while Translating and updating the following vendor catalog:
+</br>
+<table width="50%"  cellpadding="5">
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog ID:</b>
+	</td>
+	<td align="left">
+		${catalogId}
+	</td> 
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Name:</b> 
+	</td>
+	<td align="left" >
+		${catalogName}
+	</td>
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Vendor ID:</b> 
+	</td>
+	<td align="left">
+		${vendorId}
+	</td>
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Vendor Name :</b>
+	</td>
+	<td>
+		${vendorName}
+	</td align="left">
+</tr> 
+</table>
+</ br>
+<b>${importedRecord}</b>
+</ br>
+<br>
+Validation Errors (Data Related)
+</br>
+<table border=1 width="100%" style="TABLE_LAYOUT: fixed; FONT-FAMILY: Arial; FONT-SIZE : 13px">
+<tr>
+
+      <td align="center" width="10%"><b>Record Line Number</b></td>
+      <td align="center" width="90%"><b>Error</b></td>
+
+</tr>
+
+
+#foreach( $record in $records )
+      <tr>
+            <td align="center" width="10%">$record.rno</td>
+            <td align="left" width="90%">$record.error</td>
+           
+    </tr>
+#end
+
+
+</table>
+#if($showMsg == "1")
+Only first 5 errors appear in this message.  View the catalog record in CARS to review the full error report. 
+#end
+
+
+</body>
+</html>

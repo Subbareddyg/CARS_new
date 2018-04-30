@@ -1,0 +1,31 @@
+<html>
+<body>
+<b>Process: </b> ${processName} <br/>
+<b>Date: </b> ${executionDate} <br/>
+<br/>There was a processing error that occurred while either updating the sku record to the database or writing the same in a BMI file:
+</br></br>
+<b>Error/Exception Details: </b><br/>
+<table border=1 width="100%" style="TABLE_LAYOUT: fixed; FONT-FAMILY: Arial; FONT-SIZE : 13px" >
+<tr>
+
+      <td align="center" width="10%"><b>Car Sku ID</b></td>
+      <td align="center" width="90%"><b>Error</b></td>
+
+</tr>
+
+
+#foreach( $record in $skuAndErrorList )
+      <tr>
+            <td align="center" width="10%">$record.carSkuId</td>
+            <td align="left" width="90%">$record.exception</td>
+           
+    </tr>
+#end
+
+
+</table>
+
+
+
+</body>
+</html>

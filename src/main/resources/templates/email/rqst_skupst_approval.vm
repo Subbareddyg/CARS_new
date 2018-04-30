@@ -1,0 +1,59 @@
+<html>
+<body>
+The buyer has requested to override IDB Unit Cost or Vendor Unit Handling Fee. This requires your review and approval
+<br /><br />
+To view the request, click on the following link:<br>
+<a href="${URLPATH}/oma/requestskuexception.html?RequestId=${itemRequestForm.requestId}">${URLPATH}/oma/requestskuexception.html?RequestId=${itemRequestForm.requestId}</a>
+<br /><br />
+Vendor: ${itemRequestForm.vendorName} <br />
+Created By: ${itemRequestForm.createdBy}<br /><br />
+Override details: <br />
+<table border=0 width="100%" style="TABLE_LAYOUT: fixed; FONT-FAMILY: Arial; FONT-SIZE : 13px">
+<th>
+<tr>
+      <td align="center" width="9%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Style #</td>
+      <td align="center" width="30%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Style Description</td>
+      <td align="center" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Color</td>
+      <td align="center" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Size</td>
+      <td align="center" width="9%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">IDB Cost</td>
+      <td align="center" width="14%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Vendor Handling Fee</td>
+      <td align="center" width="14%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Override Cost</td>
+      <td align="center" width="14%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">Override Handling fee</td>
+</tr>
+</th>
+#foreach( $styles in $styleDetails )
+      <tr>
+            <td align="left" width="8%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.vendorStyleId</td>
+            <td align="left" width="30%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.styleDesc</td>
+            <td align="left" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.color</td>
+            <td align="left" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.sizeDescription</td>
+            #if ((! $styles.unitCost) && ("$!styles.unitCost" == ""))
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">0</td>
+            #else
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.unitCost</td>
+            #end
+            
+            #if ((! $styles.unitHandlingfee) && ("$!styles.unitHandlingfee" == ""))
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">0</td>
+            #else
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.unitHandlingfee</td>
+            #end
+            
+            #if ((! $styles.overrideCost) && ("$!styles.overrideCost" == ""))
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">0</td>
+            #else
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.overrideCost</td>
+            #end
+            
+            #if ((! $styles.overrideFee) && ("$!styles.overrideFee" == ""))
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">0</td>
+            #else
+            	<td align="right" width="5%" style="BORDER :  #a3bae9 1px solid;BORDER-COLLAPSE: collapse">$styles.overrideFee</td>
+            #end
+    </tr>
+#end
+</table>
+
+
+</body>
+</html>

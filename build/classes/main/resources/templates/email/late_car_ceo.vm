@@ -1,0 +1,114 @@
+<html>
+  <head>
+	  <style type="text/css">
+		table, td, th
+		{
+			border:1px solid #CEDFF5;
+		}
+		th
+		{
+			height:20px;
+			background-color:#CEDFF5;
+			color:#15428B;
+		}
+		table
+		{
+			width:70%;
+		}
+		td
+		{
+			font-family:Tahoma;
+			font-size:13px;
+			height:20px;
+			text-align:center;
+		}
+		h4{
+			font-family:Tahoma;
+			font-size:15px;
+			font-style:bold;
+			color:#15428B;
+		}
+		div{
+			font-family:Tahoma;
+			font-size:17px;
+			font-style:bold;
+			color:#15428B;
+		}
+	  </style>
+	<head>
+<body>
+<h4>Report for week ending: ${date}</h4>
+<table>	
+	<tr>
+		<th width="50%"> # of Late CARS</th>
+		<th width="50%"> # of SKU's</th>
+	</tr>
+	<tr>
+		<td width="50%">$CEOCarCount</td>
+		<td width="50%">$CEOSkuCount</td>
+	</tr>
+</table>	
+<br/>
+<div>Car Summary </div><br/>
+<table> 
+	<tr>
+		<th width="25%">GMM Name</th> 
+		<th width="25%"> # of Late CARS</th>
+		<th width="25%"> # of SKU's</th>
+	</tr>
+	#foreach( $gmm in $gmmList )
+		<tr>
+			<td>$gmm.gmmName</td> 
+			<td>$gmm.gmmCarCount</td>
+			<td>$gmm.gmmSkuCount</td>
+		</tr>
+	#end
+</table>
+
+<br/>
+
+<table> 
+	<tr>
+		<th width="25%">DMM Name</th> 
+		<th width="25%"> # of Late CARS</th>
+		<th width="25%"> # of SKU's</th>
+	</tr>
+	#foreach( $gmm in $gmmList )
+		
+				#foreach( $dmm in $gmm.dmmList )
+					<tr>
+						<td width="25%">$dmm.dmmName</td> 
+						<td width="25%">$dmm.dmmCarCount</td>
+						<td width="25%">$dmm.dmmSkuCount</td>
+					</tr>
+				#end
+	#end
+</table>
+<br/>
+<table>
+	<tr>
+		<th width="25%">Buyer Name</th>
+		<th width="25%"># of Late CARS</th>
+		<th width="25%"># of SKU's</th>
+	</tr>
+		#foreach($gmm in $gmmList)
+			#foreach($dmm in $gmm.dmmList)
+				#foreach($buyer in $dmm.buyerList)
+				<tr>
+					<td width="25%">$buyer.firstName $buyer.lastName </td>
+					<td width="25%">$buyer.buyerCarCount</td>
+					<td width="25%">$buyer.buyerSkuCount</td>
+				</tr>
+			#end
+		  #end		
+		#end
+</table>
+	 <table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+		<tr align="left">
+			<td align="left">
+				<img src="https://cars.belk.com/images/logo.gif"
+			</td>
+		</tr>
+	  </table>
+</body>
+</html>

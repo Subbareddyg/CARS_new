@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib  
+    PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"  
+    "http://java.sun.com/dtd/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+
+  <!-- ============== Tag Library Description Elements ============= -->
+  <tlibversion>2.2-dev</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>secureurl</shortname>
+  <uri>/secureurl</uri>
+  <info>
+  	The url config provides a XML configurable
+  	secure url system for your applications.
+  </info>
+  
+    <tag>
+      <name>hasAccessToUrl</name>
+      <tagclass>com.belk.car.security.taglib.HasAccessToUrlTag</tagclass>
+      <bodycontent>JSP</bodycontent>
+      <attribute>
+          <name>id</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>name</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+    </tag>
+   <tag>
+      <name>secureAnchor</name>
+      <tagclass>com.belk.car.security.taglib.SecureAnchorTag</tagclass>
+      <bodycontent>JSP</bodycontent>
+      <attribute>
+          <name>href</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>name</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>scope</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>cssStyle</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+       <attribute>
+          <name>elementName</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+       <attribute>
+          <name>onclick</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>arguments</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+
+      <attribute>
+          <name>allowAccessToUndefinedUrl</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+          <name>hideUnaccessibleLinks</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+
+      <attribute>
+          <name>title</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+
+      <attribute>
+          <name>localized</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+    </tag>
+</taglib>

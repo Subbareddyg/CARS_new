@@ -1,0 +1,57 @@
+/* Belk CARS Print CSS */
+
+/* Edit Car */
+div.x-form-field-wrap{
+	border:none !important;
+}
+img.x-form-arrow-trigger,img.x-form-date-trigger{
+	display:none !important;
+}
+textarea,input.text,input.x-form-text,select{
+	border:solid 1px #999999 !important;
+}
+ul.car_notes, ul.sample_notes, ul.return_notes{
+	height:auto !important;
+	border:solid 1px #999999 !important;
+}
+#pg{
+	_width:650px;
+}
+#primary-nav{
+	_display:none;
+}
+body.car_edit #main #prod_detail_content input.text,
+body.car_edit #main #prod_detail_content textarea,
+body.car_edit #main #img_mgmt_pnl textarea{
+	_width:350px;
+}
+#img_mgmt_pnl table, #spl_mgmt_pnl table{
+	_width:640px;
+	_font-size:7pt;
+}
+div.x-form-field-wrap{
+	_position:static;
+	_padding:5px;
+}
+ul.attrs div.x-form-field-wrap{
+	_margin-top:-15px;
+	_margin-left:-20px;
+}
+input.x-form-text{
+	_position:static;
+	_margin:2px !important;
+	_padding:1px !important;
+	_width:250px !important;
+}
+input.text{
+	_padding:1px;
+}
+input.date{
+	_width:80px !important;
+}
+#changeDate{
+	_width:120px !important;
+}
+.x-panel-bwrap,.x-panel-body {
+	overflow:visible;
+}

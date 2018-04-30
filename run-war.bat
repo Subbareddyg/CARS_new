@@ -1,0 +1,1 @@
+mvn jetty:run-war -Dmaven.test.skip=true

@@ -1,0 +1,71 @@
+<html>
+<head>
+<style type="text/css">
+table, td, th
+{
+	border:1px solid #CEDFF5;
+}
+th
+{
+	height:20px;
+	font-size:13px;
+	background-color:#CEDFF5;
+	color:#15428B;	
+	
+}
+table
+{
+	width:100%;
+}
+td
+{
+	font-family:Tahoma;
+	font-size:13px;
+	height:12px;	
+	
+}
+</style>
+</head>
+<body>
+Dear Buyer,
+<br><br>
+Recent image(s) uploaded to the CAR System failed the image check and do not meet Belk's requirements.  Please see below for the specific image(s) by CAR and style that failed and the reasons for which a failure resulted.   
+<BR><BR>
+Replacement images that meet our requirements must be uploaded within 48 hours to allow for reprocessing of the CAR. Please contact your vendor for replacement images immediately and attach them to the CAR by logging into cars.belk.com.
+<br><br>
+The following list is prioritized by Expected Ship Date and should be addressed in this order:
+<br>
+#foreach( $failedImagesDeptDTO in $failedImagesDeptList )
+<br>
+<b> Department # ${failedImagesDeptDTO.deptCd} </b>
+<TABLE cellpadding="3">
+		 <tr>
+		 	<th width="100" >CAR-ID</th>
+		 	<th width="130" >Expected Ship Date</th> 
+		 	<th width="135" align="center">Vendor Style/Color #</th> 
+		 	<th width="220" align="center">Image Name </th>
+		    <th style="width:200px;word-wrap:break-word;">Original Image Name </th> 
+		    <th width="13px">Type of Failure</th> 
+		    <th width="20px" align="center">Reason for Failure</th>
+		 </tr>
+			#foreach( $failedImage in $failedImagesDeptDTO.failedImagesDTO )
+		<tr>
+		    <TD width="100px" >$failedImage.carId</TD>
+			<TD width="100px" >$failedImage.expectedShipDate</TD>
+			<TD width="135px" >$failedImage.vendorStyleNo / $failedImage.colorCode</TD>
+			<TD width="220px">$failedImage.imageName</TD>
+			<TD style="width:200px;word-wrap:break-word;" align="center">$failedImage.originalName</TD>
+			<TD width="13px" align="center">$failedImage.failureType</TD>
+			<TD width="20px" align="center">$failedImage.failureReasons</TD>
+		</tr>
+			#end
+</TABLE>
+#end
+<br>
+For information regarding our specific requirements, please refer to the "Image Requirements" section detailed in each CAR or contact the Digital Product Data Traffic Coordinator in your area.   
+<br><br>
+Thank you for your attention and commitment to the Belk.com digital content process.  
+<br><br>
+
+</body>
+</html>

@@ -1,0 +1,1743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">        
+                    dataAccessFailure
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
+
+ 	<!-- Validators -->
+ 	<bean id="userValidator" class="com.belk.car.app.webapp.validators.UserValidator"/>
+ 	<bean id="vendorValidator" class="com.belk.car.app.webapp.validators.VendorValidator"/>
+ 	<bean id="vendorCatalogValidator" class="com.belk.car.app.webapp.validators.VendorCatalogValidator"/>
+	<bean id="contactsFormValidator" class="com.belk.car.app.webapp.validators.ContactsFormValidator">
+		<property name="contactsManager" ref="contactsManager"/>
+	</bean>
+	<bean id="fulfillmentServiceFormValidator" class="com.belk.car.app.webapp.validators.FulfillmentServiceFormValidator"/>
+	<bean id="vendorFulfillmentServiceFormValidator" class="com.belk.car.app.webapp.validators.VendorFulfillmentServiceFormValidator"/>
+	<bean id="vendorFulfillmentShippingOptionsValidator" class="com.belk.car.app.webapp.validators.VendorFulfillmentShippingOptionsValidator"/>
+	<bean id="itemRequestValidator" class="com.belk.car.app.webapp.validators.ItemRequestValidator">
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+	</bean>
+	<bean id="requestHistoryValidator" class="com.belk.car.app.webapp.validators.RequestHistoryValidator">
+	</bean>
+	<bean id="productGroupValidator" class="com.belk.car.app.webapp.validators.ProductGroupValidator"/>
+	<bean id="productGroupTypeValidator" class="com.belk.car.app.webapp.validators.ProductGroupTypeValidator"/>
+	<bean id="catalogVendorValidator" class="com.belk.car.app.webapp.validators.CatalogVendorValidator" />
+        <bean id="catalogSearchFormValidator" class="com.belk.car.app.webapp.validators.CatalogSearchFormValidator" />
+        <bean id="styleSearchFormValidator" class="com.belk.car.app.webapp.validators.StyleSearchFormValidator" />
+        
+        <!-- Added for CARS Faceted Navigation -->
+        <bean id="superColorFormValidator" class="com.belk.car.app.webapp.validators.SuperColorFormValidator">
+        <property name="superColorManager" ref="superColorManager"/> 
+        </bean>
+        
+        <bean id="sizeConversionFormValidator" class="com.belk.car.app.webapp.validators.SizeConversionFormValidator">
+        <property name="sizeConversionManager" ref="sizeConversionManager"/> 
+      	 <property name="carManager" ref="carManager"/>
+        </bean>
+        
+ 	<!-- Start controller beans -->
+    <bean id="filenameController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean id="vendorReturnValidator" class="com.belk.car.app.webapp.validators.VendorReturnValidator"/>
+
+	 <bean id="cacheStatisticsController" class="com.belk.car.app.webapp.controller.admin.statistics.CacheStatisticsController">
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="successView" value="/admin/statistics/list"/>
+    </bean>
+	
+    <bean id="fileUploadController" class="org.appfuse.webapp.controller.FileUploadController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="formView" value="uploadForm"/>
+        <property name="successView" value="uploadDisplay"/>
+    </bean>
+
+    <bean id="passwordHintController" class="org.appfuse.webapp.controller.PasswordHintController">
+        <property name="userManager" ref="userManager"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="message" ref="mailMessage"/>
+    </bean>
+
+    <bean id="forgotPasswordFormController" class="com.belk.car.app.webapp.controller.security.ForgotPasswordFormController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="emailManager" ref="emailManager"/>
+		<property name="successView" value="redirect:login.html"/>
+		<property name="formView" value="forgotPassword"/>
+    </bean>
+    
+     <bean id="activateVendorAccountController" class="com.belk.car.app.webapp.controller.ActivateVendorFormController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="emailManager" ref="emailManager"/>
+		<property name="successView" value="redirect:mainMenu.html"/>
+		<property name="formView" value="/login"/>
+    </bean>
+
+    <bean id="changePasswordFormController" class="com.belk.car.app.webapp.controller.security.ChangePasswordFormController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="emailManager" ref="emailManager"/>
+		<property name="successView" value="redirect:mainMenu.html"/>
+		<property name="ajaxView" value="/ajaxReturn"/>
+		<property name="formView" value="changePassword"/>
+    </bean>
+
+    <bean id="resetPasswordController" class="com.belk.car.app.webapp.controller.security.ResetPasswordController">
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="emailManager" ref="emailManager"/>
+		<property name="mainView" value="redirect:/admin/user/userDetails.html"/>
+    </bean>
+    <!-- EC-1555:Buyers receiving error when trying to reset password for vendors -->
+    <bean id="resetVendorPasswordController" class="com.belk.car.app.webapp.controller.security.ResetVendorPasswordController">
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="emailManager" ref="emailManager"/>
+		<property name="successView" value="redirect:/vendor/vendorDetails.html"/>		
+    </bean>
+    
+	
+	<bean name="/requestImage.html" class="com.belk.car.app.webapp.controller.ImageRequestFormController">
+        <property name="formView" value="/imageRequestForm"/>
+        <property name="successView" value="/requestedImages"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+	</bean>
+	
+	<!--  Added for VIP upload multiple images -->
+	<bean name="/vendorImageUploadForm.html" class="com.belk.car.app.webapp.controller.VendorImageUploadFormController">
+        <property name="formView" value="/vendorImageUploadForm"/>
+         <property name="successView" value="redirect:/mainMenu.html"/>
+        <property name="ajaxView" value="/ajaxReturn"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+         <property name="vendorImageManager" ref="vendorImageManager"/>
+   	</bean>
+   	
+   	<bean name="/replaceVendorImageForm.html" class="com.belk.car.app.webapp.controller.ReplaceVendorImageFormController">
+        <property name="formView" value="/replaceVendorImageForm"/>
+         <property name="successView" value="redirect:/mainMenu.html"/>
+        <property name="ajaxView" value="/ajaxReturn"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+         <property name="vendorImageManager" ref="vendorImageManager"/>
+   	</bean>  	
+   	
+   	
+   	<!--  End of VIP upload multiple images -->
+	<!--  START RETRIVE PIM ATTRIBUTE  -->
+	<bean name="/pimImageUploadForm.html" class="com.belk.car.app.webapp.controller.PimImageUploadFormController">
+         <property name="carManager" ref="carManager"/>
+        <property name="vendorImageManager" ref="vendorImageManager"/>
+        <property name="pimFtpImageManager" ref="pimFtpImageManager"/>
+   	</bean>
+	<!--  END RETRIVE PIM ATTRIBUTE  -->
+	
+	<!--  Added for Refresh car PIM attributes -->
+	<bean name="/refereshCar.html" class="com.belk.car.app.webapp.controller.RefereshCarController">
+       <property name="pimAttributeManager" ref="pimAttributeManager"/>
+       <property name="carManager" ref="carManager"/>
+   	</bean>
+   	
+   	<!-- End of Refresh car PIM attribute -->
+
+    <!-- Added for new Attribute to BM Attribute mapping screen -->
+	<bean name="/bmattributemapping/mapping.html" class="com.belk.car.app.webapp.controller.BMAttributeMappingController">
+         <property name="attributeManager" ref="attributeManager"/>
+         <property name="successView" value="admin/bmattributemapping/attributeMapping"/>
+    </bean>
+    <!-- End of BM Attribute mapping screen  -->
+    
+	<!--  Vendor beans -->
+	<bean name="/vendor/vendors.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsController">
+         <property name="carLookupManager" ref="carLookupManager"/>
+         <property name="successView" value="admin/vendor/vendorList"/>
+    </bean>
+
+     <bean name="/vendor/vendorForm.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsFormController">        
+        <property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="vendorValidator"/>
+            </list>
+        </property>
+        <property name="formView" value="/admin/vendor/vendorForm"/>
+        <property name="successView" value="redirect:vendors.html"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>		
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="emailManager" ref="emailManager"/>
+        <property name="message" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+        <property name="carUserManager" ref="carUserManager"/>
+    </bean>
+
+	<bean id="vendorSearchController" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsSearchController">
+		<property name="successView" value="admin/vendor/vendorList"/>
+		<property name="carUserManager" ref="carUserManager"/>
+	</bean>
+	
+	<bean id="vendorDetailsController" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsDetailsController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="userManager" ref="userManager"/>     	  
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     </bean>
+     
+     <bean name="/vendor/addDepartment.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsDepartmentFormController">
+        <property name="formView" value="admin/vendor/vendorDepartments"/>
+        <property name="successView" value="redirect:vendorss.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+        <property name="validator" ref="beanValidator"/>
+	</bean> 
+         
+	<bean name="/vendor/removeVendor.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsManagerController">
+        <property name="userManager" ref="userManager"/>
+         <property name="carUserManager" ref="carUserManager"/>          
+     </bean>
+     
+     <bean name="/vendor/removeVendorVendors.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorVendorsManagerController">
+     	<property name="successView"  value="redirect:/vendor/vendorDetails.html"/> 
+        <property name="userManager" ref="userManager"/>
+		<property name="carUserManager" ref="carUserManager"/>          
+        <property name="carLookupManager" ref="carLookupManager"/>
+     </bean>
+     
+     <bean name="/vendor/associateVendorVendors.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorVendorsFormController">
+		<property name="validator" ref="beanValidator"/>
+        <property name="formView" value="admin/vendor/vendorVendors"/>
+        <property name="successView" value="redirect:vendors.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+	</bean>
+     
+     <bean name="/vendor/removeDepartment.html" class="com.belk.car.app.webapp.controller.admin.vendor.VendorsDepartmentManagerController">
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="successView"  value="redirect:/vendor/vendorDetails.html"/>        
+     </bean>
+	
+	
+	
+	<!-- End Vendor Beans -->
+
+	<!--  User Beans -->
+			 
+	
+	<bean name="userController" class="com.belk.car.app.webapp.controller.admin.user.UserController">
+         <property name="userManager" ref="userManager"/>
+         <property name="carLookupManager" ref="carLookupManager"/>
+         <property name="successView" value="admin/user/userList"/>
+    </bean>
+
+     <bean id="userFormController" class="com.belk.car.app.webapp.controller.admin.user.UserFormController">        
+        <property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="userValidator"/>
+            </list>
+        </property>
+        <property name="formView" value="/admin/user/userForm"/>
+        <property name="successView" value="redirect:/admin/user/userDetails.html"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+		<property name="ajaxView" value="/ajaxReturn"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="emailManager" ref="emailManager"/>
+        <property name="message" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+        <property name="carUserManager" ref="carUserManager"/>
+    </bean>
+
+	<bean id="userSearchController" class="com.belk.car.app.webapp.controller.admin.user.UserSearchController">
+		<property name="successView" value="admin/user/userList"/>
+		<property name="carUserManager" ref="carUserManager"/>
+		<property name="carLookupManager" ref="carLookupManager"/>
+	</bean>
+	
+	<bean name="/admin/user/addDepartment.html" class="com.belk.car.app.webapp.controller.admin.user.DepartmentFormController">
+        <property name="formView" value="/admin/user/userDepartments"/>
+        <property name="successView" value="redirect:/admin/user/users.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+        <property name="validator" ref="beanValidator"/>
+	</bean>
+	
+	<bean name="/admin/user/associateVendor.html" class="com.belk.car.app.webapp.controller.admin.user.VendorFormController">
+		<property name="validator" ref="beanValidator"/>
+        <property name="formView" value="/admin/user/userVendors"/>
+        <property name="successView" value="redirect:/admin/user/users.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+	</bean>
+	
+	<bean name="/admin/user/addUserNotes.html" class="com.belk.car.app.webapp.controller.admin.user.UserNotesFormController">
+        <property name="formView" value="/admin/user/userNotes"/>
+         <property name="successView" value="redirect:/admin/user/userDetails.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+	</bean>
+	
+	 <bean id="userDetailsController" class="com.belk.car.app.webapp.controller.admin.user.UserDetailsController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="userManager" ref="userManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     </bean>
+     
+     <bean id="lateCarsAssocDetailsController" class="com.belk.car.app.webapp.controller.admin.latecars.LateCarsAssociationManagerController">
+     	<property name="carManager" ref="carManager"/>     	
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="admin/latecarsgroup/lateCarsAddedAssociation"/>     	
+     </bean>
+     
+     
+         
+	
+	<bean name="/admin/user/removeUser.html" class="com.belk.car.app.webapp.controller.admin.user.UserManagerController">
+        <property name="userManager" ref="userManager"/>       
+        <property name="carUserManager" ref="carUserManager"/>
+     </bean>
+     
+     <bean name="/admin/user/removeDepartment.html" class="com.belk.car.app.webapp.controller.admin.user.DepartmentManagerController">
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="successView"  value="redirect:/admin/user/userDetails.html"/>        
+     </bean>
+     
+     <bean name="/admin/user/removeVendor.html" class="com.belk.car.app.webapp.controller.admin.user.VendorManagerController">
+        <property name="userManager" ref="userManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="successView"  value="redirect:/admin/user/userDetails.html"/>        
+     </bean>
+	
+	<!--  End User Beans -->
+	
+	<bean name="/selectCarToCopy.html" class="com.belk.car.app.webapp.controller.SelectCarToCopyController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="userManager" ref="userManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView"  value="/selectCarToCopy"/>
+     </bean>
+	<bean name="/removeImage.html" class="com.belk.car.app.webapp.controller.RemoveCarImageRequestController">
+        <property name="carManager" ref="carManager"/>
+        <property name="successView"  value="/requestedImages"/>
+     </bean>	
+     
+	<bean id="classificationSearchController" class="com.belk.car.app.webapp.controller.admin.search.ClassificationSearchController">
+		<property name="carLookupManager" ref="carLookupManager"/>
+		<property name="successView" value="redirect:attributes/associateClassAttribute.html"/>
+		<property name="formView" value="redirect:attributes/associateClassAttribute.html"/>
+	</bean>
+	
+	<bean name="/admin/producttypeclassificationsearch.html" class="com.belk.car.app.webapp.controller.admin.search.ProductTypeClassificationSearchController">
+		<property name="carLookupManager" ref="carLookupManager"/>		
+		<property name="successView" value="redirect:/admin/producttype/associateClassProductType.html"/>
+		<property name="formView" value="redirect:/admin/producttype/associateClassProductType.html"/>
+	</bean>
+	
+	<bean id="productTypeSearchController" class="com.belk.car.app.webapp.controller.admin.producttype.ProductTypeSearchController">
+		<property name="carLookupManager" ref="carLookupManager"/>
+		<property name="successView" value="admin/producttype/list"/>
+		<property name="formView" value="admin/producttype/list"/>
+	</bean>
+	
+	<bean id="departmentSearchController" class="com.belk.car.app.webapp.controller.admin.search.DepartmentSearchController">
+		<property name="carLookupManager" ref="carLookupManager"/>
+	</bean>
+
+    <bean id="searchResultController" class="com.belk.car.app.webapp.controller.car.SearchResultController">
+    	<property name="validator" ref="beanValidator"/>
+    	<property name="successView" value="dashBoard"/>
+		<property name="ajaxView" value="/ajaxReturn"/>
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="formView" value="search/searchHome"/>
+    	<property name="viewHome" value="search/searchHome"/>
+    	<property name="viewIndex" value="search/createIndex"/>
+    	<property name="workflowManager" ref="workflowManager"/>
+    </bean>
+    
+    <bean id="createSearchIndexController" class="com.belk.car.app.webapp.controller.car.CreateSearchIndexController">
+		<property name="searchWorker" ref="searchWorker"/>
+		<property name="successView" value="search/createIndex"/>
+	</bean>
+    
+    <bean id="searchWorker" class="com.belk.car.lucene.SearchWorker">
+        <property name="indexDir" value="/indexlocation"/>
+        <property name="carManager" ref="carManager"/>
+    </bean>
+
+    <bean id="reloadController" class="org.appfuse.webapp.controller.ReloadController"/>
+    
+    <!-- Start Attribute controllers -->
+     <bean id="attributesController" class="com.belk.car.app.webapp.controller.admin.attribute.AttributesController">
+     	<property name="successView" value="admin/attributes/list"/>
+		<property name="attributeManager" ref="attributeManager"/>
+     </bean>
+     
+     <bean id="attributeSearchController" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeSearchController">
+		<property name="successView" value="admin/attributes/list"/>
+		<property name="attributeManager" ref="attributeManager"/>
+		<property name="pimAttributeManager" ref="pimAttributeManager"/>
+	</bean>
+     
+     <bean name="attributeFormController" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeFormController">
+     	<property name="validator" ref="beanValidator"/>
+        <property name="formView" value="/admin/attributes/edit"/>
+        <property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+        <property name="cancelView" value="redirect:/admin/attributes/details.html"/>
+        <property name="listView" value="redirect:/admin/attributes/attributes.html"/>
+		<property name="attributeManager" ref="attributeManager"/>
+		 <property name="carLookupManager" ref="carLookupManager"/>
+	 </bean>
+	 
+	 <bean id="attributeDetailsController" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeDetailsController">
+     	<property name="userManager" ref="userManager"/>
+     	<property name="attributeManager" ref="attributeManager"/>
+     </bean>
+     
+       <bean name="/admin/attributes/removeDepartmentAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.RemoveAttributeDepartmentController">
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+		<property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>
+	</bean>
+	
+	 <bean name="/admin/attributes/removeProductTypeAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.RemoveAttributeProductTypeController">
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+		<property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>
+	</bean>
+	
+	 <bean name="/admin/attributes/removeClassAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.RemoveAttributeClassificationController">
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+		<property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+		<property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>
+	</bean>
+	
+	<bean name="/admin/attributes/removeAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.RemoveAttributeController">
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="successView" value="redirect:attributes.html"/>   
+        <property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>     
+	</bean>
+	
+     <bean name="/admin/attributes/associateDepartmentAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeDepartmentFormController">
+        <property name="formView" value="/admin/attributes/attributeDepartments"/>
+        <property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>  
+         <property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>      
+	</bean>
+	
+	<bean name="/admin/attributes/associateProductTypeAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeProductTypeFormController">
+		<property name="validator" ref="beanValidator"/>
+        <property name="formView" value="/admin/attributes/attributeProductType"/>
+        <property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>  
+         <property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>      
+	</bean>
+	
+	<bean name="/admin/attributes/associateClassAttribute.html" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeClassFormController">
+        <property name="formView" value="/admin/attributes/attributeClass"/>
+        <property name="successView" value="redirect:/admin/attributes/attributeForm.html"/>
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/> 
+         <property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>       
+	</bean>	 
+	 <!--  End Attribute Controllers -->
+	
+	 <!-- Attribute Value Management -->
+	 <bean id="attributeValuesController" class="com.belk.car.app.webapp.controller.admin.attribute.AttributeValuesController">
+     	<property name="successView" value="redirect:/admin/attributes/attributeValues.html"/>
+		<property name="attributeManager" ref="attributeManager"/>
+		<property name="carLookupManager" ref="carLookupManager"/>
+		<property name="carManager" ref="carManager"/>	
+     </bean>	 	
+	 <!-- End Attribute Value Management -->
+	
+	 <!--  Start Manual Car Controllers -->	 
+	 <bean id="searchManualCarController" class="com.belk.car.app.webapp.controller.car.SearchManualCarController">
+     	<property name="successView" value="car/list"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+     </bean>
+	 <bean id="manualCarController" class="com.belk.car.app.webapp.controller.car.ManualCarController">
+     	<property name="successView" value="car/list"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+     </bean>
+	 <bean id="editManualCarController" class="com.belk.car.app.webapp.controller.car.EditManualCarController">
+		<property name="validator" ref="beanValidator"/>
+     	<property name="successView" value="redirect:/car/manualcars.html"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+		<property name="quartzJobManagerForPIMJobs" ref="quartzJobManagerForPIMJobs"/>
+     </bean>
+	 <bean id="removeManualCarController" class="com.belk.car.app.webapp.controller.car.RemoveManualCarController">
+     	<property name="successView" value="redirect:/car/manualcars.html"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+     </bean>
+	 <bean id="exportManualCarController" class="com.belk.car.app.webapp.controller.car.ExportManualCarController">
+     	<property name="successView" value="car/export"/>
+     	<property name="exportDirPath" value="c:/carsfiles/export/"/>
+     	<property name="exportFileName" value="manualcars.txt"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+     </bean>
+	 <bean id="detailsManualCarController" class="com.belk.car.app.webapp.controller.car.ManualCarDetailsController">
+     	<property name="successView" value="/car/details"/>
+		<property name="manualCarManager" ref="manualCarManager"/>
+     </bean>
+     <!-- End Manual Car -->
+     
+ 	<!-- Start Product Group Controllers -->     
+     <bean id="productGroupController" class="com.belk.car.app.webapp.controller.admin.productgroup.ProductGroupController">
+ 		<property name="methodNameResolver" ref="paramResolver"/>
+     	<property name="successView" value="admin/productgroup/list"/>
+     	<property name="addProductGroupView" value="/admin/productgroup/edit"/>
+     	<property name="detailView" value="/admin/productgroup/detail"/>
+     	<property name="cancelView" value="redirect:/admin/productgroup/productGroups.html?method=getAllProductGroups"/>
+		<property name="productGroupManager" ref="productGroupManager"/>
+		<property name="carLookupManager" ref="carLookupManager"/>
+		<property name="validators">
+            <list>
+                <ref local="productGroupValidator"/>
+            </list>
+        </property>
+     </bean>
+     
+  	<!-- Start Product Group Associations -->     
+     <bean id="productAssociateController" class="com.belk.car.app.webapp.controller.admin.productgroup.ProductAssociateController">
+ 		<property name="methodNameResolver" ref="paramResolver"/>
+ 		<property name="productGroupManager" ref="productGroupManager"/>
+ 		<property name="detailView" value="/admin/productgroup/detail"/>
+ 		<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="associateView" value="admin/productgroup/associateProductType"/>
+     	<property name="removeView" value="admin/productgroup/removeProductFromGroup"/>
+     	<property name="associateConfirm" value="admin/productgroup/associateProductTypeConfirm"/>
+		<property name="validators">
+            <list>
+                <ref local="productGroupTypeValidator"/>
+            </list>
+        </property>
+     </bean>
+     
+     <!-- Start Product Type Controllers -->     
+     <bean id="productTypeController" class="com.belk.car.app.webapp.controller.admin.producttype.ProductTypeController">
+     	<property name="successView" value="admin/producttype/list"/>
+		<property name="productManager" ref="productManager"/>
+     </bean>
+    
+	 <bean id="productTypeFormController" class="com.belk.car.app.webapp.controller.admin.producttype.ProductTypeFormController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="formView" value="/admin/producttype/edit"/>
+        <property name="successView" value="redirect:/admin/producttype/details.html"/>
+        <property name="cancelView" value="redirect:/admin/producttype/productTypes.html"/>
+		<property name="productManager" ref="productManager"/>
+		<property name="productGroupManager" ref="productGroupManager"/>
+		<property name="carLookupManager" ref="carLookupManager"/>		       
+	</bean>
+	 
+	 <bean id="productTypeDetailsController" class="com.belk.car.app.webapp.controller.admin.producttype.ProductTypeDetailsController">
+     	<property name="userManager" ref="userManager"/>
+     	<property name="productManager" ref="productManager"/>
+     	<property name="successView" value="admin/producttype/details"/>
+     </bean>
+	
+	<bean name="/admin/producttype/removeProductType.html" class="com.belk.car.app.webapp.controller.admin.producttype.RemoveProductTypeController">
+        <property name="carLookupManager" ref="carLookupManager"/> 
+        <property name="productManager" ref="productManager"/>
+        <property name="successView" value="redirect:/admin/producttype/productTypes.html"/>        
+	</bean>
+	
+	<bean name="/admin/producttype/associateClassProductType.html" class="com.belk.car.app.webapp.controller.admin.producttype.ProductTypeClassFormController">
+        <property name="formView" value="/admin/producttype/productTypeClass"/>
+        <property name="successView" value="redirect:/admin/producttype/details.html"/>
+        <property name="productManager" ref="productManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>        
+	</bean>	
+	
+	 <bean name="/admin/producttype/removeClassProductType.html" class="com.belk.car.app.webapp.controller.admin.producttype.RemoveProductTypeClassificationController">
+        <property name="productManager" ref="productManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>        
+	</bean>
+		
+     <!-- End Product Controllers -->
+     
+     
+     <!-- Workflow Controllers -->     
+     <bean id="workflowController" class="com.belk.car.app.webapp.controller.admin.workflow.WorkflowController">
+     	<property name="successView" value="admin/workflow/list"/>
+		<property name="workflowManager" ref="workflowManager"/>
+     </bean>
+    
+	 <bean id="workflowFormController" class="com.belk.car.app.webapp.controller.admin.workflow.WorkflowFormController">	   
+        <property name="formView" value="/admin/workflow/edit"/>
+        <property name="successView" value="redirect:/admin/workflow/details.html"/>
+		<property name="workflowManager" ref="workflowManager"/>		       
+	</bean>
+	 
+	 <bean id="workflowDetailsController" class="com.belk.car.app.webapp.controller.admin.workflow.WorkflowDetailsController">
+     	<property name="userManager" ref="userManager"/>
+     	<property name="successView" value="/admin/workflow/details"/>
+     	<property name="workflowManager" ref="workflowManager"/>
+     </bean>
+     
+     <bean name="/admin/workflow/transitionForm.html" class="com.belk.car.app.webapp.controller.admin.workflow.TransitionFormController">
+     	<property name="validator" ref="beanValidator"/>      
+        <property name="formView" value="/admin/workflow/workflowTransitions"/>
+        <property name="successView" value="redirect:/admin/workflow/details.html"/>
+         <property name="cancelView" value="redirect:/admin/workflow/details.html"/>      
+        <property name="workflowManager" ref="workflowManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>    
+	 </bean>
+	 
+	  <bean name="/admin/workflow/removeTransition.html" class="com.belk.car.app.webapp.controller.admin.workflow.RemoveTransitionController">
+        <property name="workflowManager" ref="workflowManager"/>
+         <property name="formView" value="/admin/workflow/workflowTransitions"/>
+         <property name="successView" value="redirect:details.html"/>    
+	</bean>
+	
+	<bean name="/refreshVendorImageTable.html" class="com.belk.car.app.webapp.controller.RefreshVendorImageTableController">
+         <property name="successView" value="imageManagement/vendorUploadImageList"/>  
+         <property name="carLookupManager" ref="carLookupManager"/> 
+         
+	</bean>	
+     <!-- End workflow Controllers -->
+
+<!-- Test data to run job To be removed during production -->
+
+
+ <bean id="selectAndRunJobController" class="com.belk.car.app.webapp.controller.SelectAndRunJobController">
+		<property name="methodNameResolver">
+		<ref bean="paramResolver"/>
+		</property>
+		<property name="quartzJobManagerDropship" ref="quartzJobManagerDropship"/>
+		<property name="quartzJobManagerForVendorCatalog" ref="quartzJobManagerForVendorCatalog"/>
+		<property name="carPrefillJobManager" ref="carPrefillJobManager"/>
+		<property name="quartzJobManager" ref="quartzJobManager"/>
+	</bean>
+	<bean id="scheduleJobController" class="com.belk.car.app.webapp.controller.ScheduleJobController">
+		<property name="methodNameResolver">
+			<ref bean="paramResolver"/>
+		</property>
+		<property name="quartzJobManagerDropship" ref="quartzJobManagerDropship"/>
+		<property name="quartzJobManagerForVendorCatalog" ref="quartzJobManagerForVendorCatalog"/>
+		<property name="carPrefillJobManager" ref="carPrefillJobManager"/>
+		<property name="quartzJobManager" ref="quartzJobManager"/>
+		<property name="quartzJobManagerForLateCarReport" ref="quartzJobManagerForLateCarReport" />
+		<property name="quartzJobManagerForImportAndUpdateFacets" ref="quartzJobManagerForImportAndUpdateFacets" />
+		<property name="quartzJobManagerForMCImage" ref="quartzJobmanagerForMCImage" />
+		<!--
+		<property name="sizeConversionJobManager" ref="sizeConversionJobManager" />
+		<property name="superColorJobManager" ref="superColorJobManager" />
+		-->
+		<property name="attributeResynchJobManager" ref="attributeResynchJobManager" />
+		<property name="quartzJobManagerForVendorImages" ref="quartzJobManagerForVendorImages" />
+		<property name="quartzJobManagerForEmailNotification" ref ="quartzJobManagerForEmailNotification"/>
+		<property name="quartzJobManagerForPIMJobs" ref ="quartzJobManagerForPIMJobs"/>
+	</bean>
+	<bean id="carPrefillJobManager"
+		class="com.belk.car.app.service.impl.CarPrefillManagerImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="vendorCatalogManager" ref="vendorCatalogManager" />
+		<property name="dropshipManager" ref="dropshipManager" />
+		
+	</bean>
+	<!-- End test data -->
+	  <!-- Added for CARS Faceted Navigation -->
+	 <bean id="sizeConversionJobManager"
+		class="com.belk.car.app.service.impl.SizeConversionJobManagerImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="sizeConversionManager" ref="sizeConversionManager" />
+		<property name="outfitManager" ref="outfitManager" />
+		<property name="sizeConversionRulesUtils" ref="sizeConversionRulesUtils" />
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="quartzJobCommonUtil" ref="quartzJobCommonUtil" />
+		
+	</bean>  
+	<!-- Added for CARS Faceted Navigation Attribute Resynch-->
+	 <bean id="attributeResynchJobManager"
+		class="com.belk.car.app.service.impl.AttributeResynchJobManagerImpl">
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="quartzJobCommonUtil" ref="quartzJobCommonUtil" />
+		<property name="attributeManager" ref="attributeManager" />	
+		<property name="carManager" ref="carManager" />
+		<property name="sizeConversionRulesUtils" ref="sizeConversionRulesUtils" />
+	</bean>  
+<!-- Start Fulfillment Service Controllers -->     
+   
+     <bean id="FulfillmentServiceProperties" class="com.belk.car.app.webapp.controller.oma.FulfillmentServicePropertiesController">
+		<property name="methodNameResolver">
+		<ref bean="paramResolver"/>
+		</property>
+		
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+	</bean>
+	
+	     <bean id="FulfillmentServiceFormController" class="com.belk.car.app.webapp.controller.oma.FulfillmentServiceFormController">
+	             <property name="cancelView" value="redirect:/oma/orderManagement.html?method=load"/>
+        <property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="fulfillmentServiceFormValidator"/>
+            </list>
+        </property>
+		<property name="formView" value="/oma/fsPropertiesList"/>
+        <property name="successView" value="redirect:/oma/fsPropertiesList.html"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+	</bean>
+	
+	<bean name="/oma/addeditItemRequest.html" class="com.belk.car.app.webapp.controller.oma.ItemRequestController">
+		<property name="commandName" value="itemRequestForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.ItemRequestForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="redirect:/oma/itemrequeststyles.html"/>
+     	<property name="formView" value="/oma/fulfillmentServiceItemRequestProperties"/>
+     	<property name="validator" ref="itemRequestValidator"/>
+     </bean>
+     
+     <bean name="/oma/itemrequeststyles.html" class="com.belk.car.app.webapp.controller.oma.ItemRequestStylesController">
+		<property name="commandName" value="itemRequestForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.ItemRequestForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="/oma/fulfillmentServiceRequestStyles"/>
+     	<property name="formView" value="/oma/fulfillmentServiceRequestStyles"/>
+     </bean>
+     
+     <bean name="/oma/addrequeststyles.html" class="com.belk.car.app.webapp.controller.oma.AddRequestStylesController">
+		<property name="commandName" value="itemRequestStylesForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.ItemRequestStylesForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="redirect:/oma/itemrequeststyles.html?mode=addstyle"/>
+     	<property name="formView" value="/oma/fulfillmentServiceRequestStyles"/>
+     </bean>
+
+	<bean name="/oma/requestskuexception.html" class="com.belk.car.app.webapp.controller.oma.ItemRequestSkuExceptionController">
+		<property name="commandName" value="itemRequestForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.ItemRequestForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="redirect:/oma/requestskuexception.html"/>
+     	<property name="formView" value="/oma/fulfillmentServiceSkuException"/>
+     </bean>
+     
+	<bean name="/oma/requestUpdateHistory.html" class="com.belk.car.app.webapp.controller.oma.ItemRequestHistory">
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     </bean>
+     
+     <bean name="/oma/requestHistory.html" class="com.belk.car.app.webapp.controller.oma.RequestHistoryController">
+		<property name="commandName" value="requestHistoryForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.RequestHistoryForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="/oma/fulfillmentServiceRequestHistory"/>
+     	<property name="formView" value="/oma/fulfillmentServiceRequestHistory"/>
+     	<property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="requestHistoryValidator"/>
+            </list>
+        </property>
+     </bean>
+     
+     <bean name="/oma/styleskus.html" class="com.belk.car.app.webapp.controller.oma.StyleSkuController">
+		<property name="commandName" value="stylesSkuForm"/>
+		<property name="commandClass" value="com.belk.car.app.webapp.forms.StylesSkuForm"/>
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     	<property name="successView" value="/oma/fulfillmentServiceStyleSku"/>
+     	<property name="formView" value="/oma/fulfillmentServiceStyleSku"/>
+     	<property name="validator" ref="beanValidator"/>
+     </bean>
+     
+     <bean name="/oma/styleproperty.html" class="com.belk.car.app.webapp.controller.oma.StylePropertyController">
+		<property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+     </bean>
+	<!-- End of Fulfillment Service Controllers -->
+	
+	<!--Start Fulfillment Service Notes controllers  -->
+	<bean id="FulfillmentServiceNotes" class="com.belk.car.app.webapp.controller.oma.FulfillmentServiceNotesController">
+		<property name="methodNameResolver">
+		<ref bean="paramResolver"/>
+		</property>
+		<property name="fulfillmentServiceNotesManager" ref="fulfillmentServiceNotesManager"/>
+	</bean>
+	
+	<bean id="FulfillmentServiceNotesForm" class="com.belk.car.app.webapp.controller.oma.FulfillmentServiceNotesFormController">
+	<property name="successView" value="/oma/fulfillmentServiceNotes.html"/>
+    <property name="fulfillmentServiceNotesManager" ref="fulfillmentServiceNotesManager"/>
+	</bean>
+	
+		
+	
+	<!-- End fulfillment service Notes Controllers -->
+	
+	<!--  Data Mapping controller  -->
+	 <bean id="vendorDataMappingController" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorDataMappingController">
+		<property name="methodNameResolver" ref="paramResolver"/>
+		<property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+		<property name="productGroupManager" ref="productGroupManager"/>
+		<property name="successView" value="vendorCatalog/datamapping/vendorCatalogDataMapping"/>
+     </bean>
+
+
+<!-- End of OrderManagement Controllers -->
+
+
+     
+      <bean id="helpController" class="com.belk.car.app.webapp.controller.HelpContentController">
+        <property name="contentManager" ref="helpContentManager"/>        
+        <property name="successView" value="help"/>
+     </bean>
+     
+     <bean id="dashBoardController" class="com.belk.car.app.webapp.controller.DashBoardController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="workflowManager" ref="workflowManager"/>     
+     	<property name="dbPromotionManager" ref="dbPromotionManager"/>   
+		<property name="catalogImportManager" ref="catalogImportManager"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     </bean>
+     
+      <bean id="notesFormController" class="com.belk.car.app.webapp.controller.NotesFormController">
+     	<property name="carManager" ref="carManager"/>
+     </bean>
+     
+     <bean id="copyCarController" class="com.belk.car.app.webapp.controller.CopyCarController">
+     	<property name="carManager" ref="carManager"/>     
+     	<property name="superColorManager" ref="superColorManager"/>
+     	<property name="workflowManager" ref="workflowManager"/>
+      	<property name="successView" value="carEdit"/> 
+       	<property name="ajaxView" value="/ajaxReturn"/>
+   
+     	<property name="errorView" value="selectCarToCopy.html"/>
+     </bean>
+     
+     <bean name="/publishContent.html" class="com.belk.car.app.webapp.controller.PublishContentController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+     
+     <bean name="/markReceivedImages.html" class="com.belk.car.app.webapp.controller.ImageRequestController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="/requestedImages"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+     
+     <bean name="/editSkuDetails.html" class="com.belk.car.app.webapp.controller.EditSkuDetailsController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="/editSkuDetails"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+     
+     <bean name="/getProductTypesByClass.html" class="com.belk.car.app.webapp.controller.GetProductTypesByClassController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="/ajaxReturn"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+     
+     <bean name="/getCars.html" class="com.belk.car.app.webapp.controller.GetCarsController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="successView" value="/ajaxReturn"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+     
+     
+      <bean id="dashBoardFormController" class="com.belk.car.app.webapp.controller.DashBoardFormController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="attributeManager" ref="attributeManager"/>
+     	<property name="workflowManager" ref="workflowManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="outfitManager" ref="outfitManager"/> 
+     	<property name="superColorManager" ref="superColorManager"/> 
+     	<property name="sizeConversionManager" ref="sizeConversionManager"/> 
+     	<property name="sizeConversionRulesUtils" ref="sizeConversionRulesUtils"/> 
+     	<property name="dbPromotionManager" ref="dbPromotionManager"/> 
+     	<property name="formView" value="carEdit"/>
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     </bean>
+     
+     <bean id="previewController" class="com.belk.car.app.webapp.controller.PreviewController">
+     	<property name="carManager" ref="carManager"/>
+     	<property name="workflowManager" ref="workflowManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="outfitManager" ref="outfitManager"/> 
+     	<property name="dbPromotionManager" ref="dbPromotionManager"/> 
+        <property name="ajaxView" value="/ajaxReturn"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     </bean>
+     
+     
+    
+   <bean name="/login.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName">
+			<value>login</value>
+		</property>
+	</bean>
+    
+	<bean name="/viewRolesToUrlMapping.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName"><value>viewRolesToUrlMapping</value></property>
+	</bean>
+	
+	 <bean id="vendorUserFormController" class="com.belk.car.app.webapp.controller.VendorUserFormController">
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+		<property name="emailManager" ref="emailManager"/>
+        <property name="validator" ref="beanValidator"/>
+        <property name="mailEngine" ref="mailEngine"/> <!-- may not be needed -->
+        <property name="message" ref="mailMessage"/><!-- may not be needed -->
+        <property name="templateName" value="accountCreated.vm"/><!-- may not be needed -->
+        <property name="formView" value="vendorUserForm"/>
+        <property name="successView" value="vendorManagement"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+		<property name="ajaxView" value="/ajaxReturn"/>
+    </bean>
+	<!-- Start Help Content Controllers -->
+	<bean id="helpContentController"
+		class="com.belk.car.app.webapp.controller.admin.help.SearchHelpContentController">
+		<property name="successView" value="admin/help/list" />
+		<property name="helpContentManager" ref="helpContentManager" />
+	</bean>
+
+	<bean id="helpContentFormController"
+		class="com.belk.car.app.webapp.controller.admin.help.HelpContentFormController">
+		<property name="formView" value="/admin/help/edit" />
+		<property name="successView" value="redirect:helpList.html" />
+		<property name="helpContentManager" ref="helpContentManager" />
+	</bean>
+
+	<bean id="helpContentDetailController"
+		class="com.belk.car.app.webapp.controller.admin.help.HelpContentDetailController">
+		<property name="helpContentManager" ref="helpContentManager" />
+	</bean>
+
+	<bean name="/admin/help/remove.html"
+		class="com.belk.car.app.webapp.controller.admin.help.RemoveHelpContentController">
+		<property name="helpContentManager" ref="helpContentManager" />
+		<property name="successView"
+			value="redirect:/admin/help/helpList.html" />
+	</bean>
+	<!-- End Help Content Controllers -->
+	
+	 <!--  Start Catalog Controllers -->	 
+	 <bean id="importCosmeticsController" class="com.belk.car.app.webapp.controller.catalog.ImportCosmeticsDataController">
+		<property name="catalogImportManager" ref="catalogImportManager"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     </bean>
+
+	 <bean id="importCatalogFormController" class="com.belk.car.app.webapp.controller.catalog.ImportCatalogDataFormController">
+		<property name="catalogImportManager" ref="catalogImportManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+		<property name="carManager" ref="carManager"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+     	<property name="formView" value="/admin/catalog/import"/>
+     </bean>
+	
+   <bean id="readIDBDataController" class="com.belk.car.app.webapp.controller.ReadIDBDataController">
+     	<property name="mgr" ref="carManager"/>
+     	<property name="workflowMgr" ref="workflowManager"/>
+     	<property name="carLookupManager" ref="carLookupManager"/>
+     	<property name="attributeMgr" ref="attributeManager"/>
+     	<property name="productTypeMgr" ref="productManager"/>
+     	<property name="filePath" value="C:/CARSFiles/CARS.txt"/>
+     	<property name="successView" value="redirect:/mainMenu.html"/>
+	</bean>
+
+	
+    <!-- End controller beans -->
+    <!-- Start of Vendor Fees Controller -->
+    <bean id="vendorFeesController"	class="com.belk.car.app.webapp.controller.oma.VendorFeesController">
+    	<property name="methodNameResolver">
+			<ref bean="paramResolver"/>
+		</property>
+    	<property name="vendorFeesManager" ref="vendorFeesManager" />
+    </bean>
+    
+    <bean id="vendorFeesFormController" class="com.belk.car.app.webapp.controller.oma.VendorFeesFormController">
+    	<property name="vendorFeesManager" ref="vendorFeesManager" />
+    	<property name="successView" value="/oma/fulfillmentServiceContactEdit"/>
+    	<property name="formView" value="/oma/vendorShippingFee"/>
+    </bean>
+    
+    
+	<!-- End -->
+    <!-- Start Pattern controllers -->
+    <bean id="patternSearchController"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternSearchController">
+    	<property name="successView" value="admin/pattern/list" />
+    	<property name="carManager" ref="carManager" />
+    </bean>
+	
+	<!-- start Fulfillment Service Contact Controllers -->
+	
+	<bean id="contactsController"
+    	class="com.belk.car.app.webapp.controller.oma.ContactsController">
+    	<!-- <property name="successView" value="admin/oma/FulfillmentServiceContacts" /> -->
+    	<property name="methodNameResolver">
+			<ref bean="paramResolver"/>
+		</property>
+    	<property name="contactsManager" ref="contactsManager" />
+    </bean>
+	
+	<bean id="fsContactFormController" 
+		class="com.belk.car.app.webapp.controller.oma.FSContactFormController">
+		<property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="contactsFormValidator"/>
+            </list>
+        </property>
+    	<property name="formView" value="/oma/fulfillmentServiceContactEdit"/>
+    	<property name="successView" value="/oma/fulfillmentServiceContactEdit"/>
+    	<property name="cancelView" value="redirect:/oma/fulfillmentServiceContacts.html?method=load"/>
+    	<property name="contactsManager" ref="contactsManager"/>
+    </bean>
+    <!-- End Fulfillment Service Contact Controllers -->
+    
+    <bean id="patternDetailController"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternDetailController">
+    	<property name="userManager" ref="userManager" />
+    	<property name="carManager" ref="carManager" />
+    </bean>
+
+    <bean name="/admin/pattern/remove.html"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.RemovePatternController">
+    	<property name="carManager" ref="carManager" />
+    	<property name="carLookupManager" ref="carLookupManager" />
+    	<property name="successView" value="redirect:list.html" />
+    </bean>
+
+    <bean name="/admin/pattern/removeVendorStyle.html"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.RemoveVendorStyleController">
+    	<property name="carManager" ref="carManager" />
+    	<property name="carLookupManager" ref="carLookupManager" />
+    </bean>
+    <bean name="patternFormController"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternFormController">
+    	<!-- 
+    	<property name="validator" ref="beanValidator" /> -->
+    	<property name="formView" value="/admin/pattern/edit" />
+    	<property name="successView"
+    		value="redirect:/admin/pattern/detail.html" />
+    	<property name="cancelView"
+    		value="redirect:/admin/pattern/detail.html" />
+    	<property name="listView"
+    		value="redirect:/admin/pattern/list.html" />
+    	<property name="carManager" ref="carManager" />
+    	<property name="carLookupManager" ref="carLookupManager" />
+    </bean>
+    <bean name="/admin/pattern/addVendorStyle.html"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternVendorStyleFormController">
+    	<property name="formView" value="/admin/pattern/addVendorStyle" />
+    	<property name="successView" value="/admin/pattern/patternVendorStylesTable" />
+    	<property name="carManager" ref="carManager" />
+    	<property name="carLookupManager" ref="carLookupManager" />
+    </bean>
+
+    <bean id="mergeCarsController"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternMergeCarsController">
+    	<property name="userManager" ref="userManager" />
+    	<property name="carManager" ref="carManager" />
+     	<property name="carLookupManager" ref="carLookupManager"/>
+    </bean>
+
+    <bean id="convertCarsController"
+    	class="com.belk.car.app.webapp.controller.admin.pattern.PatternConvertCarsController">
+    	<property name="userManager" ref="userManager" />
+    	<property name="carManager" ref="carManager" />
+     	<property name="carLookupManager" ref="carLookupManager"/>
+    </bean>
+    <!--  End Pattern Controllers -->
+
+	<bean name="/admin/report/list.html" class="com.belk.car.app.webapp.controller.report.ReportFormController">
+    	<property name="reportManager" ref="reportManager" />
+    	<property name="carLookupManager" ref="carLookupManager" />
+    	<property name="carManager" ref="carManager" />
+    	<property name="formView" value="/admin/report/list" />
+    	<property name="successView" value="/admin/report/report" />
+     </bean>
+
+        <!-- Dropship project Conrtrollers -->
+     
+
+        <!-- VendorCatalogManagement Controllers -->
+	<bean id="vendorCatalogController" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogController">
+             <property name="validators">
+            <list>
+                <ref bean="catalogVendorValidator"/>
+                <ref bean="catalogSearchFormValidator"/>
+                <ref bean="styleSearchFormValidator"/>
+           </list>
+        </property>
+         <property name="methodNameResolver" ref="paramResolver"/>
+         <property name="catalogManager" ref="vendorCatalogManager"/>
+         <property name="successView" value="vendorCatalog/catalogVendorList"/>
+        
+    </bean>
+
+			<bean id="vendorCatalogNotesController" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogNotesController">
+				  <property name="methodNameResolver">
+					<ref bean="paramResolver"/>
+					</property>
+				  <property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+       		</bean>
+       		
+       		
+       		<!-- VendorCatalogFilePopupFormContoller -->
+       		
+       		<bean id="vendorCatalogFilePopupFormContoller" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogFilePopupFormContoller">
+                  <property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+       		</bean>
+       		
+       		<bean id="vendorCatalogNoteFormController" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogNoteFormController">
+                  <property name="successView" value="/vendorCatalog/vendorCatalogNoteDetails"/>
+                  <property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+       		</bean>
+       		<bean name="/vendorCatalog/vendorCatalogSetupForm.html" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogFormController">       				
+       				<property name="commandName" value="vendorCatalogForm"/>
+					<property name="commandClass" value="com.belk.car.app.webapp.forms.VendorCatalogForm"/>
+			        <property name="formView" value="/vendorCatalog/vendorCatalogForm"/>
+			        <property name="successView" value="/vendorCatalog/vendorCatalogForm"/>
+			        <property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+			        <property name="carManager" ref="carManager"/>
+			        <property name="userManager" ref="userManager"/>
+			      	<property name="validators">
+			            <list>
+			                <ref bean="beanValidator"/>
+			                <ref local="vendorCatalogValidator"/>
+			            </list>
+	            	</property>
+			        
+			        <!--<property name="validator" ref="vendorCatalogValidator"/>
+			        --><property name="cancelView" value="redirect:/vendorCatalog/catalogVendors.html?method=viewAll"/>		       
+    		</bean>
+    			<bean name="/vendorCatalog/addDepartment.html" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogDepartmentFormController">
+			        <property name="formView" value="/vendorCatalog/vendorcatalogDepartments"/>
+			        <property name="successView" value="redirect:/vendorCatalog/vendorCatalogSetupForm.html"/>
+			        <property name="userManager" ref="userManager"/>
+			        <property name="carLookupManager" ref="carLookupManager"/>
+			        <property name="carManager" ref="carManager"/>
+			        <property name="validator" ref="beanValidator"/>
+				</bean>
+				 <bean name="/vendorCatalog/removeDepartment.html" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogsDepartmentManagerController">
+			        <property name="userManager" ref="userManager"/>
+			        <property name="carLookupManager" ref="carLookupManager"/>
+			        <property name="vendorCatalogManager" ref="vendorCatalogManager"/>
+			        <property name="successView"  value="redirect:/vendorCatalog/vendorCatalogSetupForm.html"/>        
+			     </bean>
+				
+	<!-- <bean name="/vendorCatalog/vendorCatalogSetupForm.html" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogSetupFormController">
+         <property name="catalogManager" ref="vendorCatalogManager"/>
+        <property name="formView" value="/vendorCatalog/vendorCatalogSetupForm"/>
+        <property name="successView" value="redirect:catalogVendors.html"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+    </bean> -->
+
+	<bean id="openCatalogRequestController" class="com.belk.car.app.webapp.controller.vendorcatalog.OpenCatalogRequestController">
+          <property name="catalogManager" ref="vendorCatalogManager"/>
+         <property name="successView" value="admin/vendorCatalog/openCatalogRequest"/>
+    </bean>
+
+    <bean id="vendorCatalogForVendorController" class="com.belk.car.app.webapp.controller.vendorcatalog.VendorCatalogForVendorController">
+          <property name="catalogManager" ref="vendorCatalogManager"/>
+         <property name="successView" value="admin/vendorCatalog/vendorCatalogsForVendor"/>
+    </bean>
+<bean id="FSVendorFormController" class="com.belk.car.app.webapp.controller.oma.FSVendorFormController">
+	    <property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="vendorFulfillmentServiceFormValidator"/>
+            </list>
+        </property>
+        <property name="formView" value="/oma/fulfillmentServicesVendorProperties"/>
+        <property name="successView" value="oma/AddVendor.html"/>
+        <property name="cancelView" value="redirect:/oma/fulfillmentServiceVendors.html?method=viewAll"/>
+		<property name="vendorFulfillmentServiceManager" ref="VendorFulfillmentServiceManager"/>
+		<property name="carManager" ref="carManager"/>    
+	</bean>
+	<bean id="AddVendorAddressFormController" class="com.belk.car.app.webapp.controller.oma.AddVendorAddressFormController">
+	    
+        <property name="formView" value="/oma/fulfillmentServicesVendorProperties"/>
+        <property name="successView" value="oma/AddVendor.html"/>
+        <property name="cancelView" value="redirect:/oma/fulfillmentServiceVendors.html?method=viewAll"/>
+		  
+	</bean>
+		<bean id="AddEditVendorTaxStateFormController" class="com.belk.car.app.webapp.controller.oma.AddEditVendorTaxStateFormController">
+	    
+        <property name="formView" value="/oma/fulfillmentServicesVendorProperties"/>
+        <property name="successView" value="oma/AddVendor.html"/>
+        <property name="cancelView" value="redirect:/oma/fulfillmentServiceVendors.html?method=viewAll"/>
+		<property name="vendorTaxStateManager" ref="VendorTaxStateManager"/>  
+		<property name="vendorFulfillmentServiceManager" ref="VendorFulfillmentServiceManager"/>
+	</bean>
+	
+	 <bean id="VendorReturnsFormController" class="com.belk.car.app.webapp.controller.oma.VendorReturnsFormController">
+	  <property name="validators">
+            <list>
+                <ref bean="beanValidator"/>
+                <ref local="vendorReturnValidator"/>
+            </list>
+        </property>
+        <property name="formView" value="/oma/vendorFSReturns"/>
+        <property name="successView" value="oma/fulfillmentVendorReturns.html"/>
+        <property name="cancelView" value="redirect:/oma/AddVendor.html?mode=fromReturn"/>
+		<property name="vendorFulfillmentServiceManager" ref="VendorFulfillmentServiceManager"/>
+		<property name="carManager" ref="carManager"/>    
+	</bean>
+	
+	<bean id="VendorFSShippingOptionFormController" class="com.belk.car.app.webapp.controller.oma.VendorFSShippingOptionFormController">
+	   <property name="validators">
+            <list>
+                 <ref local="vendorFulfillmentShippingOptionsValidator"/>
+            </list>
+        </property>
+        <property name="formView" value="/oma/vendorFulfillmentServShippingOptions"/>
+        <property name="successView" value="/oma/vendorFulfillmentServShippingOptions"/>
+        <property name="cancelView" value="redirect:/oma/AddVendor.html?mode=fromReturn"/>
+	 	<property name="vendorFSShippingOptionManager" ref="VendorFSShippingOptionManager"/>   
+	</bean>
+	 <bean id="VendorFulfillmentServiceController" class="com.belk.car.app.webapp.controller.oma.VendorFulfillmentServiceController">
+     	<property name="methodNameResolver">
+			<ref bean="paramResolver"/>
+		</property>
+
+		<property name="vendorFulfillmentServiceManager" ref="VendorFulfillmentServiceManager"/>
+     </bean>
+     
+      <bean id="VendorTaxStateMultiActionController" class="com.belk.car.app.webapp.controller.oma.VendorTaxStateMultiActionController">
+     	<property name="methodNameResolver">
+			<ref bean="paramResolver"/>
+		</property>
+		<property name="vendorFulfillmentServiceManager" ref="VendorFulfillmentServiceManager"/>
+		<property name="vendorTaxStateManager" ref="VendorTaxStateManager"/>
+     </bean>
+		
+        
+
+     <!-- End VendorCatalogManagement Controllers -->
+
+    
+<!-- End of OrderManagement Controllers -->
+
+
+
+     <!-- End Dropship Project   Controllers -->
+
+
+<!--  Car Vendor Department Controllers -->
+
+	<bean name="carVendorDepartmentController" class="com.belk.car.app.webapp.controller.admin.vendor.CarUserVendorDepartmentController">
+        <property name="formView" value="/admin/vendor/sendCarsDirectVendors"/>
+         <property name="successView" value="redirect:vendor/vendorDetails.html"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="carManager" ref="carManager"/>  
+     </bean>
+     
+      <bean name="/vendor/removeDeptVendors.html" class="com.belk.car.app.webapp.controller.admin.vendor.CarUserVendorDepartmentManagerController">
+        <property name="successView" value="redirect:vendor/vendorDetails.html"/>
+        <property name="carManager" ref="carManager"/>        
+     </bean> 
+     
+<!--  End Car Vendor Department Controllers -->
+     
+     <!--  Late Car Group Controllers -->
+     
+     
+          
+     <bean id="lateCarsGroupController" class="com.belk.car.app.webapp.controller.admin.latecars.LateCarsGroupController">
+ 		<property name="methodNameResolver" ref="paramResolver"/>
+     	<property name="successView" value="admin/latecarsgroup/list"/>
+     	<property name="detailView" value="/admin/latecarsgroup/detail"/>
+     	<property name="addLateCarsView" value="/admin/latecarsgroup/add"/>
+     	<property name="cancelView" value="redirect:/admin/latecarsgroup/lateCarsGroup.html?method=getAllLateCarsGroup"/>
+		<property name="lateCarsGroupManager" ref="lateCarsGroupManager"/>
+		<property name="carLookupManager" ref="carLookupManager"/>
+     </bean>
+	
+	<bean name="/admin/latecarsgroup/addLateCarsParams.html" class="com.belk.car.app.webapp.controller.admin.latecars.LateCarsParamsController">
+ 		  	<property name="formView" value="admin/latecarsgroup/edit"/>
+ 		  	<property name="lateCarsGroupManager" ref="lateCarsGroupManager"/>
+ 		  	<property name="workflowManager" ref="workflowManager"/>
+ 		  	<property name="carLookupManager" ref="carLookupManager"/> 		  	
+     </bean>
+   
+   <bean name="/admin/latecarsgroup/addLateCarsAssociation.html" class="com.belk.car.app.webapp.controller.admin.latecars.LateCarsAssociationController">   		
+        <property name="formView" value="admin/latecarsgroup/lateCarsAssociation"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+   </bean>
+   	
+	<bean name="/admin/latecarsgroup/editLateCarsParams.html" class="com.belk.car.app.webapp.controller.admin.latecars.LateCarsParamsManageController">
+        <property name="formView" value="admin/latecarsgroup/edit"/>
+        <property name="successView" value="/admin/latecarsgroup/detail"/>
+        <property name="lateCarsGroupManager" ref="lateCarsGroupManager"/>        
+     </bean>
+	 <bean name="/unlockCar.html" class="com.belk.car.app.webapp.controller.UnlockCarController">
+ 		<property name="carManager" ref="carManager"/>  	
+     </bean>
+
+
+ <!--  End Late Car Group Controllers --> 
+ 
+ <!-- Begin Outfit Controllers -->
+ 											
+	  <bean id="listOutfitController" class="com.belk.car.app.webapp.controller.admin.outfit.ListOutfitController">
+	 		<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/outfit/list"/>
+	       	<property name="outfitManager" ref="outfitManager"/>  
+	 </bean>
+	 
+	  <bean name="outfitFormController" class="com.belk.car.app.webapp.controller.admin.outfit.OutfitFormController">
+    		<property name="formView" value="/admin/outfit/edit" />
+    		<property name="successView" value="redirect:/admin/outfit/outfits.html?method=getAllOutfitCars" />
+    		<property name="outfitManager" ref="outfitManager"/>  
+    </bean>
+    	 
+	  <bean name="/admin/outfit/addChildCar.html" class="com.belk.car.app.webapp.controller.admin.outfit.ChildCarFormController">
+	  		<property name="formView" value="/admin/outfit/addChildCar" />
+	  		<property name="successView" value="/admin/outfit/carAndSkuDetails" />
+	  		<property name="ajaxView" value="/ajaxReturn"/>
+	  		<property name="outfitManager" ref="outfitManager"/>  
+	  </bean>
+	  
+	   <bean name="/admin/outfit/removeChildCar.html" class="com.belk.car.app.webapp.controller.admin.outfit.RemoveChildCarController">
+	   		<property name="methodNameResolver" ref="paramResolver"/>
+	  		<property name="successView" value="/admin/outfit/carAndSkuDetails" />
+	  		<property name="outfitManager" ref="outfitManager"/>  
+	  </bean>
+	  
+	  <bean id="templateOutfitController" class="com.belk.car.app.webapp.controller.admin.outfit.TemplateOutfitController">
+	 		<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/outfit/edit"/>
+	       	<property name="outfitManager" ref="outfitManager"/>  
+	 </bean>
+	 
+	 <bean name="/admin/outfit/editPopulateSkus.html" class="com.belk.car.app.webapp.controller.admin.outfit.EditOutfitSkuController">
+	 		<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/outfit/carAndSkuDetails" />
+	       	<property name="outfitManager" ref="outfitManager"/>  
+	 </bean>
+	  
+    
+    
+	 
+ <!-- End Outfit Conrollers -->
+ 
+ 
+  <!-- Begin DB Controllers -->
+ 											
+	  <bean id="listDBPromotionController" class="com.belk.car.app.webapp.controller.admin.dealbased.ListDBPromotionController">	 		
+	     	<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/dbpromotion/list"/>
+	       	<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+	 </bean>
+	 
+	<!-- Begin DB Controllers --> 
+	  <bean name="dbPromotionFormController" class="com.belk.car.app.webapp.controller.admin.dealbased.DBPromotionFormController">
+    		<property name="formView" value="/admin/dbpromotion/edit" />
+    		<property name="successView" value="redirect:/admin/dbpromotion/dbPromotions.html?method=getAllDBPromotionCars" />
+    		<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+    </bean>
+    	 
+	  <bean name="/admin/dbpromotion/addChildCar.html" class="com.belk.car.app.webapp.controller.admin.dealbased.DBPromotionChildCarFormController">
+	  		<property name="formView" value="/admin/dbpromotion/addChildCar" />
+	  		<property name="successView" value="/admin/dbpromotion/carAndSkuDetails" />
+	  		<property name="ajaxView" value="/ajaxReturn"/>
+	  		<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+	  </bean>  
+	  
+	   <bean name="/admin/dbpromotion/removeChildCar.html" class="com.belk.car.app.webapp.controller.admin.dealbased.RemoveDBPromotionChildController">
+	   		<property name="methodNameResolver" ref="paramResolver"/>
+	  		<property name="successView" value="/admin/dbpromotion/carAndSkuDetails" />
+	  		<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+	  </bean>
+	  
+	  <bean id="templateDBPromotionController" class="com.belk.car.app.webapp.controller.admin.dealbased.TemplateDBPromotionController">
+	 		<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/dbpromotion/edit"/>
+	       	<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+	 </bean>
+	 
+	 <bean name="/admin/dbpromotion/editPopulateSkus.html" class="com.belk.car.app.webapp.controller.admin.dealbased.EditDBPromotionController">
+	 		<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/dbpromotion/carAndSkuDetails" />
+	       	<property name="dbPromotionManager" ref="dbPromotionManager"/>  
+	 </bean>
+	  
+    
+    
+	 
+ <!-- End DBPromotion Conrollers -->
+  <bean name="/mcImageLink.html" class="com.belk.car.app.webapp.controller.VendorImageLinkJsonController"/>   
+ <!-- Begin Copy Complete CAR -->
+ 
+ 	<bean name="/completeCopyCar.html" class="com.belk.car.app.webapp.controller.CopyCompleteCarController">
+     	<property name="carManager" ref="carManager"/>     
+     	<property name="ajaxView" value="/ajaxReturn"/>
+     </bean>
+ <!--  End Copy Complete CAR -->
+
+ 	<!--  Added for CARS Faceted Navigation, Begin SuperColor Controllers -->
+		
+		<bean id="listSuperColorController" class="com.belk.car.app.webapp.controller.admin.supercolor.ListSuperColorController">
+	     	<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/supercolor/list"/>
+	     	<property name="superColorManager" ref="superColorManager"/>  
+	     	<property name="ajaxView" value="/ajaxReturn"/> 
+		 </bean>
+		 
+		 <bean id="superColorFormController" class="com.belk.car.app.webapp.controller.admin.supercolor.SuperColorFormController">
+			 <property name="validator" ref="superColorFormValidator"/>
+	     	<property name="successView" value="/admin/supercolor/list"/>
+	     	<property name="formView" value="/admin/supercolor/edit" />
+	     	<property name="superColorManager" ref="superColorManager"/>  
+		 </bean>
+	<!-- End SuperColor Controllers -->
+	
+	<!-- Begin SizeConversion Controllers -->
+		
+		<bean id="listSizeConversionController" class="com.belk.car.app.webapp.controller.admin.size.ListSizeConversionController">
+	     	<property name="methodNameResolver" ref="paramResolver"/>
+	     	<property name="successView" value="/admin/size/list"/>
+	     	<property name="sizeConversionManager" ref="sizeConversionManager"/>  
+	     	<property name="carManager" ref="carManager"/>
+		 </bean>
+		 
+		 <bean id="sizeConversionFormController" class="com.belk.car.app.webapp.controller.admin.size.SizeConversionFormController">
+	     	<property name="validator" ref="sizeConversionFormValidator"/>
+	     	<property name="successView" value="/admin/size/list"/>
+	     	<property name="formView" value="/admin/size/edit" />
+	     	<property name="sizeConversionManager" ref="sizeConversionManager"/>  
+	     	<property name="carManager" ref="carManager"/>
+		 </bean>
+	<!-- End SuperColor Controllers -->
+	
+	
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="78643200"/>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="ApplicationResources"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+    
+    <bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+            	/car/manualcars.html=manualCarController
+            	/car/remove.html=removeManualCarController
+            	/car/edit.html=editManualCarController
+            	/car/details.html=detailsManualCarController
+            	/car/search.html=searchManualCarController
+            	/car/export.html=exportManualCarController
+                /admin/flushCache.html=filenameController
+                /admin/cacheStatistics.html=cacheStatisticsController
+                /admin/attributes/attributes.html=attributesController
+                /admin/attributes/attributeValues.html=attributeValuesController
+                /admin/attributes/details.html=attributeDetailsController
+                /admin/attributes/attributeForm.html=attributeFormController
+                /admin/attributes/copyAttribute.html=attributeFormController
+                /admin/searchattribute.html=attributeSearchController
+                /admin/producttype/productTypes.html=productTypeController
+                /admin/producttype/details.html=productTypeDetailsController
+                /admin/producttype/productTypeForm.html=productTypeFormController
+                /admin/workflow/workflows.html=workflowController
+                /admin/workflow/details.html=workflowDetailsController
+                /admin/workflow/workflowForm.html=workflowFormController
+                <!-- Mapping for product groups  -->
+                /admin/producttype/productGroups.html=productGroupController
+                /admin/productgroup/productGroupForm.html=productGroupController
+                /admin/productgroupsearch.html=productGroupController
+				/admin/productgroup/groupdetails.html=productGroupController
+                /admin/productgroup/removeProductGroup.html=productGroupController
+                <!-- Mapping for product groups  Association-->
+                /admin/productgroup/associateGroupProductType.html=productAssociateController
+                <!-- Depricated use removeProductFromGroup.htm -->
+                /admin/productgroup/removeProductGroupType.html=productAssociateController
+                /admin/productgroup/removeProductFromGroup.html= productAssociateController
+                
+                
+                <!-- Mapping for Vendor Catalog Data Mapping -->
+                /vendorCatalog/datamapping/vendorCatalogDataMapping.html=vendorDataMappingController
+
+				/oma/orderManagement.html=FulfillmentServiceProperties
+                 /oma/fulfillmentServiceProperties.html=FulfillmentServiceProperties
+                  /oma/fsPropertiesList.html=FulfillmentServiceFormController
+                
+                <!-- mapping for fulfillment service notes -->  
+				/oma/fulfillmentServiceNotes.html= FulfillmentServiceNotes
+				/oma/addFulfillmentServiceNote.html= FulfillmentServiceNotesForm
+			
+				<!-- End of mapping for fulfillment service notes -->
+				
+                /admin/reload.html=reloadController
+                /admin/user/users.html=userController
+                /admin/user/searchuser.html=userSearchController
+                /vendor/searchvendor.html=vendorSearchController
+                /admin/classificationsearch.html=classificationSearchController
+                /admin/producttypesearch.html=productTypeSearchController
+                /ajaxUserForm.html=userFormController
+                /admin/user/userDetails.html=userDetailsController
+                /admin/latecarsgroup/editLateCarsAssociationDetails.html=lateCarsAssocDetailsController
+                /admin/user/userForm.html=userFormController
+                /admin/user/activeUsers.html=filenameController
+                /admin/catalog/import.html=importCatalogFormController
+                /vendor/vendorDetails.html=vendorDetailsController
+                /mainMenu.html=dashBoardController
+                /ajaxMainMenu.html=dashBoardController
+                /ajaxNotesForm.html=notesFormController
+                /passwordHint.html=passwordHintController
+                /mainMenuForm.html=dashBoardFormController
+                /editCarForm.html=dashBoardFormController
+                /printPreview.html=previewController
+                /copyCar.html=copyCarController
+                /help.html=helpController
+                /activateVendorAccount.html=activateVendorAccountController
+                /forgotPassword.html=forgotPasswordFormController
+                /changePassword.html=changePasswordFormController
+                /resetPassword.html=resetPasswordController
+                /resetVendorPassword.html=resetVendorPasswordController
+            	/search.html=searchResultController
+            	/search/createindex.html=createSearchIndexController
+            	/search/searchresult.html=searchResultController
+            	/vendorUserForm.html=vendorUserFormController
+            	/signin.html=activateVendorAccountController
+			/admin/help/helpList.html=helpContentController
+			/admin/help/detail.html=helpContentDetailController
+			/admin/help/helpForm.html=helpContentFormController
+			/car/loadCar.html=readIDBDataController
+                /admin/pattern/list.html=patternSearchController
+                /admin/pattern/search.html=patternSearchController
+                /admin/pattern/detail.html=patternDetailController
+                /admin/pattern/edit.html=patternFormController
+                /admin/pattern/mergeCars.html=mergeCarsController
+                /admin/pattern/convertCars.html=convertCarsController
+                /oma/searchFSContact.html=contactsController
+                /oma/fulfillmentServiceContacts.html=contactsController
+                /oma/save.html=fsContactFormController
+                /oma/edit.html=contactsController
+                /oma/lock.html=contactsController
+                /oma/unlock.html=contactsController
+                /oma/vendorShippingFee.html=vendorFeesController
+                /oma/saveFees.html=vendorFeesFormController
+                 <!-- START URL MAPPING FOR DROP-SHIP-->
+                 
+				<!-- TO BE REMOVED FOR PRODUCTION ONLY FOR TESTING PURPOSE -->
+				
+				
+				/oma/runJob.html= selectAndRunJobController
+				/oma/runScheduledJob.html=scheduleJobController
+				<!-- END OF TEST DATA -->
+                 <!-- START URL MAPPING FOR VENOR CATALOG MANAGEMENT-->
+                /vendorCatalog/catalogVendors.html=vendorCatalogController
+                /admin/vendorCatalog/openCatalogReuqest.html=openCatalogRequestController
+                /admin/vendorCatalog/vendorCatalogsForVendor.html=vendorCatalogForVendorController
+
+                /vendorCatalog/addCatalogNote.html=vendorCatalogNoteFormController
+                /vendorCatalog/CatalogNotes.html=vendorCatalogNotesController
+                /vendorCatalog/NotesDetails.html=vendorCatalogNotesController
+                /vendorCatalog/fileUploadPopup.html=vendorCatalogFilePopupFormContoller
+				/FSVendors.html=VendorFulfillmentServiceController
+				/admin/oma/FSVendorReturns.html=VendorReturnsFormController
+				/admin/oma/ajaxNotesForm.html=AddVendorAddressFormController
+                
+				/oma/fulfillmentServiceVendors.html=VendorFulfillmentServiceController
+				/oma/vendorTaxStates.html=VendorTaxStateMultiActionController
+                /oma/AddVendor.html=FSVendorFormController
+                /oma/fulfillmentVendorReturns.html=VendorReturnsFormController
+				/oma/ajaxAddressForm.html=AddVendorAddressFormController
+                /oma/ajaxVendorTaxStatesForm.html=AddEditVendorTaxStateFormController
+				/oma/shippingOptions.html=VendorFSShippingOptionFormController
+                
+
+                <!-- END  URL MAPPING FOR VENOR CATALOG MANAGEMENT-->
+
+                <!-- END URL MAPPING FOR DROP-SHIP-->
+                
+                <!--  URI MAPPING FOR LATE CARS GROUP-->
+                
+                  /admin/latecarsgroup/lateCarsGroup.html=lateCarsGroupController
+                 /admin/latecarsgroupsearch.html=lateCarsGroupController
+                 /admin/latecarsgroup/lateCarsGroupDetails.html=lateCarsGroupController
+                 /admin/latecarsgroup/addLateCarsGroup.html=lateCarsGroupController
+                 /admin/latecarsgroup/removeLateCarsGroup.html=lateCarsGroupController
+                
+                 <!-- END URI MAPPING FOR LATE CARS GROUP -->
+                 
+                 <!--  URI MAPPING FOR CAR USER VENDOR DEPARTMENT -->
+                 /vendor/vendorDeptForm.html=carVendorDepartmentController
+                 <!--  END URI MAPPING FOR CAR USER VENDOR DEPARTMENT -->
+                 
+                 <!-- BEGIN URI MAPPING FOR OUTFIT CARS -->
+                 
+                 
+                 /admin/outfit/outfits.html=listOutfitController
+                 /admin/outfit/outfitSearch.html=listOutfitController
+                 /admin/outfit/edit.html=outfitFormController
+                 /admin/outfit/populateData.html=templateOutfitController
+               
+                 <!-- END URI MAPPING FOR OUTFIT CARS -->
+                 
+                 <!-- BEGIN URI MAPPING FOR DBPromotion CARS -->
+                 
+                 
+                 /admin/dbpromotion/dbPromotions.html=listDBPromotionController
+                 /admin/dbpromotion/dbPromotionSearch.html=listDBPromotionController
+                 /admin/dbpromotion/edit.html=dbPromotionFormController
+                 /admin/dbpromotion/populateData.html=templateDBPromotionController
+                 <!-- END URI MAPPING FOR DBPromotion CARS -->
+                 
+                  <!-- BEGIN URI MAPPING FOR SUPERCOLOR CARS -->
+                   <!-- Added for CARS Faceted Navigation -->
+                  /admin/supercolor/supercolors.html=listSuperColorController
+                  /admin/supercolor/edit.html=superColorFormController
+				  /admin/supercolor/superColorSearch.html=listSuperColorController
+				   /getSuperColorName.html=listSuperColorController
+				  <!-- END URI MAPPING FOR SUPERCOLOR CARS -->
+                  <!-- BEGIN URI MAPPING FOR SIZE CARS -->
+                  /admin/size/sizeconversions.html=listSizeConversionController
+                  /admin/size/edit.html=sizeConversionFormController
+				  /admin/size/sizeConversionSearch.html=listSizeConversionController
+                 <!-- END URI MAPPING FOR SIZE CARS -->
+                 
+            </value>
+                <!-- 
+                 -->
+        </property>
+        <property name="order" value="0"/>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+    
+    <bean id="paramResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName">
+			<value>method</value>
+		</property>
+	</bean>
+
+          <!-- START DROP-SHIP METHOD NAME RESOLVER FOR MULTIACTION CONTROLLER-->
+        <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/admin/vendorCatalog/catalogVendors.html">initLoad</prop>
+				<prop key="/vendorCatalog/dataMapping.html">getVendorCatalog</prop>
+				
+			</props>
+		</property>
+	</bean>
+        <!-- END DROP-SHIP METHOD NAME RESOLVER FOR MULTIACTION CONTROLLER-->
+    <!-- View Resolver for JSPs -->
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+	<bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+		<property name="validationConfigLocations">
+			<list>
+				<value>/WEB-INF/validator-rules.xml</value>
+				<value>/WEB-INF/validator-rules-custom.xml</value>
+				<value>/WEB-INF/validation.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Beans for MQ Listener-->
+	 
+	
+	<bean id="jmsQueueConnectionFactory"
+		class="org.springframework.jms.connection.SingleConnectionFactory102">
+		<property name="targetConnectionFactory" ref="secureQueueConnectionFactory" />
+	</bean>
+	
+	 <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate102">
+		<property name="connectionFactory" ref="jmsQueueConnectionFactory" />
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	<bean id="destinationResolver"
+		class="org.springframework.jms.support.destination.DynamicDestinationResolver"/>
+		
+	<bean id="poMessageListener" class="com.belk.car.integrations.pim.POMessageMQListner">
+		<property name="quartzJobManagerForPIMJobs" ref="quartzJobManagerForPIMJobs" />
+	</bean>
+	 
+	
+	<bean id="poJmsContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer102">
+		<property name="connectionFactory" ref="jmsQueueConnectionFactory" />
+		<property name="destinationResolver" ref="destinationResolver" />
+		<property name="concurrentConsumers" value="5" />
+		<property name="destination" ref="poQueue" />
+		<property name="messageListener" ref="poMessageListener" />
+	</bean>
+	
+	 <bean id="dropShipMessageListener" class="com.belk.car.integrations.pim.DropShipMessageMQListner">
+		<property name="quartzJobManagerForPIMJobs" ref="quartzJobManagerForPIMJobs" />
+	</bean> 
+	
+	<bean id="dropShipJmsContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer102">
+		<property name="connectionFactory" ref="jmsQueueConnectionFactory" />
+		<property name="destinationResolver" ref="destinationResolver" />
+		<property name="concurrentConsumers" value="5" />
+		<property name="destination" ref="dropShipQueue" />
+		<property name="messageListener" ref="dropShipMessageListener" />
+	</bean>
+	
+    <bean id="groupMessageListener" class="com.belk.car.integrations.pim.GroupingMessageMQListener">
+        <property name="quartzJobManagerForPIMJobs" ref="quartzJobManagerForPIMJobs" />
+    </bean> 
+    
+    <bean id="groupJmsContainer"
+        class="org.springframework.jms.listener.DefaultMessageListenerContainer102">
+        <property name="connectionFactory" ref="jmsQueueConnectionFactory" />
+        <property name="destinationResolver" ref="destinationResolver" />
+        <property name="concurrentConsumers" value="3" />
+        <property name="destination" ref="groupQueue" />
+        <property name="messageListener" ref="groupMessageListener" />
+    </bean>
+</beans>

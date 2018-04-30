@@ -1,0 +1,42 @@
+<html>
+<body>
+<b>${userFirstName} ${userLastName},</b>
+<br /><br />
+The following Catalog request has been completed.
+<br /><br />
+<table width="50%" border=1 cellpadding="10">
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog ID:</b>
+	</td>
+	<td align="left">
+		${catalogId}
+	</td> 
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Name:</b> 
+	</td>
+	<td align="left" >
+		${catalogName}
+	</td>
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Vendor ID:</b> 
+	</td>
+	<td align="left">
+		${vendorId}
+	</td>
+</tr>
+<tr>
+	<td align="left" width="35%">
+		<b>Catalog Vendor Name :</b>
+	</td>
+	<td>
+		${vendorName}
+	</td align="left">
+</tr> 
+</table>
+</body>
+</html>

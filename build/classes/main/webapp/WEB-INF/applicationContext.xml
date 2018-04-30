@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+       default-lazy-init="true">    
+    
+    <!-- Add new DAOs heF -->
+
+    
+    <bean id="carDao" class="com.belk.car.app.dao.hibernate.CarDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="lateCarDao" class="com.belk.car.app.dao.hibernate.LateCarsDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="lateCarReportDao" class="com.belk.car.app.dao.hibernate.LateCarReportDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="userDao" class="com.belk.car.app.dao.hibernate.BelkUserDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="carManagementDao" class="com.belk.car.app.dao.hibernate.CarManagementDaoHibernate">
+       <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="carLookupDao" class="com.belk.car.app.dao.hibernate.CarLookupDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="attributeDao" class="com.belk.car.app.dao.hibernate.AttributeDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+     <bean id="pimAttributeDao" class="com.belk.car.app.dao.hibernate.PIMAttributeDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="productDao" class="com.belk.car.app.dao.hibernate.ProductDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    
+     <bean id="lateCarsGroupDao" class="com.belk.car.app.dao.hibernate.LateCarsGroupDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="vendorTaxStateDao" class="com.belk.car.app.dao.hibernate.VendorTaxStateDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="vendorFSShippingOptionDao" class="com.belk.car.app.dao.hibernate.VendorFSShippingOptionDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="vendorFulfillmentServiceDao" class="com.belk.car.app.dao.hibernate.VendorFulfillmentServiceDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="workflowDao" class="com.belk.car.app.dao.hibernate.WorkflowDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="helpContentDao" class="com.belk.car.app.dao.hibernate.HelpContentDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="notificationDao" class="com.belk.car.app.dao.hibernate.NotificationDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="manualCarDao" class="com.belk.car.app.dao.hibernate.ManualCarDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="catalogImportDao" class="com.belk.car.app.dao.hibernate.CatalogImportDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="reportDao" class="com.belk.car.app.dao.hibernate.ReportDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+
+    <!-- Start Drop Ship projet DAO -->
+     <bean id="vendorCatalogDao" class="com.belk.car.app.dao.hibernate.VendorCatalogDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <!-- Added for CARS Faceted Navigation Begin -->
+     <bean id="superColorDao" class="com.belk.car.app.dao.hibernate.SuperColorDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/> 
+     </bean>
+     
+     <bean id="sizeConversionDao" class="com.belk.car.app.dao.hibernate.SizeConversionDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/> 
+     </bean>
+      <!-- Added for CARS Faceted Navigation End -->
+     
+
+    <bean id="fulfillmentServiceDao" class="com.belk.car.app.dao.hibernate.FulfillmentServiceDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="fulfillmentServiceNotesDao" class="com.belk.car.app.dao.hibernate.FulfillmentServiceNotesDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+     <bean id="contactsDao" class="com.belk.car.app.dao.hibernate.ContactsDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="vendorFeesDao" class="com.belk.car.app.dao.hibernate.VendorFeesDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="dropshipDao" class="com.belk.car.app.dao.hibernate.DropshipDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+   <!-- End Drop Ship projet DAO -->
+   
+   <bean id="outfitDao" class="com.belk.car.app.dao.hibernate.OutfitDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   
+   <bean id="dbPromotionDao" class="com.belk.car.app.dao.hibernate.DBPromotionDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <!-- Added for Cars PIM Integration project  -->
+   
+   <bean id="carsPIMAttributeMappingDao" class="com.belk.car.app.dao.hibernate.CarsPIMAttributeMappingDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <bean id="carsPIMAttributeMappingManager" class="com.belk.car.app.service.impl.CarsPIMAttributeMappingManagerImpl">
+        <property name="carsPIMAttributeMappingDao" ref="carsPIMAttributeMappingDao"/>
+    </bean>
+    <bean id="carsPIMGlobalAttributeMappingDao" class="com.belk.car.app.dao.hibernate.CarsPIMGlobalAttributeMappingDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <bean id="carsPIMGlobalAttributeMappingManager" class="com.belk.car.app.service.impl.CarsPIMGlobalAttributeMappingManagerImpl">
+        <property name="carsPIMGlobalAttributeMappingDao" ref="carsPIMGlobalAttributeMappingDao"/>
+    </bean>
+    <bean id="pimAttributeExclusionListDao" class="com.belk.car.app.dao.hibernate.PIMAttributeExclusionListDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <bean id="pimAttributeExclusionListManager" class="com.belk.car.app.service.impl.PIMAttributeExclusionListManagerImpl">
+        <property name="pimAttributeExclusionListDao" ref="pimAttributeExclusionListDao"/>
+    </bean>
+   <bean id="vendorSkuPIMAttributeDao" class="com.belk.car.app.dao.hibernate.VendorSkuPIMAttributeDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+    <!-- Add new Managers here -->
+    
+     <!-- Added for CARS Faceted Navigation Begin -->
+    <bean id="superColorManager" class="com.belk.car.app.service.impl.SuperColorManagerImpl">
+        <property name="superColorDao" ref="superColorDao"/> 
+    </bean>
+    
+     <bean id="sizeConversionManager" class="com.belk.car.app.service.impl.SizeConversionManagerImpl">
+        <property name="sizeConversionDao" ref="sizeConversionDao"/> 
+    </bean>
+    
+     <!-- Added for CARS Faceted Navigation End -->
+     
+    <bean id="carUserManager" class="com.belk.car.app.service.impl.CarUserManagerImpl">
+        <property name="carManager" ref="carManager"/>
+        <property name="carUserDao" ref="userDao"/>
+    </bean>
+
+    <bean id="carFacetImportAndUpdateManager" class="com.belk.car.app.service.impl.CarFacetImportAndUpdateManagerImpl">
+        <property name="carDao" ref="carDao"/>
+        <property name="carMgmtDao" ref="carManagementDao"/>
+        <property name="lookupManager" ref="carLookupManager"/>
+    </bean>
+    <bean id="carManager" class="com.belk.car.app.service.impl.CarManagerImpl">
+        <property name="carDao" ref="carDao"/>
+        <property name="carMgmtDao" ref="carManagementDao"/>
+        <property name="lookupManager" ref="carLookupManager"/>
+        <property name="lateCarDao" ref="lateCarDao"/>
+        <property name="pimAttributeDao" ref="pimAttributeDao"/>  
+        <property name="vendorImageEmailNotificationDao" ref="vendorImageEmailNotificationDao"/>
+    </bean>
+    
+    <bean id="carLookupManager" class="com.belk.car.app.service.impl.CarLookupManagerImpl">
+        <property name="dao" ref="carLookupDao"/>
+    </bean>
+    
+    <bean id="helpContentManager" class="com.belk.car.app.service.impl.HelpContentManagerImpl">
+        <property name="dao" ref="helpContentDao"/>
+    </bean>
+    
+    <bean id="attributeManager" class="com.belk.car.app.service.impl.AttributeManagerImpl">
+        <property name="attributeDao" ref="attributeDao"/>
+    </bean>
+    
+    <bean id="pimAttributeManager" class="com.belk.car.app.service.impl.PIMAttributeManagerImpl">
+        <property name="pimAttributeDao" ref="pimAttributeDao"/>
+        <property name="carManager" ref="carManager"/>
+        <property name="attributeManager" ref="attributeManager"/>
+        <property name="carsPIMAttributeMappingManager" ref="carsPIMAttributeMappingManager"/>
+        <property name="carsPIMGlobalAttributeMappingManager" ref="carsPIMGlobalAttributeMappingManager"/>
+        <property name="pimAttributeExclusionListManager" ref="pimAttributeExclusionListManager"/>
+        <property name="carManagementDao" ref="carManagementDao"/>
+        <property name="vendorSkuPIMAttributeDao" ref="vendorSkuPIMAttributeDao"/>
+        <property name="pimFtpImageManager" ref="pimFtpImageManager"/>
+         <property name="carLookupManager" ref="carLookupManager"/>
+    </bean>
+    
+      <bean id="pimFtpImageManager" class="com.belk.car.app.service.impl.PIMFtpImageManagerImpl">
+        <property name="carManager" ref="carManager"/>
+        <property name="vendorImageManager" ref="vendorImageManager"/>
+         <property name="carLookupManager" ref="carLookupManager"/>
+       </bean>
+    
+    <bean id="productManager" class="com.belk.car.app.service.impl.ProductManagerImpl">
+        <property name="productDao" ref="productDao"/>
+    </bean>
+    
+    <bean id="lateCarsGroupManager" class="com.belk.car.app.service.impl.LateCarsGroupManagerImpl">
+        <property name="lateCarsGroupDao" ref="lateCarsGroupDao"/>
+    </bean>
+    
+    
+    <bean id="VendorFulfillmentServiceManager" class="com.belk.car.app.service.impl.VendorFulfillmentServiceManagerImpl">
+        <property name="vendorFulfillmentServiceDao" ref="vendorFulfillmentServiceDao"/>
+    </bean>
+    <bean id="VendorTaxStateManager" class="com.belk.car.app.service.impl.VendorTaxStateManagerImpl">
+        <property name="vendorTaxStateDao" ref="vendorTaxStateDao"/>
+    </bean>
+    <bean id="VendorFSShippingOptionManager" class="com.belk.car.app.service.impl.VendorFSShippingOptionManagerImpl">
+        <property name="vendorFSShippingOptionDao" ref="vendorFSShippingOptionDao"/>
+    </bean>
+    
+    <bean id="workflowManager" class="com.belk.car.app.service.impl.WorkflowManagerImpl">
+        <property name="workflowDao" ref="workflowDao"/>
+    </bean>
+    
+    <bean id="manualCarManager" class="com.belk.car.app.service.impl.ManualCarManagerImpl">
+        <property name="manualCarDao" ref="manualCarDao"/>
+        <property name="carLookupDao" ref="carLookupDao"/>
+    </bean>
+
+    <bean id="catalogImportManager" class="com.belk.car.app.service.impl.CatalogImportManagerImpl">
+        <property name="dao" ref="catalogImportDao"/>
+        <property name="attributeDao" ref="attributeDao"/>
+    </bean>
+
+    <bean id="reportManager" class="com.belk.car.app.service.impl.ReportManagerImpl">
+        <property name="reportDao" ref="reportDao"/>
+        <property name="lateCarReportDao" ref="lateCarReportDao"/>
+    </bean>
+    
+    <bean id="dropshipManager" class="com.belk.car.app.service.impl.DropshipManagerImpl">
+        <property name="dropshipDao" ref="dropshipDao"/>
+        <property name="fulfillmentServiceDao" ref="fulfillmentServiceDao"/>
+        <property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+        <property name="emailManager" ref="emailManager"/>
+
+         <property name="lookupManager" ref="carLookupManager"/>
+         <property name="carManager" ref="carManager"/>
+         <property name="workflowManager" ref="workflowManager"/>
+         <property name="userManager" ref="userManager"/>
+         <property name="productManager" ref="productManager"/>
+         <property name="catalogImportManager" ref="catalogImportManager"/>
+         <property name="reportManager" ref="reportManager"/>
+
+
+
+    </bean>
+    
+    <bean id="readIDBFileForDropship" class="com.belk.car.app.util.ReadIDBFileForDropship">
+        <property name="dropshipManager" ref="dropshipManager"/>
+        <property name="dropshipDao" ref="dropshipDao"/>
+        <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+       
+        <property name="fulfillmentServiceDao" ref="fulfillmentServiceDao"/>
+        <property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/>
+      
+    </bean>
+    <bean id="readIDBCrossReferenceFeedFileForDropship" class="com.belk.car.app.util.ReadIDBCrossReferenceFeedFileForDropship">
+         <property name="dropshipManager" ref="dropshipManager"/>
+         <property name="dropshipDao" ref="dropshipDao"/>
+         <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+        
+      <property name="fulfillmentServiceDao" ref="fulfillmentServiceDao"/>
+        <property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/> 
+    </bean>
+    
+    <bean id="readIDBCrossReferenceFeedFileForCarCreation" class="com.belk.car.app.util.ReadIDBCrossReferenceFeedFileForCarCreation">
+         <property name="dropshipManager" ref="dropshipManager"/>
+    </bean>
+    
+    <bean id="readIDBPurgeFeedForDropship" class="com.belk.car.app.util.ReadIDBPurgeFeedForDropship">
+         <property name="dropshipManager" ref="dropshipManager"/>
+         <property name="dropshipDao" ref="dropshipDao"/>
+         <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+       
+      <property name="fulfillmentServiceDao" ref="fulfillmentServiceDao"/>
+        <property name="fulfillmentServiceManager" ref="fulfillmentServiceManager"/> 
+    </bean>
+    <bean id="importVendorCatalog" class="com.belk.car.app.util.ImportVendorCatalog">
+         <property name="dropshipManager" ref="dropshipManager"/>
+        
+    </bean>
+    
+     <!-- Added for CARS Faceted Navigation Begin-->
+    <bean id="sizeConversionRulesUtils" class="com.belk.car.app.util.SizeConversionRulesUtils" >
+         <property name="sizeConversionManager" ref="sizeConversionManager"/>
+         <property name="carManager" ref="carManager"/>
+            <property name="outfitManager" ref="outfitManager"/>
+    </bean>
+     <bean id="superColorRulesUtils" class="com.belk.car.app.util.SuperColorRulesUtils" >
+         <property name="carManager" ref="carManager"/>
+         <property name="outfitManager" ref="outfitManager"/>
+         <property name="superColorManager" ref="superColorManager"/>
+    </bean>
+     <bean id="quartzJobCommonUtil" class="com.belk.car.app.util.QuartzJobCommonUtil" >
+        <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+    </bean>
+     <!-- Added for CARS Faceted Navigation End-->
+    
+    <!-- TO BE REMOVED DURING PRODUCTION ONLY FOR TESTING JOBS -->
+ <!--     <bean id="quartzJobManagerDropship"
+            class="com.belk.car.app.service.impl.QuartzJobManagerForDropshipImpl">
+            <property name="dropshipManager" ref="dropshipManager" />
+            <property name="readIDBFileForDropship" ref="readIDBFileForDropship"/>
+            <property name="readIDBCrossReferenceFeedFileForDropship" ref="readIDBCrossReferenceFeedFileForDropship"/>
+            <property name="carCreation" ref="readIDBCrossReferenceFeedFileForCarCreation"/> 
+            <property name="readIDBPurgeFeedForDropship" ref="readIDBPurgeFeedForDropship"/>
+                        <property name="carManager" ref="carManager" />
+                        <property name="lookupManager" ref="carLookupManager" />
+                        <property name="userManager" ref="userManager" />
+                        <property name="productManager" ref="productManager" />
+                        <property name="catalogImportManager" ref="catalogImportManager" />
+                        <property name="reportManager" ref="reportManager" />
+                        <property name="sendEmailManager" ref="emailManager" />
+                        <property name="workflowManager" ref="workflowManager" />
+    </bean>
+    <bean id="quartzJobManager"
+        class="com.belk.car.app.service.impl.QuartzJobManagerImpl">
+        <property name="manualCarManager" ref="manualCarManager" />
+        <property name="carManager" ref="carManager" />
+        <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="carUserManager" ref="carUserManager" />
+        <property name="workflowManager" ref="workflowManager" />
+        <property name="attributeManager" ref="attributeManager" />
+        <property name="productManager" ref="productManager" />
+        <property name="catalogImportManager" ref="catalogImportManager" />
+        <property name="reportManager" ref="reportManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+        <property name="userRankManager" ref="userRankManager" />
+    </bean>
+    
+    <bean id="quartzJobManagerForVendorCatalog"
+        class="com.belk.car.app.service.impl.QuartzJobManagerForVendorCatalogImpl">
+        <property name="importVendorCatalog" ref="importVendorCatalog" />
+        <property name="dropshipManager" ref="dropshipManager"/>
+        <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+        
+
+    </bean> -->
+    <!-- END JOB TEST RUN DATA -->
+
+    <!-- Services -->
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="69.166.149.159" />
+        <!-- 
+        <property name="host" value="10.1.48.125" / >
+        <property name="host" value="localhost" />
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="465" />
+        <property name="protocol" value="smtps" />
+        <property name="username" value="yourAccount@gmail.com"/>
+        <property name="password" value="yourPassword"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtps.auth">true</prop>
+                <prop key="mail.smtps.starttls.enable">true</prop>
+                <prop key="mail.smtps.debug">true</prop>
+            </props>
+        </property>
+        -->
+    </bean>
+
+   <bean id="emailManager" class="com.belk.car.app.service.impl.VelocityEmailManagerImpl">
+      <property name="notificationDao" ref="notificationDao"/>
+      <property name="mailSender" ref="mailSender"/>
+      <property name="velocityEngine" ref="velocityEngine"/>
+      <property name="templatePath" value="templates/email/"/>
+   </bean>
+   
+<!-- 
+   <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+      <property name="velocityProperties">
+         <value>
+            resource.loader=class
+            class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+         </value>
+      </property>
+   </bean>
+ -->
+   <bean id="velocityEngine"
+    class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <property name="velocityProperties">
+        <props>
+            <prop key="resource.loader">class</prop>
+            <prop key="class.resource.loader.class">
+                org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+            </prop>
+        </props>
+    </property>
+   </bean>
+
+   <!--  Start Drop Ship project Beans-->
+ <bean id="vendorCatalogManager" class="com.belk.car.app.service.impl.VendorCatalogManagerImpl">
+      <property name="catalogDao" ref="vendorCatalogDao"/>
+      <property name="dropshipManager" ref="dropshipManager"/>
+      <property name="dropshipDao" ref="dropshipDao"/>
+ </bean>
+   <bean id="contactsManager" class="com.belk.car.app.service.impl.ContactsManagerImpl">
+        <property name="contactsDao" ref="contactsDao"/>
+   </bean>
+ 
+    <bean id="vendorFeesManager" class="com.belk.car.app.service.impl.VendorFeesManagerImpl">
+        <property name="vendorFeesDao" ref="vendorFeesDao"/>
+   </bean>
+    <bean id="fulfillmentServiceManager" class="com.belk.car.app.service.impl.FulfillmentServiceManagerImpl">
+        <property name="fulfillmentServiceDao" ref="fulfillmentServiceDao"/>
+        <property name="emailManager" ref="emailManager"/>
+    </bean>
+    
+    <bean id="fulfillmentServiceNotesManager" class="com.belk.car.app.service.impl.FulfillmentServiceNotesManagerImpl">
+        <property name="fulfillmentServiceNotesDao" ref="fulfillmentServiceNotesDao"/>
+    </bean>
+    
+    <bean id="productGroupDao" class="com.belk.car.app.dao.hibernate.ProductGroupDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    
+    <bean id="productGroupManager" class="com.belk.car.app.service.impl.ProductGroupManagerImpl">
+        <property name="productGroupDao" ref="productGroupDao"/>
+    </bean>
+    <bean id="patternPrefillManager" class="com.belk.car.app.service.impl.PatternPrefillManagerImpl">
+        <property name="dropshipDao" ref="dropshipDao"/>
+        <property name="carDao" ref="carDao"/>
+    </bean>
+    <!--  End Drop Ship project Beans-->
+    
+    <bean id="outfitManager" class="com.belk.car.app.service.impl.OutfitManagerImpl">
+         <property name="outfitDao" ref="outfitDao"/>
+         <property name="carManager" ref="carManager"/>
+         <property name="lookupManager" ref="carLookupManager"/>
+         <property name="workflowManager" ref="workflowManager"/>
+         <property name="productManager" ref="productManager"/>
+    </bean>
+    
+    <bean id="dbPromotionManager" class="com.belk.car.app.service.impl.DBPromotionManagerImpl">
+         <property name="dbPromotionDao" ref="dbPromotionDao"/>
+         <property name="carManager" ref="carManager"/>
+         <property name="lookupManager" ref="carLookupManager"/>
+         <property name="workflowManager" ref="workflowManager"/>
+         <property name="productManager" ref="productManager"/>
+    </bean>
+    
+    <!-- Vendor image Beans -->
+    <bean id="vendorImageManager" class="com.belk.car.app.service.impl.VendorImageManagerImpl">
+        <property name="vendorImageDao" ref="vendorImageDao"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="carManager" ref="carManager"/>
+    </bean>
+    
+    <bean id="vendorImageDao" class="com.belk.car.app.dao.hibernate.VendorImageManagementDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="quartzJobManagerForEmailNotification" class="com.belk.car.app.service.impl.QuartzJobManagerForEmailNotificationImpl">
+        <property name="vendorImageEmailNotificationDao" ref="vendorImageEmailNotificationDao"/>
+        <property name="carManager" ref="carManager" />
+        <property name="lookupManager" ref="carLookupManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+   </bean>
+    <bean id="vendorImageEmailNotificationDao" class="com.belk.car.app.dao.hibernate.VendorImageEmailNotificationDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+   <!--  User Rank data job implementation start- Thangarasu  -->
+   
+    <bean id="userRankDao" class="com.belk.car.app.dao.hibernate.UserRankDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+  <bean id="userRankManager" class="com.belk.car.app.service.impl.UserRankManagerImpl">
+        <property name="userRankDao" ref="userRankDao"/>
+  </bean>
+  
+  <bean id="patternCollectionDao" class="com.belk.car.app.dao.hibernate.PatternAndCollectionDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+   
+   <!-- User Rank data job implementation End   -->
+   
+    <bean id="quartzJobManagerForPIMJobs"
+        class="com.belk.car.app.service.impl.QuartzJobManagerForPIMJobsImpl">
+        <property name="carManager" ref="carManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="carLookupManager" ref="carLookupManager" />
+        <property name="pimAttributeManager" ref="pimAttributeManager" />
+        <property name="workflowManager" ref="workflowManager" />
+        <property name="productManager" ref="productManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+        <property name="catalogImportManager" ref="catalogImportManager" />
+        <property name="dropshipDao" ref="dropshipDao" />
+        <property name="patternAndCollectionManager" ref="patternAndCollectionManager" />
+        <property name="queueSender" ref="jmsQueueSender" />
+     </bean>
+     
+     <bean id="patternAndCollectionManager" class="com.belk.car.app.service.impl.PatternAndCollectionManagerImpl">
+        <property name="carManager" ref="carManager"/>
+        <property name="outfitDao" ref="outfitDao"/>
+        <property name="carLookupManager" ref="carLookupManager"/>
+        <property name="outfitManager" ref="outfitManager"/>
+        <property name="workflowManager" ref="workflowManager"/>
+        <property name="pimAttributeManager" ref="pimAttributeManager"/>
+        <property name="pimFtpImageManager" ref="pimFtpImageManager"/>
+        <property name="patternCollectionDao" ref="patternCollectionDao"/>
+    </bean>
+    
+    <bean id="jmsQueueConnectionFactory"
+        class="org.springframework.jms.connection.SingleConnectionFactory102">
+        <property name="targetConnectionFactory" ref="secureQueueConnectionFactory" />
+    </bean>
+    
+     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate102">
+        <property name="connectionFactory" ref="jmsQueueConnectionFactory" />
+        <property name="pubSubDomain" value="false" />
+    </bean>
+    
+    <bean id="jmsQueueSender" class="com.belk.car.integrations.pim.JmsQueueSender">
+        <property name="jmsTemplate" ref="jmsTemplate" />
+        <property name="queue" ref="groupQueue" />
+    </bean>
+</beans>

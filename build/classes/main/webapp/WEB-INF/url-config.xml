@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UrlConfig> 
+    <Urls>
+        <Url name="MainMenu" title="mainMenu.title" page="/mainMenu.html?name=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN"/>
+        <Url name="UserMenu" title="menu.user" description="User Menu" page="/admin/user/userForm.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>        
+        <Url name="UserDetail" title="userdetails.details" page="/admin/user/userDetails.html?id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="UserEdit" title="button.edit" page="/admin/user/userForm.html?id=%1$s&amp;action=%2$s&amp;from=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>                
+        <Url name="UserList" title="button.list" page="/admin/user/users.html?from=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>        
+        <Url name="UserSearch" title="user.search.button" page="/admin/user/searchuser.html?%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="UserDetailsBack" title="user.search.button" page="/admin/user/users.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="UserVendorDetail" title="vendordetails.details" page="/vendor/vendorDetails.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="UserVendorDeptDetail" page="/vendor/vendorDeptForm.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/> 
+        <Url name="VendorEdit" title="button.edit" page="/vendor/vendorForm.html?id=%1$s&amp;action=%2$s&amp;from=%3$s" roles="ROLE_SUPER_ADMIN"/>        
+        <Url name="VendorList" title="button.list" page="/vendor/vendors.html?from=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <!-- EC-1555:Buyers receiving error when trying to reset password for vendors -->
+        <Url name="ResetVendorPassword" title="menu.profile.reset.password" page="/resetVendorPassword.html?userName=%1$s" roles="ROLE_SUPER_ADMIN"/>        
+        <Url name="ResetPassword" title="menu.profile.reset.password" page="/resetPassword.html?userName=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="UserChangePassword" title="menu.profile.change.password" page="/changePassword.html?action=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+         
+        <Url name="RemoveUser" title="userList.remove.user" page="/admin/user/removeUser.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="RemoveUserVendor" title="vendorList.remove.user" page="/vendor/removeVendor.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveVendor"  page="/admin/user/removeVendor.html?vendorId=%1$s&amp;id=%2$s&amp;action=%3$s" title="userdetails.remove.vendor" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveVendorVendors"  page="/vendor/removeVendorVendors.html?vendorId=%1$s&amp;id=%2$s&amp;action=%3$s" title="userdetails.remove.vendor.vendors" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveDepartment" title="userdetails.remove.department" page="/admin/user/removeDepartment.html?deptId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="RemoveVendorDepartment" title="vendordetails.remove.department" page="/vendor/removeDepartment.html?deptId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AddNote"  page="/admin/user/addUserNotes.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        
+        <Url name="AddNote"  page="/oma/fulfillmentServiceNotes.html?id=%1$s&amp;method=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="AddStyle"  page="/oma/itemrequeststyles.html" />
+        <Url name="CarSource"  page="/mainMenu.html" />
+        <Url name="RemoveStyle"  page="/oma/itemrequeststyles.html?mode=%1$s&amp;id=%2$s" />
+        <Url name="RemoveSku"  page="/oma/requestskuexception.html?mode=%1$s&amp;requestid=%2$s&amp;styleid=%3$s&amp;color=%4$s&amp;size=%5$s" />
+        <Url name="requestId"  page="/oma/addeditItemRequest.html?mode=edit&amp;RequestId=%1$s" />
+        <Url name="StyleId"  page="/oma/styleproperty.html?styleid=%1$s&amp;desc=%2$s&amp;dstatus=%3$s&amp;istatus=%4$s"/>
+        <Url name="VendorUpc"  page="/oma/styleproperty.html?styleid=%1$s&amp;desc=%2$s&amp;dstatus=%3$s&amp;istatus=%4$s&amp;upc=%5$s"/>
+        
+        <Url name="ShowVendors" page="/admin/user/associateVendor.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="ShowVendorVendors" page="/vendor/associateVendorVendors.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER" width="120" page="/users.html"/>
+        <Url name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN"/>
+        <Url name="Login" title="login.title" page="/login.jsp" roles="ROLE_SUPER_ADMIN,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN"/>
+        <Url name="RemoveDepartmentAttribute" title="department.remove.department.attribute" page="/admin/attributes/removeDepartmentAttribute.html?attrDeptId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveProductTypeAttribute" title="class.remove.department.attribute" page="/admin/attributes/removeProductTypeAttribute.html?productTypeAttrId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveClassAttribute" title="userdetails.remove.department.attribute" page="/admin/attributes/removeClassAttribute.html?classAttrId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AssociateAttributeToDepartment" title="attribute.add.to.department" page="/admin/attributes/associateDepartmentAttribute.html?deptAttrId=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AssociateAttributeToProductType" title="attribute.associate.to.product.class" page="/admin/attributes/associateProductTypeAttribute.html?productTypeAttrId=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AssociateAttributeToClass" title="attribute.add.to.class" page="/admin/attributes/associateClassAttribute.html?classificationAttrId=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AssociateProductTypeToClass" title="producttype.add.to.class" page="/admin/producttype/associateClassProductType.html?classProductTypeId=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveClassProductType" title="producttype.remove.classification" page="/admin/producttype/removeClassProductType.html?classProductTypeId=%1$s&amp;id=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AttributeCopy" title="attribute.copy" page="/admin/attributes/copyAttribute.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="AttributeRemove" title="attribute.remove" page="/admin/attributes/removeAttribute.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN"/>1
+        <Url name="AttributeDetail" page="/admin/attributes/details.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/>
+		<Url name="AttributeEdit" page="/admin/attributes/attributeForm.html?id=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="ProductDetail" page="/admin/producttype/details.html?id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+        <Url name="FSVendorDetailViewOnly" page="/oma/AddVendor.html?venfsid=%1$s&amp;mode=%2$s&amp;param=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="FSVendorDetail" page="/oma/AddVendor.html?venfsid=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="fulfillmentVendorReturns" page="/oma/fulfillmentVendorReturns.html" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="VendorFSLock" title="Lock" page="javascript:unlockVendor(%1$s,%2$s,%3$s);" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="VendorTaxRemove" title="Remove" page="/oma/vendorTaxStates.html?method=%1$s&amp;taxId=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="FSVendorAddrRemove" page="/oma/AddVendor.html?addrId=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="FSVendorAdd" title="Add Vendor" page="/oma/AddVendor.html?mode=%1$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveProduct" title="class.remove.from.product" page="/admin/producttype/removeProductType.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+        <Url name="SaveProduct" title="class.add.product" page="/admin/producttype/productTypeForm.html?id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+        <Url name="CancelProduct" title="class.cancel.product" page="/admin/producttype/productTypes.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+        <Url name="ManualCarDetail" page="/car/details.html?id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_BUYER,ROLE_ADMIN"/>
+        <Url name="RemoveManualCar" page="/car/remove.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_BUYER,ROLE_ADMIN"/>
+        <Url name="EditManualCar" page="/car/edit.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_BUYER,ROLE_ADMIN"/>
+        <Url name="WorkflowDetail" page="/admin/workflow/details.html?id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="HelpContentDetail" page="/admin/help/detail.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="RemoveHelpContent" page="/admin/help/remove.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="ManageHelpContent" page="/admin/help/helpForm.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="EditHelpContent" page="/admin/help/helpForm.html?contentKey=%1$s&amp;contentSection=%2$s" title="Edit Help" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="AddTransition" title="workflow.add.transition" page="/admin/workflow/transitionForm.html?id=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="RemoveTransition" title="workflow.add.transition" page="/admin/workflow/removeTransition.html?id=%1$s&amp;workflowTransitionId=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="EditTransition" title="workflow.add.transition" page="/admin/workflow/transitionForm.html?id=%1$s&amp;workflowTransitionId=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+        <Url name="CopyCar" title="button.copy.car" page="/selectCarToCopy.html?carId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>        
+		<Url name="RemovePattern" title="pattern.remove" page="/admin/pattern/remove.html?patternId=%1$s&amp;action=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="RemovePatternVendorStyle" title="pattern.remove.vendorstyle" page="/admin/pattern/removeVendorStyle.html?patternId=%1$s&amp;vendorStyleId=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="AddPatternVendorStyle" title="pattern.add.vendorstyle" page="/admin/pattern/addVendorStyle.html?patternId=%1$s&amp;vendorStyleId=%2$s&amp;action=%3$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="PatternDetail" page="/admin/pattern/detail.html?patternId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="PatternEdit" page="/admin/pattern/edit.html?patternId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="PatternMergeCars" page="/admin/pattern/mergeCars.html?patternId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="PatternConvertCars" page="/admin/pattern/convertCars.html?patternId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Url name="ContactUnLock" title="UnLock" page="/oma/unlock.html?method=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="ContactLock" title="Lock" page="/oma/lock.html?method=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN"/>
+       	<Url name="ContactEdit" title="Edit" page="/oma/edit.html?method=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN"/>
+       	<Url name="ContactAdd" title="Add" page="/oma/fulfillmentServiceContacts.html?method=%1$s" roles="ROLE_SUPER_ADMIN"/>
+		
+        <Url name="fulfillmentServiceName" title="fulfillmentServiceName" page="../oma/fsPropertiesList.html?fsName=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN,ROLE_BUYER"/>
+        <Url name="fulfillmentServiceID" title="fulfillmentServiceID" page="../oma/fsPropertiesList.html?fsID=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN,ROLE_BUYER"/>
+        <Url name="vendorFeeRequestEdit" title="Edit" page="/oma/vendorShippingFee.html?method=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="NewVendorCatalog" page="/vendorCatalog/vendorCatalogSetupForm.html?id=%1$s&amp;mode=%2$s&amp;vcID=%3$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="RemoveVendorCatalogDepartment" title="vendordetails.remove.department" page="/vendorCatalog/removeDepartment.html?deptId=%1$s&amp;id=%2$s&amp;action=%3$s&amp;mode=%4$s" roles="ROLE_SUPER_ADMIN"/>
+
+        <Url name="catalogVendorId" title="catalogVendorId" page="../vendorCatalog/catalogVendors.html?vendorId=%1$s&amp;numStyles=%2$s&amp;numSKUs=%3$s&amp;method=%4$s" roles="ROLE_SUPER_ADMIN"/>
+        <Url name="vendorCatalogID" title="vendorCatalogID" page="../vendorCatalog/vendorCatalogSetupForm.html?vcID=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN"/>
+		
+				<!-- Product Group URL -->
+		<Url name="ProductGroupDetail" page="/admin/productgroup/groupdetails.html?method=detail&amp;id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+		<Url name="RemoveProductGroup" page="/admin/productgroup/removeProductGroup.html?method=remove&amp;id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+		<Url name="RemoveProductGroupType" page="/admin/productgroup/removeProductFromGroup.html?method=removeProdTypeView&amp;typeId=%1$s&amp;id=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+		<Url name="AssociateProductGroupToType" title="productGroup.add.to.type" page="/admin/productgroup/associateGroupProductType.html?method=getNonAssociatedProducts&amp;id=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+		<Url name="AddProductGroup" page="/admin/productgroup/productGroupForm.html?method=addProductGroup" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+		<Url name="EditProductGroup" page="/admin/productgroup/productGroupForm.html?method=edit" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN"/>
+
+
+                <!-- Vendor Catalog URL -->
+                <Url name="editVendorCatalog" title="editVendorCatalog" page="../vendorCatalog/vendorCatalogSetupForm.html?vcID=%1$s&amp;mode=%2$s" roles="ROLE_SUPER_ADMIN,"/>
+                 <Url name="lockVendorCatalog" title="lockVendorCatalog" page="javascript:lockCatalog(%1$s,%2$s);" roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="unLockVendorCatalog" title="unLockVendorCatalog" page="javascript:unLockCatalog(%1$s,%2$s);" roles="ROLE_SUPER_ADMIN"/>
+  
+                <!-- Vendor Catalog Style URL -->
+                 <Url name="editVendorCatalogStyle" title="editVendorCatalogStyle" page="javascript:void();" roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="lockVendorCatalogStyle" title="lockVendorCatalogStyle" page="javascript:lockStyle(%1$s,%2$s,%3$s);"  roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="unLockVendorCatalogStyle" title="unLockVendorCatalogStyle" page="javascript:unLockStyle(%1$s,%2$s);" roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="viewVendorStyleProperties" title="viewVendorStyleProperties" page="javascript:viewStyle(%1$s,%2$s,%3$s,%4$s,%5$s);"  roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="editVendorStyleProperties" title="editVendorStyleProperties" page="javascript:editStyle(%1$s,%2$s,%3$s,%4$s,%5$s);"  roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="viewVendorUPCDetails" title="viewVendorUPCDetails" page="javascript:viewUPCDetails(%1$s,%2$s,%3$s,%4$s);"  roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="editVendorUPCDetails" title="editVendorUPCDetails" page="javascript:editUPCDetails(%1$s,%2$s,%3$s,%4$s,%5$s,%6$s);"  roles="ROLE_SUPER_ADMIN"/>
+                 <Url name="removeStyleSkuImages" title="removeStyleSkuImages" page="javascript:removeImage(%1$s);"  roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+                 <Url name="addStyleSkuImages" title="addStyleSkuImages" page="javascript:addImage(%1$s,%2$s,%3$s);"  roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+                 <Url name="newCatalog" title="newCatalog" page="../vendorCatalog/vendorCatalogSetupForm.html?mode=add"  roles="ROLE_SUPER_ADMIN"/>
+
+				<!--  Late Cars Group URL -->
+				
+				<Url name="LateCarsGroupDetail" page="/admin/latecarsgroup/lateCarsGroupDetails.html?method=detail&amp;lateCarsGroupId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="RemoveLateCarsGroup" page="/admin/latecarsgroup/removeLateCarsGroup.html?method=remove&amp;lateCarsGroupId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="EditLateCarsParams" page="/admin/latecarsgroup/editLateCarsParams.html?lateCarsParamId=%1$s&amp;lateCarsGroupId=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="RemoveLateCarsParams" page="/admin/latecarsgroup/editLateCarsParams.html?method=remove&amp;lateCarsParamId=%1$s&amp;lateCarsGroupId=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+				<Url name="RemoveLateCarsAssociation" page="" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="RemoveLateCarsDepts" page="/admin/latecarsgroup/removeLateCarsDepts.html?deptCd=%1$s&amp;lateCarsGroupId=%2$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="LateCarList"  page="lateCarsGroup.html?method=getAllLateCarsGroup"  roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="BackLateCarAssociation" page="editLateCarsAssociationDetails.html?method=back&amp;lateCarsGroupId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<!--  CAR User Vendor Department -->
+				
+				<Url name="RemoveDeptVendors"  page="/vendor/removeDeptVendors.html?action=remove&amp;venDeptId=%1$s&amp;id=%2$s" title="userdetails.remove.vendor.vendors" roles="ROLE_SUPER_ADMIN"/>
+				<Url name="VendorDetails"  page="vendorDetails.html?id=%1$s"  roles="ROLE_SUPER_ADMIN"/>
+				
+				
+				<!-- OUTFIT URL -->
+				<Url name="EditOutfit" page="outfits.html?method=editOutfit&amp;CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="RemoveOutfit" page="outfits.html?method=removeOutfit&amp;CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="OutfitList"  page="outfits.html?method=getAllOutfitCars"  roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+				<Url name="AddChildCars" page="/admin/outfit/addChildCar.html?CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+				
+				<!-- DBPromotion URL -->
+				<Url name="EditDBPromotion" page="dbPromotions.html?method=editDBPromotion&amp;CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="RemoveDBPromotion" page="dbPromotions.html?method=removeDBPromotion&amp;CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="DBPromotionList"  page="dbPromotions.html?method=getAllDBPromotionCars"  roles="ROLE_SUPER_ADMIN,ROLE_ADMIN, ROLE_BUYER"/>
+				<Url name="DBPromotionAddChildCars" page="/admin/dbpromotion/addDBPChildCar.html?CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+				<Url name="AddDBPChildCars" page="/admin/dbpromotion/addChildCar.html?CarId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+				<!-- Super Color Urls  -->
+				<Url name="EditSuperColor" page="supercolors.html?method=editSuperColor&amp;cmmId=%1$s" roles="ROLE_SUPER_ADMIN"/>
+				<Url name="RemoveSuperColor" page="supercolors.html?method=removeSuperColor&amp;cmmId=%1$s" roles="ROLE_SUPER_ADMIN"/>
+				<Url name="SuperColorList"  page="supercolors.html?method=getAllSuperColors"  roles="ROLE_SUPER_ADMIN"/>
+				
+					<!-- Size Conversions Urls  -->
+				<Url name="EditSizeConversion" page="sizeconversions.html?method=editSizeConversion&amp;scmId=%1$s" roles="ROLE_SUPER_ADMIN"/>
+				<Url name="RemoveSizeConversion" page="sizeconversions.html?method=removeSizeConversion&amp;scmId=%1$s" roles="ROLE_SUPER_ADMIN"/>
+				<Url name="SizeConversionList"  page="sizeconversions.html?method=getAllSizeConversions"  roles="ROLE_SUPER_ADMIN"/>
+				<Url name="SizeConversionListSearch"  page="sizeconversions.html?method=%1$s"  roles="ROLE_SUPER_ADMIN"/>
+				<!-- Remove Catalog SDF -->
+				<Url name="RemoveCatalog" title="RemoveCatalog" page="../vendorCatalog/catalogVendors.html?vendorId=%1$s&amp;numStyles=%2$s&amp;numSKUs=%3$s&amp;method=%4$s&amp;vcID=%5$s" roles="ROLE_SUPER_ADMIN"/>
+				<!-- Referesh Car -->
+				<Url name="RefreshCar" page="/refereshCar.html?carId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_BUYER"/>
+				<!--  GetPimImage -->
+				<Url name="PimImageUpload" page="/pimImageUploadForm.html?carId=%1$s" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_BUYER"/>
+				
+
+
+    </Urls>
+</UrlConfig>

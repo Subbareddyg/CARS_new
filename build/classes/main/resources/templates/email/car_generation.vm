@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<style type="text/css">
+			table, td, th
+			{
+				border:1px solid #CEDFF5;
+			}
+			th
+			{
+				height:20px;
+				background-color:#CEDFF5;
+				color:#15428B;
+			}
+			table
+			{
+				width:70%;
+			}
+			td
+			{
+				font-family:Tahoma;
+				font-size:13px;
+				height:20px;
+				text-align:center;
+			}
+			h4{
+				font-family:Tahoma;
+				font-size:15px;
+				font-style:bold;
+				color:#15428B;
+			}
+		</style>
+	</head>
+<body>
+<h4>One or more Belk Content Acquisition Requests have been assigned to you</h4>
+<ul>
+${userType} # :  ${userNumber} 
+<br />
+${userType} Name :  ${firstName} ${lastName} 
+<br />
+Date cars generated:  ${date} 
+<br />
+      <TABLE>
+      	<tr>
+      		<th>CAR ID</th>
+      		<th>Dept #</th>
+      		<th>Vendor Name</th>
+      		<th>Vendor #</th>
+      		<th>Style #</th>
+      		<th>Style Description</th>
+      		<th>SKU</th>
+      		<th>Assigned To</th>
+      	</tr>
+        #foreach( $sku in $skuList )
+          <TR>
+            <TD>$sku.carid</TD>
+            <TD>$sku.deptNumber</TD>
+            <TD>$sku.vendorName</TD>
+            <TD>$sku.vendorNumber</TD>
+            <TD>$sku.styleNumber</TD>
+            <TD>$sku.styleName</TD>
+            <TD>$sku.sku</TD>
+            <TD>$sku.assignedTo</TD>
+          </TR>
+        #end
+      </TABLE>
+</ul>
+</body>
+</html>

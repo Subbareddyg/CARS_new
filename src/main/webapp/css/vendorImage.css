@@ -1,0 +1,108 @@
+/*
+ CSS Document
+ (c) By Xul.fr
+ Freeware
+*/
+
+.visible{
+	display:block; 
+}
+.container {
+    border: 0px;
+    margin-top: 2px; 
+	margin-bottom: 1px; 
+	margin-right: 2px; 
+	margin-left: 2px;
+}
+
+.div_spacer {
+	border: 1px solid  #D0D0D0;
+	background: white;
+}
+
+.progressImage{
+	display:none; 
+	margin-top: 2px; 
+	margin-bottom: 1px; 
+	height: 10px; 
+	margin-left: 133px; 
+	width: 265px;
+}
+
+.suggestion{
+	font-size: 98%; 
+	color: gray;
+}
+
+.status_msg{
+ color:#5C7CA0;
+ text-align:center;
+ font:bold 13px tahoma,arial,verdana,sans-serif;
+ text-align:center;
+ padding-top:4px;
+ padding-bottom:4px;
+}
+
+.msgInfo{
+ color:#5C7CA0;
+ text-align:center;
+ background-color:#EFF2FB;
+ font:bold 13px tahoma,arial,verdana,sans-serif;
+ padding-bottom:4px;
+ padding-top:4px;
+}
+
+.msgError{
+ color:#B40404;
+ font-family: 'helvetica', Georgia, arial, sans-serif;
+ text-align:center;
+ background-color:#FBEFEF;
+ padding:2px;
+}
+
+.msgOK{
+ color:#69A150;
+ font-size:1.2em;
+ font-family: 'helvetica', Georgia, arial, sans-serif;
+ font-weight:bold;
+}
+  
+.msgWarn{
+ color:#BF9E1B;
+ font-size:1.2em;
+ font-family: 'helvetica', Georgia, arial, sans-serif;
+ font-weight:bold;
+ text-align:center;
+}
+
+.imageTypeHelpIcon {
+background: url("../images/helpIcon.gif") no-repeat scroll center transparent;   
+    color: #15428B;
+    font-size: 13px;
+    font-weight: bold;
+    padding-right: 20px;
+    text-decoration: none;	
+	float: left\9;
+	text-align: left\9;	
+	width: 5px\9;
+	height: 20px\9;
+}
+select[name="imageType"],select[name="imageLocationType"]{
+	width:190px;	
+}
+
+#ftpPassword1,#ftpPassword2,#ftpPassword3,#ftpPassword4,#ftpPassword5 {
+	 width: 150px\9;
+}
+.imageTypeHelpIconVimageBtn {
+background: url("../images/helpIcon.gif") no-repeat scroll center transparent;   
+    color: #15428B;
+    font-size: 13px;
+    font-weight: bold;
+    padding-right: 20px;
+    text-decoration: none;	
+	float: left\9;
+	text-align: left\9;	
+	width: 5px\9;
+	height: 20px\9;
+}

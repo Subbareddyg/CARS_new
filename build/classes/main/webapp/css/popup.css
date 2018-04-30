@@ -1,0 +1,32 @@
+/*
+ * SimpleModal Confirm Modal Dialog
+ * http://www.ericmmartin.com/projects/simplemodal/
+ * http://code.google.com/p/simplemodal/
+ *
+ * Copyright (c) 2009 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Revision: $Id$
+ *
+ */
+
+body {height:100%; margin:0;}
+.confirm {display:none;}
+
+/* Overlay */
+#confirm-overlay {background-color:#eee; cursor:wait;}
+
+/* Container */
+#confirm-container {height:150px; width:420px; font-family:'Trebuchet MS', Verdana, Arial; font-size:16px; line-height:26px; text-align:left; background:#fff; border:1px solid #99bbe8;}
+#confirm-container .header {height:20px; width:100%; background-color: #CEDFF5; color:#15428b; font-size:13px; font-weight:bold; line-height:30px; FONT: bold 11px tahoma,arial,verdana,sans-serif;}
+#confirm-container .header span {padding-left:8px;}
+#confirm-container .message {color:#000; margin:0; padding:2px 4px 2px 8px; FONT: bold 11px tahoma,arial,verdana,sans-serif;}
+#confirm-container .buttons {width:240px; float:right; padding:2px 2px; margin-right:3px;} 
+#confirm-container .buttons div {float:right; margin-left:20px; padding:4px 1px 4px 1px;width:auto; height:15px; color:#000; font-size:11px; text-align:center; background:#CEDFF5 url(../extjs-resources/images/default/tabs/tab-strip-bg.gif) repeat-x scroll center bottom; border:1px solid #bbb; cursor:pointer;} 
+#confirm-container a.modal-close,
+#confirm-container a.modal-close:link,
+#confirm-container a.modal-close:active,
+#confirm-container a.modal-close:visited {text-decoration:none; font-size:1.1em; position:absolute; top:-1px; left:400px; color:#ccc;}
+#confirm-container a.modal-close:hover {color:#eee;}

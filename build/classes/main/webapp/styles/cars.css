@@ -1,0 +1,159 @@
+/* YUI CSS RESET + FONTS - modified by belk (removed html style)
+Copyright (c) 2007, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.4.0
+*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}legend{color:#000;}body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}table {font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+/* Belk CARS CSS */
+/*
+ CSS Document
+ (c) By Xul.fr
+ Freeware
+*/
+
+#content
+{
+    margin-left:24px;
+    margin-right:24px;
+}
+
+#tabs ul
+{
+    font: normal 14px arial, sans, sans-serif;
+    -list-style-type: none;
+    border-bottom: 1px solid gray;
+    margin: 0;
+    padding-left:0;
+    padding-right:0;
+    padding-bottom: 26px;
+}
+
+#tabs ul li 
+{
+    display: inline;
+    float: left;
+    height: 24px;
+    min-width:80px;
+    text-align:center;
+    padding:0;
+    margin: 1px 0px 0px 0px;
+    border: 1px solid gray;
+}
+
+#tabs ul li.selected 
+{
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+}
+
+
+#tabs ul li a 
+{
+    float: left;
+    color: #666;
+    text-decoration: none;
+    padding: 4px;
+    text-align:center;
+    background-color:#eee;
+    min-width:80px;
+    border-bottom: 1px solid gray;
+}
+
+#tabs ul li a.selected
+{
+    color: #000;
+    font-weight:bold;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#tabs ul li a:hover
+{
+    color: #000;
+    font-weight:bold;
+    background-color: #fff;
+}
+
+#container 
+{
+    background: white;
+    border:1px solid gray;
+    border-top: none;
+    height:350px;
+    width:100%;
+    padding:0;
+    margin:0;
+    left:0;
+    top:0;	
+}
+
+iframe
+{
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+
+body{
+	background:#f0f0f0;
+}
+h1{
+	font-weight:bold;
+	font-size:116%;
+}
+#pg{
+	width:950px;
+	margin:0 auto;
+}
+
+
+/* Belk Cars Add New Attribute */
+#attr_container fieldset{
+	border:solid 1px #d0d0d0;
+	padding:10px;
+	width:500px;
+}
+#attr_container label{
+	width:100px;
+	display:block;
+	float:left;
+}
+#attr_container label.radio{
+	width:auto;
+	display:inline;
+	float:none;
+}
+#attr_container label.default{
+	width:auto;
+	display:inline;
+	float:none;
+	margin-left:25px;
+}
+#attr_container li{
+	padding:5px 0;
+}
+#attr_container input.text,#attr_container select{
+	width:175px;
+}
+#attr_container textarea{
+	width:300px;
+}
+#attr_container #sel_attr_values{
+	margin:0 5px 0 0;
+	float:left;
+}
+#attr_container li.attr_values{
+	display:none;
+	zoom:1;
+}
+#attr_container li.attr_values:after{display:block;clear:both;visibility:hidden;content:'.';height:0;}
+#attr_container li.attr_values fieldset{
+	width:auto;
+	margin:0 90px;
+}
+#attr_container li.check{
+	padding-left:100px;
+}

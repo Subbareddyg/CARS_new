@@ -1,0 +1,40 @@
+<html>
+<body>
+The buyer has requested to override IDB Unit Cost or Vendor Unit Handling Fee. This requires your review and approval:
+<br/>
+To view the request; click on the following link:<br>
+<a href="https://cars.belk.com">http://blkecom0101:8082/CARS/oma/itemrequeststyles.html?RequestId=${itemRequestForm.requestId}</a>
+<br/><br/>
+Vendor: ${itemRequestForm.vendorName} <br/>
+Created By: ${itemRequestForm.createdBy}<br/><br/>
+Override details: <br/>
+<table border=1 width="100%">
+<th>
+<tr>
+      <td align="center" width="9%">Style #</td>
+      <td align="center" width="30%">Style Description</td>
+      <td align="center" width="5%">Color</td>
+      <td align="center" width="5%">Size</td>
+      <td align="center" width="9%">IDB Cost</td>
+      <td align="center" width="14%">Vendor Handling Fee</td>
+      <td align="center" width="14%">Override Cost</td>
+      <td align="center" width="14%">Override Handling fee</td>
+</tr>
+</th>
+#foreach( $styles in $styleDetails )
+      <tr>
+            <td align="left" width="8%">$styles.vendorStyle.vendorStyleNumber</td>
+            <td align="left" width="30%">$styles.vendorStyle.descr</td>
+            <td align="left" width="5%">$styles.allColorIndicator</td>
+            <td align="left" width="5%">$styles.allSizeIndicator</td>
+            <td align="right" width="5%">$styles.previousUnitCost</td>
+            <td align="right" width="5%">$styles.previousFee</td>
+            <td align="right" width="5%">$styles.unitCost</td> 
+            <td align="right" width="5%">$styles.unitHandlingFee</td>
+    </tr>
+#end
+</table>
+
+
+</body>
+</html>

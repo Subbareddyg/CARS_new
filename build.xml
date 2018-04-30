@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<project name="cars" default="default" basedir=".">
+	<description>Builds, tests, and runs the project cars.</description>
+	<import file="nbproject/build-impl.xml"/>
+	<import file="nbproject/profiler-build-impl.xml"/>
+	
+	<!-- OVERRIDDEN TO ELIMINATE depends ON javadoc TARGET -->
+	<target depends="dist" description="Build whole project." name="default"/>
+	
+	
+	<!--
+
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
+
+      -pre-init:                 called before initialization of project properties 
+      -post-init:                called after initialization of project properties 
+      -pre-compile:              called before javac compilation 
+      -post-compile:             called after javac compilation 
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-dist:                 called before archive building 
+      -post-dist:                called after archive building 
+      -post-clean:               called after cleaning build products 
+      -pre-run-deploy:           called before deploying
+      -post-run-deploy:          called after deploying
+
+    Example of pluging an obfuscator after the compilation could look like 
+
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
+
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
+
+
+    Other way how to customize the build is by overriding existing main targets.
+    The target of interest are: 
+
+      init-macrodef-javac:    defines macro for javac compilation
+      init-macrodef-junit:   defines macro for junit execution
+      init-macrodef-debug:    defines macro for class debugging
+      do-dist:                archive building
+      run:                    execution of project 
+      javadoc-build:          javadoc generation 
+
+    Example of overriding the target for project execution could look like 
+
+        <target name="run" depends="<PROJNAME>-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that overridden target depends on jar target and not only on 
+    compile target as regular run target does. Again, for list of available 
+    properties which you can use check the target you are overriding in 
+    nbproject/build-impl.xml file. 
+
+    -->
+    
+	<property name="resources.dir" value="src/main/resources"/>
+	
+	
+	<target name="-pre-dist" depends="targetBuildEnvironment"/>
+	
+	<target name="targetBuildEnvironment" description="Target the build to a different environment." depends="
+		--ensure-build-environment, 
+		--read-environment-properties, 
+		-deployToEnvironment, 
+		-copyCustomResources"
+	/>
+	<target name="--ensure-build-environment" 
+		depends="--property-build-environment-is-set, --inputBuildEnvironment">
+		<echo message="building for deployment environment: ${build.environment}"/>
+		<condition property="build.environment.is.set"><isset property="build.environment"/></condition>
+		<fail unless="build.environment.is.set">Must set the build.environment property at the command line.</fail>		
+	</target>
+	<target name="--property-build-environment-is-set" depends="init">
+		<condition property="build.environment.is.set">
+			<isset property="build.environment"/>
+		</condition>
+	</target>
+	<target name="--inputBuildEnvironment" unless="build.environment.is.set">
+		<input	message="What is your deployment environment (dev/sit1/sit2/sit3/training/prod-ui/prod-jobs/prod-vip-jobs)?"
+			validargs="dev,sit1,sit2,sit3,training,prod-ui,prod-jobs,prod-vip-jobs"
+			addproperty="build.environment"
+			/>
+		<property name="env.conf.dir" value="${conf.dir}/${build.environment}"/>
+	</target>
+	<target name="--read-environment-properties">
+		<property file="${env.conf.dir}/dist.properties"/>
+		<echo message="copying the schdular.xml,dispatcher-servlet.xml and applicationContext-resources.xml from ${env.conf.dir} to ${build.web.dir}/WEB-INF "/>  
+		<copy todir="${build.web.dir}/WEB-INF" overwrite="true">
+			<fileset dir="${env.conf.dir}" excludes="**/*.properties,applicationContext-resources.xml,log4j.xml"/>
+		</copy>
+		<copy todir="${resources.dir}" overwrite="true">
+			<fileset dir="${env.conf.dir}" excludes="**/*.properties,dispatcher-servlet.xml,scheduler.xml"/>
+		</copy>
+	</target>
+	
+	<!--
+	Loads properties for creating dist correctly in the environment.
+	Copies resources to classpath.
+	Copies custom environment resources to classpath.
+	Replaces property strings.
+	-->
+	<target name="-deployToEnvironment" depends="init">	
+		<copy todir="${build.classes.dir}" overwrite="true">
+			<fileset dir="${resources.dir}" includes="**/*.*" excludes="**/CVS,**/CVS/*.*"/>
+			<filterchain><expandproperties/></filterchain>
+		</copy>
+		<copy todir="${build.web.dir}" overwrite="true">
+			<fileset dir="${common.conf.dir}/${war.name}" includes="**/*.*" excludes="**/CVS,**/CVS/*.*"/>
+			<filterchain><expandproperties/></filterchain>
+		</copy>
+	</target>
+	
+	<target name="-copyCustomResources" depends="-customResourceCheck" if="has.custom.env.resources">
+		<copy todir="${build.classes.dir}" overwrite="true">
+			<fileset dir="${env.conf.dir}/resources" includes="**/*.*" excludes="**/CVS,**/CVS/*.*,log4j.xml"/>
+			<filterchain><expandproperties/></filterchain>
+		</copy>
+	</target>
+	<target name="-customResourceCheck">
+		<available file="${env.conf.dir}/resources" type="dir" property="has.custom.env.resources"/>
+	</target>
+	
+	
+	
+	<!-- Convenience targets.  Allow you to build without specifying the build.environment property at the command line.-->
+	<target name="buildDev">
+		<ant target="dist" inheritall="false">
+			<property name="build.environment" value="dev"/>
+		</ant>		
+	</target>
+	<target name="buildSIT1">
+			<ant target="dist" inheritall="false">
+				<property name="build.environment" value="sit1"/>
+			</ant>		
+	</target>
+    <target name="buildSIT2">
+            <ant target="dist" inheritall="false">
+                <property name="build.environment" value="sit2"/>
+            </ant>      
+    </target>
+    <target name="buildSIT3">
+            <ant target="dist" inheritall="false">
+                <property name="build.environment" value="sit3"/>
+            </ant>      
+    </target>
+	<target name="buildTraining">
+		<ant target="dist" inheritall="false">
+			<property name="build.environment" value="training"/>
+		</ant>	
+	</target>
+	<target name="buildProdGui">
+		<ant target="dist" inheritall="false">
+			<property name="build.environment" value="prod-ui"/>
+		</ant>	
+	</target>
+	<target name="buildProdJobs">
+			<ant target="dist" inheritall="false">
+				<property name="build.environment" value="prod-jobs"/>
+			</ant>	
+		</target>
+	<target name="buildVipProdJobs">
+				<ant target="dist" inheritall="false">
+					<property name="build.environment" value="prod-vip-jobs"/>
+				</ant>	
+		</target>
+</project>

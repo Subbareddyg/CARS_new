@@ -1,0 +1,25 @@
+<html>
+<body>
+
+There was a processing error that occurred prior to importing the following vendor catalog:
+</br>
+Catalog ID: 
+</br>
+Catalog Name: 
+</br>
+Catalog Vendor ID: 
+</br>
+Catalog Vendor Name : 
+</br>
+Validation Errors (General)
+<br>
+[System Error Message]
+</br>
+Validation Errors (Data Related)
+</br>
+Record Line Number Error
+</br>
+[System Error Message]
+
+</html>
+</body>

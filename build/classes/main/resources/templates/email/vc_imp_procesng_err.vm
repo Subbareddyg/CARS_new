@@ -1,0 +1,42 @@
+<html>
+<body>
+There was a processing error that occurred prior to importing the following vendor catalog:<br />
+<ul>
+<li>
+Catalog ID: ${catalog.vendorCatalogID}
+</li>
+<li>
+Catalog Name: ${catalog.vendorCatalogName} 
+</li>
+<li>
+Catalog Vendor ID: ${catalog.vendor.vendorNumber}
+</li>
+<li>
+Catalog Vendor Name: ${catalog.vendor.name}
+</li>
+</ul>
+
+<br />
+Validation Errors (Data Related)<br />
+
+<table border=1 width="100%">
+<th>
+<tr>
+      <td align="center" width="10%">Record Line Number</td>
+      <td align="center" width="60%">Error</td>
+</tr>
+</th>
+#foreach( $errors in $errorMap.get("P") )
+
+      <tr>
+      <td align="left" width="10%">$errors</td>
+      <td align="left" width="60%">The file could not be uploaded, it contains fewer column headers than column vales.</td>
+      </tr>
+     #end
+</table>
+ <br />
+#if ("$alertMsg" == "1")
+Only first 5 errors appear in this message. View the catalog record in CARS to review the full error report
+#end
+</body>
+</html>

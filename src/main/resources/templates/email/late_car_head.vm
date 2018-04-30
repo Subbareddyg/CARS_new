@@ -1,0 +1,166 @@
+<html>
+<head>
+	  <style type="text/css">
+		table, td, th
+		{
+			border:1px solid #CEDFF5;
+		}
+		th
+		{
+			height:20px;
+			background-color:#CEDFF5;
+			color:#15428B;
+		}
+		table
+		{
+			width:70%;
+		}
+		td
+		{
+			font-family:Tahoma;
+			font-size:13px;
+			height:20px;
+			text-align:center;
+		}
+		h4{
+			font-family:Tahoma;
+			font-size:15px;
+			font-style:bold;
+			color:#15428B;
+		}
+		p{
+			font-family:Tahoma;
+			font-size:17px;
+			font-style:bold;
+			color:#15428B;
+		}
+		div{
+			font-family:Tahoma;
+			font-size:17px;
+			font-style:bold;
+			color:#15428B;
+		}
+	  </style>
+	<head>
+<body>
+<h4>Report for week ending :  ${date} </h4>
+<br/><div>Car Summary </div>
+<p>
+Total Late Cars:  $totalCarCount <br/><br/>
+#Web Merchant Status:  $webMerchantCarCount<br/>
+Art Director Status:  $directorCarCount<br/>
+Content manager Status:  $contentMgnrCarCount<br/>
+Sample Coordinator Status:  $sampleCoCarCount<br/>
+</p>
+<br/><div>Car Detail </div>
+#<p>Web Merchant Status </p>
+#<table>
+ 
+# <tr>
+#    <th>Dept#</th>
+#    <th>Car #</th>
+#    <th>Vendor Name</th>
+#    <th>Vendor Number</th>
+#    <th>Brand</th>
+#    <th>Ship Date</th>
+#    <th>Date Car Generated</th>
+#    <th>Web Merchant</th>
+#  </tr>
+  #foreach( $wm in $webMerchantList )
+ #  <tr>
+#    <td>$wm.dept</td>
+#    <td>$wm.carId</td>
+#    <td>$wm.vendorName</td>
+#    <td>$wm.vendorNumber</td>
+#    <td>$wm.brandName</td>
+#    <td>$wm.completionDate</td>
+#    <td>$wm.createdDate</td>
+#    <td>$wm.userName</td>
+#  </tr>
+   #end
+# </table>
+#<br />
+<p>Art Director Status</p>
+<table>
+ 
+ <tr>
+    <th>Dept#</th>
+    <th>Car #</th>
+    <th>Vendor Name</th>
+    <th>Vendor Number</th>
+    <th>Brand</th>
+    <th>Ship Date</th>
+    <th>Date Car Generated</th>
+    <th>Art Director</th>
+  </tr>
+  #foreach( $d in $directorList )
+   <tr>
+    <td>$d.dept</td>
+    <td>$d.carId</td>
+    <td>$d.vendorName</td>
+    <td>$d.vendorNumber</td>
+    <td>$d.brandName</td>
+    <td>$d.completionDate</td>
+    <td>$d.createdDate</td>
+    <td>$d.userName</td>
+  </tr>
+   #end
+ </table>
+<br />
+<p>Content Manager Status</p>
+<table>
+ 
+ <tr>
+    <th>Dept#</th>
+    <th>Car #</th>
+    <th>Vendor Name</th>
+    <th>Vendor Number</th>
+    <th>Brand</th>
+    <th>Ship Date</th>
+    <th>Date Car Generated</th>
+    <th>Content Manager</th>
+  </tr>
+  #foreach( $c in $contentMgnrList )
+   <tr>
+    <td>$c.dept</td>
+    <td>$c.carId</td>
+    <td>$c.vendorName</td>
+    <td>$c.vendorNumber</td>
+    <td>$c.brandName</td>
+    <td>$c.completionDate</td>
+    <td>$c.createdDate</td>
+    <td>$c.userName</td>
+  </tr>
+   #end
+ </table>
+<br />
+<p>Sample Coordinator Status</p>
+<table>
+ 
+ <tr>
+    <th>Dept#</th>
+    <th>Car #</th>
+    <th>Vendor Name</th>
+    <th>Vendor Number</th>
+    <th>Brand</th>
+    <th>Ship Date</th>
+    <th>Date Car Generated</th>
+    <th>Sample Coordinator</th>
+  </tr>
+  #foreach( $s in $sampleCoList )
+   <tr>
+    <td>$s.dept</td>
+    <td>$s.carId</td>
+    <td>$s.vendorName</td>
+    <td>$s.vendorNumber</td>
+    <td>$s.brandName</td>
+    <td>$s.completionDate</td>
+    <td>$s.createdDate</td>
+    <td>$s.userName</td>
+  </tr>
+   #end
+ </table>
+<br />
+</ul>
+</body>
+</html>

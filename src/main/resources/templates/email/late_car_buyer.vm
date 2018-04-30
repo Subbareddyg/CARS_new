@@ -1,0 +1,94 @@
+<html>
+<head>
+<style type="text/css">
+table, td, th
+{
+	border:1px solid #CEDFF5;
+}
+th
+{
+	height:20px;
+	background-color:#CEDFF5;
+	color:#15428B;
+}
+table
+{
+	width:70%;
+}
+td
+{
+	font-family:Tahoma;
+	font-size:13px;
+	height:20px;
+	text-align:center;
+}
+h4{
+	font-family:Tahoma;
+	font-size:15px;
+	font-style:bold;
+	color:#15428B;
+}
+p{
+	font-family:Tahoma;
+	font-size:16px;
+	font-style:bold;
+	color:#15428B;
+}
+ div{
+	font-family:Tahoma;
+	font-size:17px;
+	font-style:bold;
+	color:#15428B;
+}
+</style>
+</head>
+
+<body>
+<h4>Report for week ending: &nbsp; ${date} 
+</h4>
+<div>Car Summary </div><br/>
+<table> 
+	<tr>
+	 	<th>Buyer name</th> <th> # of Late CARS</th> <th> # of SKU's</th>
+	</tr>
+	<tr> 
+	 	<td>$firstName $lastName</td> <td> $noOfCar</td> <td> $totalNoOfSkus</td>
+	</tr>
+</table>
+
+<br/><div>Car Detail </div><br/>
+
+      <TABLE  cellspacing="3">
+      	<tr>
+      		<th>Dept #</th>
+      		<th>CAR ID</th>
+      		<th>Vendor Name</th>
+      		<th>Vendor Number</th>
+      		<th>Brand</th>
+      		<th>Completion Date</th>
+      		<th>Creation Date</th>
+      		<th># of Skus</th>
+      		
+      	</tr>
+        #foreach( $car in $carList )
+          <TR>
+            <TD>$car.dept</TD>
+            <TD>$car.carid</TD>
+            <TD>$car.vendorName</TD>
+			<TD>$car.vendorNumber</TD>
+            <TD>$car.brandName</TD>
+            <TD>$car.completionDate</TD>
+            <TD>$car.createdDate</TD>
+            <TD>$car.noOfSkus</TD>
+          </TR>
+        #end
+      </TABLE>
+  	<table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+	<tr align="left">
+		<td align="left">
+			<img src="https://cars.belk.com/images/logo.gif" />
+		</td>
+	</tr>
+  </table>
+</body>
+</html>

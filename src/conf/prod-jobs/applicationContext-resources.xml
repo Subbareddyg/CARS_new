@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+    
+    <!-- For mail settings and future properties files -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:mail.properties</value>
+                <!-- Added for CARS Faceted Navigation -->
+                <value>classpath:batchjobconfig.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- JNDI DataSource for J2EE environments -->
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/appfuse"/>-->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="100"/>
+        <property name="maxWait" value="1000"/>
+        <property name="maxIdle" value="15"/>
+        <property name="poolPreparedStatements" value="false"/>
+        <property name="removeAbandoned" value="true"/> 
+        <property name="removeAbandonedTimeout" value="120"/>       
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+    
+     <bean id="transport"
+		class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+		<property name="staticField" value="${MQ.TransportType}"/>
+	</bean>
+    
+     <bean id="secureQueueConnectionFactory" class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+		<property name="targetConnectionFactory" ref="queueConnectionFactory"/>
+		<property name="username" value="${MQ.UserName}"/>
+		<property name="password" value="${MQ.Password}"/>
+	</bean>  
+    
+    <bean id="queueConnectionFactory" class="com.ibm.mq.jms.MQQueueConnectionFactory">
+		<property name="transportType" ref="transport" />
+		<property name="queueManager" value="${MQ.QueueManagerName}" />
+		<property name="hostName" value="${MQ.HostName}" />
+		<property name="port" value="${MQ.PortNumber}" />
+		<property name="channel" value="${MQ.ChannelName}" />
+	</bean>
+    
+   	<bean id="dropShipQueue" class="com.ibm.mq.jms.MQQueue">
+		<constructor-arg value="${DropShipMessageQueue}" />
+	</bean> 
+	
+	<bean id="poQueue" class="com.ibm.mq.jms.MQQueue">
+		<constructor-arg value="${POMessageQueue}" />
+	</bean> 
+	
+    <bean id="groupQueue" class="com.ibm.mq.jms.MQQueue">
+        <constructor-arg value="${GroupMessageQueue}" />
+    </bean> 
+</beans>

@@ -1,0 +1,60 @@
+<carsMessage from="CARS" to="RRD" type="photoRequests">
+	<productPhotoRequests>
+		<productPhotoRequest>
+			<car id="559"/>
+			<product type="Robes">
+				<name>Quilted Knit Snap Front Short Robe</name>
+				<vendor id="2100014">
+					<name>MISS ELAINE</name>
+				</vendor>
+				<style id="852808"/>
+				<department id="78">
+					<name>ROBES</name>
+				</department>
+				<class id="415">
+					<name>COTTON ROBES</name>
+				</class>
+			</product>
+			<photos>
+				<photo type="sample">
+					<file>
+						<name>
+							<prefix>2100014_852808_X_650</prefix>
+						</name>
+					</file>
+					<instructions>Swatch must be 6&quot;X6&quot;</instructions>
+					<samples>
+						<sample id="1122" type="swatch">
+							<color code="650">
+								<name>Pink</name>
+							</color>
+							<returnRequested>N</returnRequested>
+							<returnInformation>
+								<shippingAccount carrier="UPS"/>
+							</returnInformation>
+						</sample>
+					</samples>
+				</photo>
+				<photo type="sample">
+					<file>
+						<name>
+							<prefix>2100014_852808_X_355</prefix>
+						</name>
+					</file>
+					<instructions>Swatch must be 6&quot;X6&quot;</instructions>
+					<samples>
+						<sample id="1123" type="product">
+							<color code="355">
+								<name>Sage</name>
+							</color>
+							<returnRequested>N</returnRequested>
+							<returnInformation>
+								<shippingAccount carrier="UPS"/>
+							</returnInformation>
+						</sample>
+					</samples>
+				</photo>
+			</photos>
+		</productPhotoRequest>
+	</productPhotoRequests>
+</carsMessage>

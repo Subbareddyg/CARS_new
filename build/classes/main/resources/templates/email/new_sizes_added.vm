@@ -1,0 +1,67 @@
+<html>
+<head>
+	  <style type="text/css">
+		th
+		{
+			height:20px;
+			background-color:#CEDFF5;
+			color:#15428B;
+		}
+		td
+		{
+			font-family:Tahoma;
+			font-size:13px;
+			height:20px;
+			text-align:center;
+		}
+	
+	  </style>
+	<head>
+<body>
+<br>
+<b>Process: </b> ${processName} <br>
+<b>Date: </b> ${executionDate} <br><br>
+The following new size names are in to the system:<br><br>
+<table border="1px solid #CEDFF5" width="70%">
+     	<tr>
+      		<th>Size Name</th>
+      		<th>CAR Id</th>
+      		<th>Department Number </th>
+      		<th>Vendor Number</th>
+      		<th>Class Number</th>
+      	</tr>
+	#foreach( $size in $newSizeNameList )
+		<tr>
+		    <td align="left">$size.sizeName</td>  
+		    <td align="left">$size.carId</td>  
+		   	<td align="left">$size.department.deptCd</td>  
+      	 	<td align="left">$size.vendor.vendorNumber</td> 
+      	 	<td align="left">$size.classification.belkClassNumber</td> 
+      	 </tr>
+	#end
+</table>
+#if ( $failedSizeNameList.size() !=0 )
+<br>The following new size are failed to add to the System:
+<br>
+
+<table border="1px solid #CEDFF5" width="70%">
+     	<tr>
+      		<th>New Size Name</th>
+      		<th>CAR Id</th>
+      		<th>Department Number </th>
+      		<th>Vendor Number</th>
+      		<th>Class Number</th>
+      	</tr>
+	#foreach( $size in $failedSizeNameList )
+		<tr>
+		    <td align="left">$size.sizeName</td>  
+		   <td align="left">$size.carId</td>  
+      	 	<td align="left">$size.department.deptCd</td>  
+      	 	<td align="left">$size.vendor.vendorNumber</td> 
+      	 	<td align="left">$size.classification.belkClassNumber</td> 
+		</tr>
+	#end
+</table>
+#end
+</body>
+</html>

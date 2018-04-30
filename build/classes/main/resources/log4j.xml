@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- Development log4j configurations -->
+
+<log4j:configuration>
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[CAR] [%d] %p [%t] %c{1}.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ELFPOAppender"
+		class="com.belk.eil.logging.utils.appender.LogProcessorAppender">
+		<!-- General properties -->
+		<param name="AppName" value="CARS.POProcess" />
+		<param name="MessageType" value="XML" />
+		<param name="SuppressExceptions" value="true" />
+		<!-- HTTP interface properties -->
+		<param name="HTTPURL" value="http://services-stg.belkinc.com:9088/v1/logging" />
+		<param name="HTTPTimeoutInSecs" value="60" />
+		<!-- Mail properties -->
+		<param name="MailHostName" value="69.166.149.159" />
+		<param name="MailPortNumber" value="25" />
+		<param name="MailAuthEnabled" value="false" />
+		<param name="MailAuthUserName" value="" />
+		<param name="MailAuthPassword" value="" />
+		<param name="MailFromId" value="carsadmin@belk.com" />
+		<param name="MailToIds" value="" />
+		<param name="MailCCIds" value="" />
+		<!-- Backup file properties -->
+		<param name="BackupFileRetryIntervalInSecs" value="5" />
+		<param name="BackupFileAbsolutePath" value="/cars/beamLog/ELFPOAppender.log" />
+	</appender>
+
+	<appender name="ELFDropShipAppender"
+		class="com.belk.eil.logging.utils.appender.LogProcessorAppender">
+		<!-- General properties -->
+		<param name="AppName" value="CARS.DropshipProcess" />
+		<param name="MessageType" value="XML" />
+		<param name="SuppressExceptions" value="true" />
+		<!-- HTTP interface properties -->
+		<param name="HTTPURL" value="http://services-stg.belkinc.com:9088/v1/logging" />
+		<param name="HTTPTimeoutInSecs" value="60" />
+		<!-- Mail properties -->
+		<param name="MailHostName" value="69.166.149.159" />
+		<param name="MailPortNumber" value="25" />
+		<param name="MailAuthEnabled" value="false" />
+		<param name="MailAuthUserName" value="" />
+		<param name="MailAuthPassword" value="" />
+		<param name="MailFromId" value="carsadmin@belk.com" />
+		<param name="MailToIds" value="" />
+		<param name="MailCCIds" value="" />
+		<!-- Backup file properties -->
+		<param name="BackupFileRetryIntervalInSecs" value="5" />
+		<param name="BackupFileAbsolutePath" value="/cars/beamLog/ELFDropShipAppender.log" />
+	</appender>
+
+	<appender name="ELFRLRAppender"
+		class="com.belk.eil.logging.utils.appender.LogProcessorAppender">
+		<!-- General properties -->
+		<param name="AppName" value="CARS.RLRProcess" />
+		<param name="MessageType" value="XML" />
+		<param name="SuppressExceptions" value="true" />
+		<!-- HTTP interface properties -->
+		<param name="HTTPURL" value="http://services-stg.belkinc.com:9088/v1/logging" />
+		<param name="HTTPTimeoutInSecs" value="60" />
+		<!-- Mail properties -->
+		<param name="MailHostName" value="69.166.149.159" />
+		<param name="MailPortNumber" value="25" />
+		<param name="MailAuthEnabled" value="false" />
+		<param name="MailAuthUserName" value="" />
+		<param name="MailAuthPassword" value="" />
+		<param name="MailFromId" value="carsadmin@belk.com" />
+		<param name="MailToIds" value="" />
+		<param name="MailCCIds" value="" />
+		<!-- Backup file properties -->
+		<param name="BackupFileRetryIntervalInSecs" value="5" />
+		<param name="BackupFileAbsolutePath" value="/cars/beamLog/ELFRLRAppender.log" />
+	</appender>
+
+	<logger name="net.sf.ehcache">
+		<level value="ERROR" />
+	</logger>
+
+	<!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
+	<logger name="org.acegisecurity">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+
+	<logger name="org.hibernate">
+		<level value="WARN" />
+	</logger>
+
+	<!--logger name="org.hibernate.SQL"> <level value="DEBUG"/> </logger -->
+
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+
+	<!-- Suppress warnings from Commons Validator -->
+	<logger name="org.apache.commons.validator.ValidatorResources">
+		<level value="ERROR" />
+	</logger>
+
+	<!-- Suppress invalid warning messages from JSF -->
+	<logger name="org.apache.myfaces.shared_impl.renderkit.html">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.appfuse">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="com.belk.car.app">
+		<level value="INFO" />
+	</logger>
+        
+        <logger name="com.belk.car.product.integration">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- Added for Enterprise framework to integrate with BEAM tool 
+	     Please have below loggers commented out if you want to log 
+	     any messages in BEAM  -->
+	     
+    <!-- 
+	<logger name="com.belk.car.integrations.pim.POMessageMQListner"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ELFPOAppender" />
+	</logger>
+
+	<logger name="com.belk.car.integrations.pim.DropShipMessageMQListner"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ELFDropShipAppender" />
+	</logger>
+
+	<logger name="com.belk.car.integrations.pim.RLRMessageMQListener"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ELFRLRAppender" />
+	</logger>  -->
+
+   <!--  Added for Enterprise framework to integrate with BEAM tool 
+	     Please have below loggers uncommented, if you want to log 
+	     any messages in BEAM  -->	
+	     
+	<logger name="com.belk.car.integrations.pim">
+		<level value="INFO" />
+	</logger>
+	
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

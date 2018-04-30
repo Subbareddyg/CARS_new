@@ -1,0 +1,134 @@
+<ehcache>
+
+    <!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path -->
+    <diskStore path="java.io.tmpdir"/>
+
+
+    <!--Default Cache configuration. These will applied to caches programmatically created through
+        the CacheManager.
+
+        The following attributes are required:
+
+        maxElementsInMemory            - Sets the maximum number of objects that will be created in memory
+        eternal                        - Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+                                         element is never expired.
+        overflowToDisk                 - Sets whether elements can overflow to disk when the in-memory cache
+                                         has reached the maxInMemory limit.
+
+        The following attributes are optional:
+        timeToIdleSeconds              - Sets the time to idle for an element before it expires.
+                                         i.e. The maximum amount of time between accesses before an element expires
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that an Element can idle for infinity.
+                                         The default value is 0.
+        timeToLiveSeconds              - Sets the time to live for an element before it expires.
+                                         i.e. The maximum time between creation time and when an element expires.
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that and Element can live for infinity.
+                                         The default value is 0.
+        diskPersistent                 - Whether the disk store persists between restarts of the Virtual Machine.
+                                         The default value is false.
+        diskExpiryThreadIntervalSeconds- The number of seconds between runs of the disk expiry thread. The default value
+                                         is 120 seconds.
+        -->
+
+  <defaultCache
+      maxElementsInMemory="10000"
+      eternal="false"
+      overflowToDisk="false"
+      timeToIdleSeconds="300"
+      timeToLiveSeconds="300"
+      diskPersistent="false"
+      diskExpiryThreadIntervalSeconds="120"
+      memoryStoreEvictionPolicy="LRU"/>
+  
+  <cache name="org.hibernate.cache.StandardQueryCache"
+      maxElementsInMemory="100"
+      eternal="false"
+      timeToIdleSeconds="120"
+      timeToLiveSeconds="120"
+      overflowToDisk="false"/>
+  
+  <cache name="org.hibernate.cache.UpdateTimestampsCache"
+      maxElementsInMemory="5000"
+      timeToIdleSeconds="120"
+      timeToLiveSeconds="120"
+      eternal="true"/>
+      
+  <cache name="query.AllHTMLDisplayTypes"
+    maxElementsInMemory="100"
+    eternal="false"
+    timeToLiveSeconds="86400"
+    overflowToDisk="true"/>       
+
+    <!-- Short Life -->        
+    <cache name="com.belk.car.app.model.Car" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.CarSample" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.CarAttribute" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.CarImage" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.CarHistory" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.CarNote" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.Image" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <!--<cache name="com.belk.car.app.model.Notification" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="120" overflowToDisk="true"/>-->
+    <cache name="com.belk.car.app.model.Sample" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.SampleShippingInformation" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="7200" timeToLiveSeconds="120" overflowToDisk="true"/>
+    <cache name="org.appfuse.model.User" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <cache name="com.belk.car.app.model.vendorimage.VendorImage" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="7200" overflowToDisk="true"/>
+    <!--  Medium Life -->
+    <cache name="com.belk.car.app.model.Attribute" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.AttributeLookupValue" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.ClassAttribute" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.CarUserNote" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.VendorSku" maxElementsInMemory="800" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <!--  Long Life -->
+	<cache name="com.belk.car.app.model.Department" maxElementsInMemory="200" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.DepartmentAttribute" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.Classification" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.HelpContent" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ProductType" maxElementsInMemory="400" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ProductTypeAttribute" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.AttributeConfig" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.VendorStyle" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.Vendor" maxElementsInMemory="800" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+    <cache name="com.belk.car.app.model.WorkFlow" maxElementsInMemory="10" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.workflow.WorkflowTransition" maxElementsInMemory="30" eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	
+	<!-- Eternal Store -->
+	<cache name="com.belk.car.app.model.vendorimage.VendorImageStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ImageProvider" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ChangeType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.NoteType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.NotificationType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.SampleSourceType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.SampleTrackingStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.SampleType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ShippingType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.SourceType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.AttributeDatatype" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.AttributeType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.AttributeValueProcessStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.HtmlDisplayType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ValidationExpression" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ImageType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ImageLocationType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ImageSourceType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ImageTrackingStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.workflow.WorkflowStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.workflow.WorkflowTask" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.workflow.WorkflowType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.UserType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.AccessType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.car.ManualCarProcessStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="14400" overflowToDisk="false"/>    
+	<cache name="org.appfuse.model.Role" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.ContentStatus" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.VendorStyleType" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+	<cache name="com.belk.car.app.model.PatternProcessingRule" maxElementsInMemory="10" eternal="true" timeToIdleSeconds="0" timeToLiveSeconds="0" overflowToDisk="false"/>
+</ehcache>

@@ -1,0 +1,8 @@
+<html>
+<body>
+The following process failed to execute... <br/>
+<b>Process: </b> ${processName} <br/>
+<b>Date: </b> ${executionDate} <br/>
+<b>Error/Exception: </b><br/>${exceptionContent} <br/>
+</body>
+</html>

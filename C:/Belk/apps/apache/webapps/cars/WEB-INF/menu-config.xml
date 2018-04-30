@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN"/>
+        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/admin/user/userForm.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER,ROLE_CONTENT,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN,ROLE_SIZE_COLOR" width="120" onclick="return false;">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/user/users.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+            <Item name="ViewVendors" title="menu.admin.vendors" page="/vendor/vendors.html" roles="ROLE_SUPER_ADMIN"/>
+          	<Item name="ViewAttributes" title="menu.attributes" page="/admin/attributes/attributes.html" roles="ROLE_SUPER_ADMIN"/>
+            <Item name="ViewAttributeValuesList" title="menu.attribute.values" page="/admin/attributes/attributeValues.html" roles="ROLE_SUPER_ADMIN"/>
+            <Item name="ViewProductType" title="menu.productGroup" page="/admin/producttype/productGroups.html?method=getAllProductGroups" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+          	<Item name="ViewProductType" title="menu.productType" page="/admin/producttype/productTypes.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>      
+            <Item name="ViewManualCar" title="menu.manualcar" page="/car/manualcars.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+            <Item name="ViewWorkflow" title="menu.workflow" page="/admin/workflow/workflows.html" roles="ROLE_ADMIN,ROLE_SUPER_ADMIN"/>  
+                 
+            <Item name="ViewVendorCatalogManagement" title="Vendor Catalog Management" page="/vendorCatalog/catalogVendors.html?method=viewAll" roles="ROLE_SUPER_ADMIN"/>
+             <Item name="ViewOrderManagement" title="menu.orderManagement" page="/oma/orderManagement.html?method=load" roles="ROLE_SUPER_ADMIN,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN,ROLE_BUYER"/>
+            <Item name="ViewPattern" title="menu.pattern" page="/admin/pattern/list.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>         
+            <Item name="ImportCatalogData" title="menu.importcatalog" page="/admin/catalog/import.html" roles="ROLE_SUPER_ADMIN"/>
+            <Item name="ViewReport" title="Execute Reports" page="/admin/report/list.html" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER,ROLE_CONTENT,ROLE_ORDERMGMT_ADMIN"/>
+            
+            <Item name="LateCarsGroupManagement" title="Late CARS Group Management" page="/admin/latecarsgroup/lateCarsGroup.html?method=getAllLateCarsGroup" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+            <Item name="OutfitManagement" title="Outfit Management" page="/admin/outfit/outfits.html?method=getAllOutfitCars" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+            <Item name="DBManagement" title="Deal Based Management" page="/admin/dbpromotion/dbPromotions.html?method=getAllDBPromotionCars" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_BUYER"/>
+            <Item name="SuperColorManagement" title="Super Color Management" page="/admin/supercolor/supercolors.html?method=getAllSuperColors" roles="ROLE_SUPER_ADMIN"/>
+             <Item name="SizeConversionManagement" title="Size Conversion Management" page="/admin/size/sizeconversions.html?method=getAllSizeConversions" roles="ROLE_SUPER_ADMIN"/>
+          <!-- <Item name="CreateLuceneIndex" title="menu.luceneindex" page="/search/createindex.html" roles="ROLE_ADMIN"/>  -->  
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_SUPER_ADMIN,ROLE_ADMIN,ROLE_USER,ROLE_BUYER,ROLE_ORDERMGMT,ROLE_ORDERMGMT_ADMIN,ROLE_SIZE_COLOR"/>
+    </Menus>
+</MenuConfig>

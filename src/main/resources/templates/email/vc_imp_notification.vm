@@ -1,0 +1,19 @@
+<html>
+<body>
+The following Catalog has been imported and is ready for Data Mapping.<br/>
+<ul>
+<li>
+Catalog ID: ${catalog.vendorCatalogID} <br/>
+</li>
+<li>
+Catalog Name: ${catalog.vendorCatalogName} <br/>
+</li>
+<li>
+Catalog Vendor ID: ${catalog.vendor.vendorNumber}
+</li>
+<li>
+Catalog Vendor Name: ${catalog.vendor.name}
+</li>
+</ul>
+</body>
+</html>

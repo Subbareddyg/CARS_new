@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <mapping class="org.appfuse.model.User"/>
+  <mapping class="org.appfuse.model.Role"/>
+  <mapping class="com.belk.car.app.model.Car"/>
+  <mapping class="com.belk.car.app.model.Attribute"/>
+  <mapping class="com.belk.car.app.model.AttributeConfig"/>
+  <mapping class="com.belk.car.app.model.AttributeDatatype"/>
+  <mapping class="com.belk.car.app.model.AttributeLookupValue"/>
+  <mapping class="com.belk.car.app.model.AttributeType"/>
+  <mapping class="com.belk.car.app.model.AttributeValue"/>
+  <mapping class="com.belk.car.app.model.CarArea"/>
+  <mapping class="com.belk.car.app.model.CarAttribute"/>
+  <mapping class="com.belk.car.app.model.CarHistory"/>
+  <mapping class="com.belk.car.app.model.CarNote"/>
+  <mapping class="com.belk.car.app.model.CarSkuAttribute"/>
+  <mapping class="com.belk.car.app.model.ChangeType"/>
+  <mapping class="com.belk.car.app.model.ClassAttribute"/>
+  <mapping class="com.belk.car.app.model.Classification"/>
+  <mapping class="com.belk.car.app.model.Comment"/>
+  <mapping class="com.belk.car.app.model.CommentType"/>
+  <mapping class="com.belk.car.app.model.Config"/>
+  <mapping class="com.belk.car.app.model.Department"/>
+  <mapping class="com.belk.car.app.model.DepartmentAttribute"/>
+  <mapping class="com.belk.car.app.model.Image"/>
+  <mapping class="com.belk.car.app.model.Note"/>
+  <mapping class="com.belk.car.app.model.NoteType"/>
+  <mapping class="com.belk.car.app.model.Notification"/>
+  <mapping class="com.belk.car.app.model.NotificationType"/>
+  <mapping class="com.belk.car.app.model.ProductType"/>
+  <mapping class="com.belk.car.app.model.ProductTypeAttribute"/>
+  <mapping class="com.belk.car.app.model.Sample"/>
+  <mapping class="com.belk.car.app.model.SampleType"/>
+  <mapping class="com.belk.car.app.model.ShippingInformation"/>
+  <mapping class="com.belk.car.app.model.ShippingType"/>
+  <mapping class="com.belk.car.app.model.SourceType"/>
+  <mapping class="com.belk.car.app.model.Status"/>
+  <mapping class="com.belk.car.app.model.UserCarArea"/>
+  <mapping class="com.belk.car.app.model.UserClass"/>
+  <mapping class="com.belk.car.app.model.UserComment"/>
+  <mapping class="com.belk.car.app.model.UserDepartment"/>
+  <mapping class="com.belk.car.app.model.UserNote"/>
+  <mapping class="com.belk.car.app.model.UserVendor"/>
+  <mapping class="com.belk.car.app.model.Vendor"/>
+  <mapping class="com.belk.car.app.model.VendorSku"/>
+  <mapping class="com.belk.car.app.model.VendorStyle"/>
+  <mapping class="com.belk.car.app.model.WorkFlow"/>
+  <mapping class="com.belk.car.app.model.ValidationExpression"/>
+  <mapping class="com.belk.car.app.model.LateCarsAssociation"/>
+  <mapping class="com.belk.car.app.model.UsersRank"/>
+ </session-factory>
+</hibernate-configuration>

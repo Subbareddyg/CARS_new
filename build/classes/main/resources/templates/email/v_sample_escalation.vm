@@ -1,0 +1,23 @@
+<html>
+<body>
+<b>${userFirstName} ${userLastName}</b>,
+<br/><br/>
+CAR #${carNumber} requires a sample to be sent to Belk.  This sample is due on
+${dueDate} in order to publish this item on the website for the start ship
+date.
+<br/><br/>
+Please follow-up on this today. Should you have any questions, please
+contact your Belk Buyer.
+<br/><br/>
+<table width="100%" bgcolor="#CEDFF5" cellpadding="10">
+	<tr>
+		<td>
+			<img src="http://cars.belk.com/images/logo.gif"
+		</td>
+		<td valign="bottom" align="left" width="30%">
+			E-mail all CARS questions and concerns directly to your Belk Buyer or Belk Buying Office, who will work to get you answers.
+		</td>
+	</tr>
+</table>
+</body>
+</html>

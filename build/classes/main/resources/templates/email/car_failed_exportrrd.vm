@@ -1,0 +1,42 @@
+<html>
+<head>
+ <style type="text/css">
+		th
+		{
+			height:20px;
+			background-color:#CEDFF5;
+			color:#15428B;
+		}
+		td
+		{
+			font-family:Tahoma;
+			font-size:13px;
+			height:20px;
+			text-align:center;
+		}
+	
+	  </style>
+<head>	  
+<body>
+<br>
+<b>Process: </b> ${processName} <br><br>
+<b>Date: </b> ${executionDate} <br><br>
+The Export RRD job was unable to process the below sample ID(s) because the Product Type of the corresponding CAR ID was not set. <br/><br>
+
+<table border="1px solid #CEDFF5" width="70%">
+     	<tr>
+      		<th>CAR Id</th>
+      		<th>Vendor Style Number</th>
+      		<th>Sample Id</th>
+      	</tr>
+	#foreach( $samples in $UnprocessedSamples)
+		<tr>
+		    <td>$samples.CarID</td>    
+		    <td>$samples.VendorStyleNumber</td>    
+		    <td>$samples.SampleID</td>       
+		    	 	
+      	 </tr>
+	#end
+	 
+</body>
+</html>

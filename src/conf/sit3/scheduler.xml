@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- Quartz Manager and Beans  -->
+	<bean id="quartzJobManager"
+		class="com.belk.car.app.service.impl.QuartzJobManagerImpl">
+		<property name="manualCarManager" ref="manualCarManager" />
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="workflowManager" ref="workflowManager" />
+		<property name="attributeManager" ref="attributeManager" />
+		<property name="productManager" ref="productManager" />
+		<property name="catalogImportManager" ref="catalogImportManager" />
+		<property name="reportManager" ref="reportManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="superColorManager" ref="superColorManager" />
+		<property name="sizeConversionJobManager" ref="sizeConversionJobManager" />
+		<property name="userRankManager" ref="userRankManager" />
+		<property name="attributeResynchJobManager" ref="attributeResynchJobManager" />
+	</bean>
+
+	<bean id="quartzJobManagerDropship"
+			class="com.belk.car.app.service.impl.QuartzJobManagerForDropshipImpl">
+			<property name="dropshipManager" ref="dropshipManager" />
+			<property name="readIDBFileForDropship" ref="readIDBFileForDropship"/>
+			<property name="readIDBCrossReferenceFeedFileForDropship" ref="readIDBCrossReferenceFeedFileForDropship"/>
+			<property name="carCreation" ref="readIDBCrossReferenceFeedFileForCarCreation"/>
+			<property name="readIDBPurgeFeedForDropship" ref="readIDBPurgeFeedForDropship"/>
+            <property name="carManager" ref="carManager" />
+            <property name="lookupManager" ref="carLookupManager" />
+            <property name="userManager" ref="userManager" />
+            <property name="productManager" ref="productManager" />
+            <property name="catalogImportManager" ref="catalogImportManager" />
+            <property name="reportManager" ref="reportManager" />
+            <property name="sendEmailManager" ref="emailManager" />
+            <property name="workflowManager" ref="workflowManager" />
+            <property name="patternPrefillManager" ref="patternPrefillManager" />
+	</bean>
+
+		<bean id="quartzJobManagerForVendorCatalog"
+		class="com.belk.car.app.service.impl.QuartzJobManagerForVendorCatalogImpl">
+		<property name="importVendorCatalog" ref="importVendorCatalog" />
+		<property name="dropshipManager" ref="dropshipManager"/>
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+
+
+	</bean>
+
+	<bean id="quartzJobManagerForLateCarReport"
+		class="com.belk.car.app.service.impl.QuartzJobManagerForLateCarReportImpl">
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="carManager" ref="carManager" />
+		<property name="workflowManager" ref="workflowManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+	</bean>
+
+
+	<bean id="quartzJobManagerForImportAndUpdateFacets"
+		class="com.belk.car.app.service.impl.QuartzJobManagerForImportAndUpdateFacetsImpl">
+		<property name="carFacetImportAndUpdateManager" ref="carFacetImportAndUpdateManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="carManager" ref="carManager" />
+		<property name="attributeManager" ref="attributeManager" />
+	</bean>
+
+
+	<bean id="quartzJobmanagerForMCImage"
+		class="com.belk.car.app.service.impl.QuartzJobmanagerForMCImageImpl">
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="carManager" ref="carManager" />
+		<property name="vendorImageManager" ref="vendorImageManager" />
+	</bean>
+
+    <bean id="quartzJobManagerForPIMJobs"
+        class="com.belk.car.app.service.impl.QuartzJobManagerForPIMJobsImpl">
+        <property name="carManager" ref="carManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="carLookupManager" ref="carLookupManager" />
+        <property name="pimAttributeManager" ref="pimAttributeManager" />
+        <property name="workflowManager" ref="workflowManager" />
+        <property name="productManager" ref="productManager" />
+        <property name="sendEmailManager" ref="emailManager" />
+        <property name="catalogImportManager" ref="catalogImportManager" />
+        <property name="pimFtpImageManager" ref="pimFtpImageManager" />
+        <property name="dropshipDao" ref="dropshipDao" />
+        <property name="patternAndCollectionManager" ref="patternAndCollectionManager" />
+        <property name="queueSender" ref="jmsQueueSender" />
+    </bean>
+
+	<bean id="quartzJobManagerForVendorImages"
+		class="com.belk.car.app.service.impl.QuartzJobManagerForVendorImagesImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="workflowManager" ref="workflowManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="vendorImageManager" ref="vendorImageManager" />
+	</bean>
+	<bean id="quartzJobManagerForEmailNotificationManager"
+		class="com.belk.car.app.service.impl.QuartzJobManagerForEmailNotificationImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name = "quartzJobManagerForEmailNotification" ref="quartzJobManagerForEmailNotification"/>
+	</bean>
+	<!--Yogesh Vedak/18May 2012/FacetedNavigation:Adding SuperColorJob Manager bean for super color1 synch  job-->
+	<!--
+    <bean id="superColorJobManager"
+		class="com.belk.car.app.service.impl.SuperColorJobManagerImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="superColorManager" ref="superColorManager" />
+		<property name="outfitManager" ref="outfitManager" />
+		<property name="superColorRulesUtils" ref="superColorRulesUtils" />
+		<property name="quartzJobCommonUtil" ref="quartzJobCommonUtil" />
+	</bean>
+	-->
+	 <bean id="sizeConversionJobManager"
+		class="com.belk.car.app.service.impl.SizeConversionJobManagerImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="sizeConversionManager" ref="sizeConversionManager" />
+		<property name="outfitManager" ref="outfitManager" />
+		<property name="sizeConversionRulesUtils" ref="sizeConversionRulesUtils" />
+		<property name="quartzJobCommonUtil" ref="quartzJobCommonUtil" />
+		<property name="userManager" ref="userManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+	</bean>
+	<bean id="attributeResynchJobManager"
+		class="com.belk.car.app.service.impl.AttributeResynchJobManagerImpl">
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="attributeManager" ref="attributeManager" />
+		<property name="quartzJobCommonUtil" ref="quartzJobCommonUtil" />
+		<property name="carManager" ref="carManager" />
+		<property name="sizeConversionRulesUtils" ref="sizeConversionRulesUtils" />
+
+	</bean>
+	<bean id="methodInvokingCloseCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="closeCars" />
+		<property name="name" value="closeCars" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportHexValues"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportHexValues" />
+		<property name="name" value="exportHexValues" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportProductsInTrend"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportProductsInTrend" />
+		<property name="name" value="exportProductsInTrend" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportCESInfo"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportCESInfoWithoutContent" />
+		<property name="name" value="exportCESInfo" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportManualCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportManualCarsToFile" />
+		<property name="name" value="exportManualData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportManualCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="importCars" />
+		<property name="name" value="importManualData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportRLRInfo"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="importRLR" />
+		<property name="name" value="importRLRData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingSendUserNotification"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="sendUserCarNotification" />
+		<property name="name" value="sendUserNotification" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+<!--
+	<bean id="methodInvokingSendVendorNotification"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="sendVendorCarNotification" />
+		<property name="name" value="sendVendorNotification" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingSendVendorCarEscalationList"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod"
+			value="sendVendorCarEscalationList" />
+		<property name="name" value="sendVendorCarEscalationList" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="invokeSendVendorSampleEscalationList"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod"
+			value="sendVendorSampleEscalationList" />
+		<property name="name" value="sendVendorSampleEscalationList" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+-->
+	<bean id="methodInvokingImportRRDFeeds"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="importRRDFeeds" />
+		<property name="name" value="importRRDFeeds" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportRRDFeeds"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportRRDFeeds" />
+		<property name="name" value="exportRRDFeeds" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportIDBFeedForDropship"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="importIDBFeedForDropship" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportIDBCrossReferenceFeed"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="importIDBCrossReferenceFeedForDropship" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportIDBCrossReferenceFeedForCarCreation"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="importIDBCrossReferenceFeedForDropshipForCarCreation" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingLoadVendorCatalogDataIntoCARS"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForVendorCatalog" />
+		<property name="targetMethod" value="loadVendorCatalogDataIntoCARS" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+<bean id="methodInvokingImportIDBPurgeFeed"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="importIDBPurgeFeedForDropship" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportVendorCatalogData"
+	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<property name="targetObject" ref="quartzJobManagerForVendorCatalog" />
+		<property name="targetMethod" value="importVendorCatalogData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+       <!--   BR012 -Creation of CARS-->
+                <bean id="methodInvokingImportDropshipCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="importDropshipCars" />
+		<property name="name" value="importDropshipData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+		</bean>
+            <!--   BR012 -Prefilling of Pattern  CARS-->
+                <bean id="methodInvokingPrefillPatternCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="prefIllPatternStyleCar" />
+		<property name="name" value="prefIllPatternStyleCar" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+		</bean>
+
+	<bean id="methodInvokingCopyAvailToTmp"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="updateTmpWithBel_Inv_Avail" />
+		<property name="name" value="updateTmpWithBel_Inv_Avail" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+		</bean>
+
+	<bean id="methodInvokingUnlockAllCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="unlockAllCars" />
+		<property name="name" value="unlockAllCars" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingSendLateCarReport"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForLateCarReport" />
+		<property name="targetMethod" value="sendLateCarReports" />
+		<property name="name" value="sendLateCarReports" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingLoadMCImage"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobmanagerForMCImage" />
+		<property name="targetMethod" value="loadTempImagesFromMC" />
+		<property name="name" value="loadTempImagesFromMC" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingImportMCImageFeed"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobmanagerForMCImage" />
+		<property name="targetMethod" value="importMCTempImageFeed" />
+		<property name="name" value="importMCTempImageFeed" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	  <bean id="exportVendorExpeditedShipping"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerDropship" />
+		<property name="targetMethod" value="exportVendorExpeditedShipping" />
+		<property name="name" value="exportVendorExpeditedShippingData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+		</bean>
+	<!--Yogesh Vedak/18May 2012/FacetedNavigation:Adding  job detail bean for super color1 synch job-->
+	<!--
+	<bean id="methodInvokingResynchSuperColor1OfVendorSkus"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="superColorJobManager" />
+		<property name="targetMethod" value="resynchSuperColor1OfVendorSkus" />
+		<property name="name" value="resynchSuperColor1OfVendorSkus" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingResynchSizeValuesOfVendorSkus"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="sizeConversionJobManager" />
+		<property name="targetMethod" value="resynchSizeValuesOfVendorSkus" />
+		<property name="name" value="resynchSizeValuesOfVendorSkus" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	-->
+	<bean id="methodInvokingAttributeResynch"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="attributeResynchJobManager" />
+		<property name="targetMethod" value="resynchAttributes" />
+		<property name="name" value="resynchAttributes" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingSendVendorImagesFeedForMCToRRD"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForVendorImages" />
+		<property name="targetMethod" value="sendVendorImagesFeedForMCToRRD" />
+		<property name="name" value="sendVendorImagesFeedForMCToRRD" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingSendVendorImagesUpdateFeedToRRD"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForVendorImages" />
+		<property name="targetMethod" value="sendVendorImagesUpdateFeedToRRD" />
+		<property name="name" value="sendVendorImagesUpdateFeedToRRD" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingimportVendorImageCheckFeedbackFromRRD"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForVendorImages" />
+		<property name="targetMethod" value="importVendorImageCheckFeedbackFromRRD" />
+		<property name="name" value="importVendorImageCheckFeedbackFromRRD" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingAutomaticallyApproveImage"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="updateAutomaticallyApproveImage" />
+		<property name="name" value="updateAutomaticallyApproveImage" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingimportVendorImageHistoryFeed"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForVendorImages" />
+		<property name="targetMethod" value="importVendorImageHistoryFeed" />
+		<property name="name" value="importVendorImageHistoryFeed" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingSendImageRejectionMail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForEmailNotificationManager" />
+		<property name="targetMethod" value="sendVendorImageRejectionEmailNotifitcation" />
+		<property name="name" value="sendVendorImageRejectionEmailNotifitcation" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+	<bean id="methodInvokingUserRankData"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="importUserRankData" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingExportPWPandGWPAttributes"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManager" />
+		<property name="targetMethod" value="exportPWPandGWPAttributes" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodToProcessPIMAttributeUpdates"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForPIMJobs" />
+		<property name="targetMethod" value="processPIMAttributeUpdates" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodToProcessPIMAttributeUpdatesForClosedCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForPIMJobs" />
+		<property name="targetMethod" value="processPIMAttributeUpdatesForClosedCars" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="methodInvokingSkuPackParentResync"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzJobManagerForPIMJobs" />
+		<property name="targetMethod" value="executeSkuPackParentResyncProcedure" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+	<bean id="cronTrigger3"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"
+			ref="methodInvokingSendUserNotification" />
+		<property name="cronExpression">
+			<value>0 0 5 ? * *</value><!-- 5 AM Every Day -->
+		</property>
+	</bean>
+<!--  5:30 AM Every Day
+	<bean id="cronTrigger4"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"
+			ref="methodInvokingSendVendorNotification" />
+		<property name="cronExpression">
+			<value>0 30 5 ? * *</value>
+		</property>
+	</bean>
+-->
+<!--  11 PM Every Day
+	<bean id="cronTrigger5"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"
+			ref="methodInvokingSendVendorCarEscalationList" />
+		<property name="cronExpression">
+			<value>0 0 23 ? * *</value>
+		</property>
+	</bean>
+-->
+<!--  10:30 PM Every Day
+	<bean id="cronTrigger6"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail"
+			ref="invokeSendVendorSampleEscalationList" />
+		<property name="cronExpression">
+			<value>0 30 22 ? * *</value>
+		</property>
+	</bean>
+-->
+	<bean id="cronTrigger8"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportRRDFeeds" />
+		<property name="cronExpression">
+			<value>0 15 22 ? * *</value><!-- 10:15 PM Every Day -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger9"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingImportRRDFeeds" />
+		<property name="cronExpression">
+			<value>0 59 23 ? * *</value><!-- 11:45 PM Every Day -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger10"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportCESInfo" />
+		<property name="cronExpression">
+			<value>0 25 1 ? * *</value><!-- 4:30 AM Every Day -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger11"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingCloseCars" />
+		<property name="cronExpression">
+			<value>0 45 5 ? * *</value><!-- 5:45 AM Every Day -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger12"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportHexValues" />
+		<property name="cronExpression">
+			<value>0 15 6 ? * *</value><!-- 6:15 AM Every Day -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger13"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportProductsInTrend" />
+		<property name="cronExpression">
+			<value>0 45 4 ? * *</value><!-- 4:45 AM Every Day -->
+		</property>
+	</bean>
+
+	<!--BR.005 - Prefill master table and cars images -->
+	<bean id="cronTrigger17"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingLoadVendorCatalogDataIntoCARS" />
+
+	 	<property name="cronExpression">
+			<value>0 15 05 ? * *</value> <!-- Everyday at 5:15 AM -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger18"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingImportVendorCatalogData" />
+
+	 	<property name="cronExpression">
+				<value>0 15 23 ? * *</value> <!-- Everyday at 11:15 P.M. -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger16"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingImportIDBPurgeFeed" />
+
+	 	<property name="cronExpression">
+			<value>0 0/1 * * * ?</value><!-- every 1 min -->
+		</property>
+	</bean>
+
+	<!--  Pre-fill CARS jobs -->
+	<bean id="carPrefillJobManager"
+		class="com.belk.car.app.service.impl.CarPrefillManagerImpl">
+		<property name="carManager" ref="carManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="vendorCatalogManager" ref="vendorCatalogManager" />
+		<property name="dropshipManager" ref="dropshipManager" />
+		<property name="workflowManager" ref="workflowManager" />
+	</bean>
+
+	<bean id="methodInvokingPrefillCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="carPrefillJobManager" />
+		<property name="targetMethod" value="prefillCars" />
+		<property name="name" value="prefillCars" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+<!--  BR.012 Pre filling CARS -->
+	<bean id="cronTrigger20"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingPrefillCars" />
+		<property name="cronExpression">
+			<value>0 45 06 ? * *</value><!-- SS MM HH DD DOM MM DOW - 6:45 AM Every Day -->
+		</property>
+	</bean>
+
+	<!--  IDB Drop Ship to CARS jobs -->
+	<bean id="idbDropShipToCarsJobManager"
+		class="com.belk.car.app.service.impl.IDBDropShipToCarsJobManagerImpl">
+		<property name="manualCarManager" ref="manualCarManager" />
+		<property name="carManager" ref="carManager" />
+		<property name="lookupManager" ref="carLookupManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="workflowManager" ref="workflowManager" />
+		<property name="attributeManager" ref="attributeManager" />
+		<property name="productManager" ref="productManager" />
+		<property name="catalogImportManager" ref="catalogImportManager" />
+		<property name="reportManager" ref="reportManager" />
+		<property name="sendEmailManager" ref="emailManager" />
+		<property name="readIDBFileForDropship" ref="readIDBFileForDropship" />
+	</bean>
+
+	<bean id="methodInvokingIDBDropShipToCars"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="idbDropShipToCarsJobManager" />
+		<property name="targetMethod" value="importIDBDropshipForCars" />
+		<property name="name" value="importIDBDropshipForCars" />
+		<property name="concurrent">
+			<value>true</value>
+		</property>
+	</bean>
+
+		<!--BR.012 -Prefill pattern CARS -->
+        <bean id="cronTrigger23"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingPrefillPatternCars"/>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+
+        <!-- Job to dump data from BEL_INV_AVAIL to TMP Table in CARS Schema for CAR CMP Report Enhancment-Siddhi -->
+       <bean id="cronTrigger24"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingCopyAvailToTmp"/>
+		<property name="cronExpression">
+			<value>0 00 14 ? * *</value> <!--  2 PM Every Day -->
+		</property>
+	   </bean>
+
+	   <!-- Job to unlock all the CARS -->
+	   <bean id="cronTrigger25"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingUnlockAllCars"/>
+		<property name="cronExpression">
+			<value>0 30 21 ? * *</value>
+		</property>
+	   </bean>
+
+	    <!-- Job to send late cars email report -->
+	   <bean id="cronTrigger26"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingSendLateCarReport"/>
+		<property name="cronExpression">
+			<value>0 10 23 ? * SUN</value>
+		</property>
+	   </bean>
+
+	 <!--  This Trigger is for load MC images to belkmacl -->
+	 <bean id="cronTrigger27"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingLoadMCImage" />
+		<property name="cronExpression">
+			<value>0 45 00 ? * *</value><!--  00:45 AM Every Day -->
+		</property>
+		</bean>
+
+	 <!--  This Trigger is to process MC image XML feed-->
+	<bean id="cronTrigger28"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingImportMCImageFeed" />
+		<property name="cronExpression">
+			<value>0 15 00 ? * *</value><!-- 00:15 AM Every Day -->
+		</property>
+		</bean>
+
+	<!--  Import Vendor Catalog 2 nd schedule at 12 PM Every Day-->
+	<bean id="cronTrigger31"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingImportVendorCatalogData" />
+
+	 	<property name="cronExpression">
+				<value>0 00 12 ? * *</value> <!-- Everyday at 12 P.M. -->
+		</property>
+	</bean>
+
+	<!--  Method to invoke vendor expedited shipping to BM -->
+
+	<bean id="cronTrigger32"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="exportVendorExpeditedShipping" />
+
+	 	<property name="cronExpression">
+				<value>0 30 11 ? * *</value> <!-- Everyday at 11:30 A.M. -->
+		</property>
+	</bean>
+	<!--
+	  <bean id="cronTrigger33"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingResynchSuperColor1OfVendorSkus"/>
+		<property name="cronExpression">
+			<value>0 48 00 * * ?</value>
+		</property>
+	   </bean>
+
+	    <bean id="cronTrigger34"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingResynchSizeValuesOfVendorSkus"/>
+		<property name="cronExpression">
+			<value>0 30 03 * * ?</value>
+		</property>
+	   </bean>
+	 -->
+	   <bean id="cronTrigger35"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingAutomaticallyApproveImage"/>
+			<property name="cronExpression">
+			    <value>0 00 20 ? * MON-FRI</value> <!-- 08:00 PM Every Night -->
+			</property>
+	   </bean>
+		<bean id="cronTrigger36"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingSendVendorImagesUpdateFeedToRRD" />
+			<property name="cronExpression">
+				<value>0 00 21 ? * *</value><!-- 9:00 PM Every night -->
+			</property>
+		</bean>
+
+		<bean id="cronTrigger37" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingSendVendorImagesFeedForMCToRRD"/>
+		   <property name="cronExpression">
+				<value>0 00 22 ? * *</value> <!-- 10:00 PM Every night -->
+		   </property>
+	   </bean>
+
+		<bean id="cronTrigger38"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingimportVendorImageHistoryFeed" />
+			<property name="cronExpression">
+				<value>0 00 23 ? * *</value><!-- 11:00 PM Every Night -->
+			</property>
+		</bean>
+		<bean id="cronTrigger39"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingimportVendorImageCheckFeedbackFromRRD" />
+			<property name="cronExpression">
+				<value>0 00 02 ? * *</value><!-- 02:00 AM Every Morning -->
+			</property>
+		</bean>
+		<bean id="cronTrigger40"
+			class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingimportVendorImageCheckFeedbackFromRRD" />
+			<property name="cronExpression">
+				<value>0 15 05 ? * *</value><!-- 05:00 AM Every Morning -->
+			</property>
+		</bean>
+	   <bean id="cronTrigger41"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingSendImageRejectionMail"/>
+		<property name="cronExpression">
+			<value>0 00 06 * * ?</value> <!--  06:00 AM Every Morning -->
+		</property>
+	   </bean>
+
+	   <bean id="cronTrigger42"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportPWPandGWPAttributes"/>
+		<property name="cronExpression">
+		    <value>0 30 17 ? * *</value> <!--  05:30 PM Every day -->
+		</property>
+	   </bean>
+
+	   <bean id="cronTrigger43"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingAttributeResynch"/>
+		<property name="cronExpression">
+			<value>0 15 00 ? * *</value><!-- 00:15 AM Every Day -->
+		</property>
+	   </bean>
+
+	   <bean id="cronTrigger44"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodToProcessPIMAttributeUpdates"/>
+		<property name="cronExpression">
+		   <value>0 0 1-23/2 * * ?</value><!-- Every Odd hour -->
+		</property>
+	   </bean>
+
+		<bean id="cronTrigger45"
+			 class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodInvokingSkuPackParentResync"/>
+			<property name="cronExpression">
+			   <value>0 0 0/4 * * ?</value><!-- Every 4 hours -->
+			</property>
+		</bean>
+		<bean id="cronTrigger46"
+			 class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="methodToProcessPIMAttributeUpdatesForClosedCars"/>
+			<property name="cronExpression">
+			   <value>0 05 00 ? * *</value><!-- 00:05 AM Every Day -->
+			</property>
+		</bean>
+
+	<!-- CARS-CMP mid-day feeds below -->
+	<bean id="cronTrigger47"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingExportCESInfo" />
+		<property name="cronExpression">
+			<value>0 0 10,13,16 ? * *</value><!-- 10am, 1pm, 4pm  -->
+		</property>
+	</bean>
+
+	<bean id="cronTrigger48"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingCloseCars" />
+		<property name="cronExpression">
+			<value>0 30 11,14,17 ? * *</value><!-- 11:30am, 2:30pm, 5:30pm -->
+		</property>
+	</bean>
+	<bean id="cronTrigger49"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodInvokingAttributeResynch"/>
+		<property name="cronExpression">
+			<value>0 0 11,14,17 ? * *</value><!-- 11am, 2pm, 5pm -->
+		</property>
+	</bean>
+	<bean id="cronTrigger50"
+		 class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="methodToProcessPIMAttributeUpdatesForClosedCars"/>
+		<property name="cronExpression">
+		   <value>0 45 8,12,16 ? * *</value><!-- 8:45am, 12:45pm, 4:45pm -->
+		</property>
+	</bean>
+
+	  <bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+
+				<!--<ref bean="cronTrigger3" />-->
+				<!-- <ref bean="cronTrigger4" />
+				<ref bean="cronTrigger5" />
+				<ref bean="cronTrigger6" />  -->
+				<ref bean="cronTrigger8" />
+				<ref bean="cronTrigger9" />
+ 				<ref bean="cronTrigger10" />
+				<ref bean="cronTrigger11" />
+				<ref bean="cronTrigger12" />
+				<ref bean="cronTrigger13" />
+
+
+ 			 	<!--This trigger is for importing the IDB purge feed-->
+ 		 		<!--<ref bean="cronTrigger16" />-->
+
+ 		 		<!--This trigger is for load vendor catalog data to cars system-->
+ 		 		<ref bean="cronTrigger17" />
+
+ 		 		<!--This trigger is for importing vendor catalog data-->
+ 			  	<ref bean="cronTrigger18" />
+
+ 			  	<!--This trigger is for prefilling  cars-->
+				<ref bean="cronTrigger20" />
+
+			 	<!--This trigger is for prefilling the pattern cars-->
+                <!--<ref bean="cronTrigger23" /> -->
+
+ 				<!-- Trigger for dumping BEL_INV_DATA into TMP Table in CARS Schema -->
+                <ref bean="cronTrigger24" />
+
+                <!--  This Trigger is for unlocking the todays cars -->
+                <ref bean="cronTrigger25" />
+
+                <!--  This Trigger is for sending late cars report (Disabled for CARS-56) -->
+               <!--  <ref bean="cronTrigger26" />  -->
+
+                <!--  This Trigger is for load MC image to belkmacl -->
+                <ref bean="cronTrigger27" />
+
+                <!--  This Trigger is to process MC image XML feed -->
+                <ref bean="cronTrigger28" />
+
+               <!--  This trigger is for importing vendor catalog data second time-->
+                <ref bean="cronTrigger31" />
+
+                <!--  This trigger is for export Vendor Expedited Shipping-->
+                   <ref bean="cronTrigger32" />
+		   		 <!-- YogeshVedak/18May 2012/FacetedNavigation/ This Trigger is to start job which resynchs supercolor1 attribute values of all vendor skus based on its color code-->
+                <!-- <ref bean="cronTrigger33" />-->
+
+                  <!-- YogeshVedak/18May 2012/FacetedNavigation/ This Trigger is to start job which resynchs facet attributes values of all vendor skus based on size rules-->
+                <!--  <ref bean="cronTrigger34" />  -->
+
+                 <!--  This trigger is for Automatically approve the vendor images-->
+				 <!--   <ref bean="cronTrigger35" />  -->
+
+                 <!--  This trigger is for sending vendor image update approve/reject/delete XML feed to RRD-->
+				 <!--  <ref bean="cronTrigger36" />   -->
+
+                 <!--  This trigger is for sending uploaded vendor image XML feed to RRD for mechanical check-->
+				 <!--  <ref bean="cronTrigger37" />  -->
+
+                 <!--  This trigger is for Read and porcess the vendor image history XML feed from RRD-->
+				 <!--  <ref bean="cronTrigger38" />   -->
+
+                 <!--  This trigger is for Read and porcess the vendor image creative check feedback details XML feed from RRD 2:00AM -->
+                 <!--   <ref bean="cronTrigger39" /> -->
+
+                 <!--  This trigger is for Read and porcess the vendor image mechanical check feedback details XML feed from RRD 5:00AM -->
+                 <!--  <ref bean="cronTrigger40" />   -->
+
+                 <!--  This trigger is for send vendor image rejection email -->
+                 <!--  <ref bean="cronTrigger41" />  -->
+
+                 <!--  This trigger is export PWP and GWP attributes -->
+                 <ref bean="cronTrigger42" />
+
+                 <!--  This trigger is export resync atrribute values -->
+                 <ref bean="cronTrigger43" />
+
+                  <!--  This trigger is process PIM attribute Uupdates -->
+                 <ref bean="cronTrigger44" />
+		 <ref bean="cronTrigger45" />
+		 <!--  This trigger is to process PIM attribute updates to CMP for closed cars -->
+		 <ref bean="cronTrigger46" />
+
+		 <!-- CARS-CMP multiple daily feeds -->
+			 <ref bean="cronTrigger47" />
+			 <ref bean="cronTrigger48" />
+			 <ref bean="cronTrigger49" />
+			 <ref bean="cronTrigger50" />
+		 <!---                              -->
+		</list>
+
+		</property>
+		<property name="quartzProperties">
+			<props>
+				<!-- scheduler properties -->
+				<prop key="org.quartz.scheduler.rmi.export">false</prop>
+				<prop key="org.quartz.scheduler.rmi.proxy">false</prop>
+				<!-- ThreadPool -->
+				<prop key="org.quartz.threadPool.class">
+					org.quartz.simpl.SimpleThreadPool
+				</prop>
+				<prop key="org.quartz.threadPool.threadCount">10</prop>
+				<prop key="org.quartz.threadPool.threadPriority">
+					5
+				</prop>
+				<prop key="org.quartz.jobStore.class">
+					org.quartz.simpl.RAMJobStore
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
